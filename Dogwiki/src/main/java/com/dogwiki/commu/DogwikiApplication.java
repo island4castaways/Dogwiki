@@ -8,6 +8,7 @@ public class DogwikiApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(DogwikiApplication.class, args);
+		//이제 우리 집 가자...
 	}
 
 }
