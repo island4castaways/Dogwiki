@@ -8,7 +8,7 @@ public class DogwikiApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(DogwikiApplication.class, args);
-		//저장되는지 확인해보는 거에용
+		//저장되는지 확인해보는 거에용22
 	}
 
 }
