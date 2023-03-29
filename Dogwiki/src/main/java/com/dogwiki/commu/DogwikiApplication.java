@@ -10,4 +10,5 @@ public class DogwikiApplication {
 		SpringApplication.run(DogwikiApplication.class, args);
 	}
 
+	//
 }
