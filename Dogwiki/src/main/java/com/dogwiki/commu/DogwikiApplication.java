@@ -8,7 +8,7 @@ public class DogwikiApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(DogwikiApplication.class, args);
-		//이제 우리 집 가자...
+		//저장되는지 확인해보는 거에용22
 	}
-	//test:push
+	//집에가고 싶다..
 }
