@@ -31,6 +31,8 @@ public class TrainingEntity {
 	private String trProf;
 	@Column(length = 255, nullable = false)
 	private String trTitle;
+	@Column(length = 100, nullable = false)
+	private String trUrl;
 	@CreationTimestamp
 	private Timestamp trDate;
 	@Column

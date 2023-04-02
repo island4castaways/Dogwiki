@@ -1,6 +1,7 @@
 package com.dogwiki.commu.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -17,7 +18,7 @@ import lombok.extern.log4j.Log4j2;
 public class TrainingService {
 	
 	@Autowired
-	private TrainingRepository tr_repository;
+	private TrainingRepository trRepository;
 	
 	public String testService() {
 		TrainingEntity entity = TrainingEntity.builder()
@@ -26,9 +27,9 @@ public class TrainingService {
 				.trDate(null)
 				.trHit(0)
 				.build();
-		tr_repository.save(entity);
+		trRepository.save(entity);
 		
-		TrainingEntity savedEntity = tr_repository
+		TrainingEntity savedEntity = trRepository
 				.findById(entity.getTrId())
 				.get();
 		log.info(savedEntity.getTrId());
@@ -41,7 +42,15 @@ public class TrainingService {
 	}
 	
 	public Page<TrainingEntity> selectAll(Pageable pageable) {
-		return tr_repository.findAll(pageable);
+		return trRepository.findAll(pageable);
+	}
+	
+	public List<TrainingEntity> selectByTrProf(String trProf, Pageable pageable) {
+		return trRepository.findByTrProf(trProf, pageable);
+	}
+	
+	public Optional<TrainingEntity> selectOne(Integer trId) {
+		return trRepository.findById(trId);
 	}
 
 }

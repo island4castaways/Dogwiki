@@ -1,5 +1,6 @@
 package com.dogwiki.commu.repostest;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.IntStream;
 
@@ -29,6 +30,7 @@ public class RepositoryTest {
 			TrainingEntity en = TrainingEntity.builder()
 					.trProf("test")
 					.trTitle("test" + i)
+					.trUrl("#")
 					.build();
 			tr.save(en);
 		});
@@ -36,7 +38,7 @@ public class RepositoryTest {
 	
 	@Test
 	public void testSelect() {
-		int trId = 103;
+		int trId = 100;
 		Optional<TrainingEntity> result = tr.findById(trId);
 		log.info("==================");
 		if(result.isPresent()) {
@@ -47,12 +49,17 @@ public class RepositoryTest {
 	
 	@Test
 	public void testDelete() {
-		int trId = 103;
+		TrainingEntity te = TrainingEntity.builder()
+				.trProf("test1")
+				.trTitle("test101")
+				.trUrl("#")
+				.build();
+		int trId = 101;
 		tr.deleteById(trId);
 	}
 	
 	@Test
-	public void testPageDefault() {
+	public void testPaging() {
 		//page1, 10개
 		Sort sort = Sort.by("trId").descending();
 		Pageable pageable = PageRequest.of(1, 10, sort);
@@ -60,6 +67,45 @@ public class RepositoryTest {
 		result.get().forEach(en -> {
 			System.out.println(en);
 		});
+	}
+	
+	@Test
+	public void testUpdate() {
+		TrainingEntity te = TrainingEntity.builder()
+				.trId(101)
+				.trProf("test")
+				.trTitle("test101")
+				.trUrl("#")
+				.build();
+		tr.save(te);
+		TrainingEntity modified = TrainingEntity.builder()
+				.trId(te.getTrId())
+				.trProf("test")
+				.trTitle("test101modified")
+				.trUrl("#")
+				.build();
+		tr.save(modified);
+	}
+	
+	@Test
+	public void testSelectByTrProf() {
+		Pageable pageable = PageRequest.of(1, 10, Sort.by("trId").descending());
+		List<TrainingEntity> te = tr.findByTrProf("test", pageable);
+		te.stream().forEach(entity -> {
+			System.out.println(entity.getTrProf());
+		});
+	}
+	
+	@Test
+	public void testSelectOne() {
+		Optional<TrainingEntity> op = tr.findById(2);
+		TrainingEntity te = op.get();
+		System.out.println(te.getTrId());
+		System.out.println(te.getTrProf());
+		System.out.println(te.getTrTitle());
+		System.out.println(te.getTrUrl());
+		System.out.println(te.getTrDate());
+		System.out.println(te.getTrHit());
 	}
 
 }

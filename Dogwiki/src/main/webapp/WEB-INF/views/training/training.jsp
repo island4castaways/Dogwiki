@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 	<html>
@@ -14,15 +14,19 @@
 			<tr>
 				<ul>
 					<td>
-						<li><a href="#">강형욱 훈련사</a></li>
+						<li><a href="/training?st=강형욱">강형욱 훈련사</a></li>
 					</td>
 					<td>&nbsp;</td>
 					<td>
-						<li><a href="#">설채현 수의사</a></li>
+						<li><a href="/training?st=설채현">설채현 수의사</a></li>
 					</td>
 				</ul>
 			</tr>
 		</table>
+		
+		<c:if test="${msg != null}">
+			<p>${msg}</p>
+		</c:if>
 		
 		<table class="table">
 			<thead>
@@ -35,12 +39,12 @@
 			</thead>
 			
 			<tbody>
-				<c:forEach var="entity" items="${ list }">
+				<c:forEach var="en" items="${list}">
 					<tr>
-						<td>${ entity.prof }</td>
-						<td><a href="#">${ entity.tr_title }</a></td>
-						<td>${ entity.upd_date }</td>
-						<td>${ entity.tr_hit }</td>
+						<td>${en.trProf}</td>
+						<td><a href="/training/content?num=${en.trId}&pn=${pn}">${en.trTitle}</a></td>
+						<td>${en.trDate}</td>
+						<td>${en.trHit}</td>
 					</tr>
 				</c:forEach>
 			</tbody>
