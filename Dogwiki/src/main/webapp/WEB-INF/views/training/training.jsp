@@ -42,7 +42,7 @@
 				<c:forEach var="en" items="${list}">
 					<tr>
 						<td>${en.trProf}</td>
-						<td><a href="/training/content?num=${en.trId}&pn=${pn}">${en.trTitle}</a></td>
+						<td><a href="/training/content?num=${en.trId}&pn=${page.pageNum}">${en.trTitle}</a></td>
 						<td>${en.trDate}</td>
 						<td>${en.trHit}</td>
 					</tr>

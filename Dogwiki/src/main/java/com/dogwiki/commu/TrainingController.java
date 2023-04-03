@@ -22,50 +22,6 @@ public class TrainingController {
 	@Autowired
 	private TrainingService trService;
 	
-//	@GetMapping("/testTraining")
-//	public ResponseEntity<?> testService() {
-//		String st = trService.testService();
-//		List<String> list = new ArrayList<>();
-//		list.add(st);
-//		list.add("service test completed!\n"
-//				+ "And response has successed!");
-//		ResponseDTO<String> response = ResponseDTO.<String>builder()
-//				.data(list).build();
-//		return ResponseEntity.ok().body(response);
-//	}
-//	
-//	@GetMapping("/training")
-//	public ResponseEntity<?> main() {
-//		System.out.println("Training Main page has been called");
-//		List<TrainingEntity> entities = trService.selectAll();
-//		List<TrainingDTO> dtos = entities.stream()
-//				.map(TrainingDTO::new).collect(Collectors.toList());
-//		ResponseDTO<TrainingDTO> response = ResponseDTO.<TrainingDTO>builder()
-//				.data(dtos).build();
-//		return ResponseEntity.ok().body(response);
-//	}
-		
-	@GetMapping("/content")
-	public String content(@RequestParam("num") Integer trId, 
-			@RequestParam("pn") Integer pn, 
-			Model model) {
-		Optional<TrainingEntity> op = trService.selectOne(trId);
-		TrainingEntity en = null;
-		String error = null;
-		
-		if(op.isPresent()) {
-			en = op.get();
-			model.addAttribute("en", en);
-		} else {
-			error = "searching entity doesn't exist.";
-			model.addAttribute("msg", error);
-		}
-		
-		model.addAttribute("pn", pn);
-		
-		return "/training/content";
-	}
-	
 	@GetMapping
 	public String testPaging(Model model, 
 			@RequestParam(value = "pn", defaultValue = "0", required = false) int pageNum,
@@ -89,6 +45,27 @@ public class TrainingController {
 		model.addAttribute("list", list);
 		
 		return "/training/training";
+	}
+			
+	@GetMapping("/content")
+	public String content(@RequestParam("num") Integer trId, 
+			@RequestParam("pn") Integer pn, 
+			Model model) {
+		Optional<TrainingEntity> op = trService.selectOne(trId);
+		TrainingEntity en = null;
+		String error = null;
+		
+		if(op.isPresent()) {
+			en = op.get();
+			model.addAttribute("en", en);
+		} else {
+			error = "searching entity doesn't exist.";
+			model.addAttribute("msg", error);
+		}
+		
+		model.addAttribute("pn", pn);
+		
+		return "/training/content";
 	}
 	
 }
