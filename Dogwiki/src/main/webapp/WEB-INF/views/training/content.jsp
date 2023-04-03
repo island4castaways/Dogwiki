@@ -25,7 +25,9 @@
 						<td width="20%">${en.trHit}</td>
 					</tr>
 					<tr>
-						<td colspan="4">${en.trUrl}</td>
+						<td colspan="4">
+							<iframe src="${en.trUrl}"></iframe>
+						</td>
 					</tr>
 					<tr>
 						<td colspan="4">

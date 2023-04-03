@@ -71,18 +71,11 @@ public class RepositoryTest {
 	
 	@Test
 	public void testUpdate() {
-		TrainingEntity te = TrainingEntity.builder()
+		TrainingEntity modified = TrainingEntity.builder()
 				.trId(101)
 				.trProf("test")
-				.trTitle("test101")
-				.trUrl("#")
-				.build();
-		tr.save(te);
-		TrainingEntity modified = TrainingEntity.builder()
-				.trId(te.getTrId())
-				.trProf("test")
 				.trTitle("test101modified")
-				.trUrl("#")
+				.trUrl("https://www.youtube.com/embed/3pp-RUaUhvY")
 				.build();
 		tr.save(modified);
 	}
