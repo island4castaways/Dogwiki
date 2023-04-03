@@ -5,7 +5,9 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.dogwiki.commu.entity.TrainingEntity;
@@ -41,11 +43,21 @@ public class TrainingService {
 		return savedEntity.getTrTitle();
 	}
 	
-	public Page<TrainingEntity> selectAll(Pageable pageable) {
+	public Page<TrainingEntity> selectAll(int pageNum, 
+			int pageSize, String sortBy) {
+		Pageable pageable = PageRequest.of(pageNum, pageSize, 
+				Sort.by(sortBy).descending());
 		return trRepository.findAll(pageable);
 	}
 	
-	public List<TrainingEntity> selectByTrProf(String trProf, Pageable pageable) {
+	public long countTotal() {
+		return trRepository.count();
+	}
+	
+	public List<TrainingEntity> selectByTrProf(String trProf, 
+			int pageNum, int pageSize, String sortBy) {
+		Pageable pageable = PageRequest.of(pageNum, pageSize, 
+				Sort.by(sortBy).descending());
 		return trRepository.findByTrProf(trProf, pageable);
 	}
 	

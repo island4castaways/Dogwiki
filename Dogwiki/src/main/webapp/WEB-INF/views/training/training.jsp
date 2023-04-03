@@ -63,5 +63,29 @@
 				</tr>
 			</tbody>
 		</table>
+		
+		<div align="center">
+			<ul>
+				<c:if test="${page.hasPrev}">
+					<li>
+						<a href="/training?pn=${page.startNum - 1}">이전</a>
+					</li>
+				</c:if>
+				
+				<c:forEach var="num" begin="${page.startNum}" 
+					end="${page.endNum}" step="1">
+					<li>
+						<a href="/training?pn=${num - 1}">${num}</a>
+					</li>				
+				</c:forEach>
+				
+				<c:if test="${page.hasNext}">
+					<li>
+						<a href="/training?pn=${page.endNum + 1}">다음</a>
+					</li>
+				</c:if>
+			</ul>
+		</div>
+		
 	</body>
 </html>
