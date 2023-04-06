@@ -68,11 +68,10 @@ public class BoardContoller {
 	}
 	
 	@RequestMapping(value = "/board_modify")
-	public String board_modify(@RequestParam("num") Integer num, Model model, @RequestParam("page")int page) {
+	public String board_modify(@RequestParam("num") Integer num, Model model) {
 		Optional<BoardEntity> content = service.selectOne(num);
 		BoardEntity boardContent = content.get();
 		model.addAttribute("boardContent", boardContent);
-		model.addAttribute("page",page);
 		return "/board/board_modify";
 	}
 	

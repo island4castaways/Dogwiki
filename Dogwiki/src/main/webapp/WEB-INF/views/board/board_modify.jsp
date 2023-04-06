@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <section>
    <div align="center">
-      <form name = "regform" action="board_update?pageNum=${param.pageNum }" method="post">
+      <form name = "regform" action="board_update?page=${param.page }" method="post">
          <h2>게시판 글작성 페이지</h2>
          <hr>
          <table border="1" width="500">
@@ -26,8 +26,8 @@
                <!-- 글 등록 메뉴 -->
                <td colspan="2" align="center">
                   <input type ="button" value="수정" onclick="modifyCheck()">
-                  <input type ="button" value="목록" onclick="location.href='board_list?page=${page}'">
-                  <input type ="button" value="삭제하기" onclick="location.href='board_delete?num=${vo.num}&pageNum=${param.pageNum}'">
+                  <input type ="button" value="목록" onclick="location.href='board_list?page=${param.page}'">
+                  <input type ="button" value="삭제하기" onclick="location.href='board_delete?num=${vo.num}&pageNum=${param.page}'">
                </td>
             </tr>
          </table>
