@@ -50,3 +50,31 @@ public class BoardContoller {
         model.addAttribute("endPage",endPage);
 		return "/board/board_list";
 	}
+	
+	@RequestMapping(value="/board_content", method =RequestMethod.GET)
+	public String board_content(@RequestParam("num") Integer num,@RequestParam("page") int page, Model model) {
+		System.out.println(num);
+		Optional<BoardEntity> content = service.selectOne(num);
+		BoardEntity boardContent = content.get();
+		model.addAttribute("boardContent", boardContent);
+		model.addAttribute("page",page);
+		return "/board/board_content";
+		
+	}
+	
+	@RequestMapping(value = "/board_write", method=RequestMethod.GET)
+	public String board_write( Model model) {
+		return "/board/board_write";
+	}
+	
+	@RequestMapping(value = "/board_modify")
+	public String board_modify(@RequestParam("num") Integer num, Model model, @RequestParam("page")int page) {
+		Optional<BoardEntity> content = service.selectOne(num);
+		BoardEntity boardContent = content.get();
+		model.addAttribute("boardContent", boardContent);
+		model.addAttribute("page",page);
+		return "/board/board_modify";
+	}
+	
+	
+}
