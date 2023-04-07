@@ -23,7 +23,10 @@ public class UserController {
 	private UserService service;
 
 	@GetMapping("/login")
-	public String user_login_get() { 
+	public String user_login_get(HttpSession session) { 
+		if(session.getAttribute("userid") != null) {
+			return "/user/mypage";
+		}
 		return"/user/login";
 	}
 
@@ -50,7 +53,10 @@ public class UserController {
 	}
 
 	@GetMapping("/join")
-	public String user_join_get() {
+	public String user_join_get(HttpSession session) {
+		if(session.getAttribute("userid") != null) {
+			return "/user/mypage";
+		}
 		return"/user/join";
 	}
 
