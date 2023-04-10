@@ -10,5 +10,5 @@ public class DogwikiApplication {
 		SpringApplication.run(DogwikiApplication.class, args);
 		//저장되는지 확인해보는 거에용22
 	}
-	//집에가고 싶다..
+
 }
