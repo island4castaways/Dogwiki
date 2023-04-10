@@ -162,21 +162,29 @@ public class UserController {
 	@PostMapping("/user_delete")
 	public String user_delete_check(@RequestParam("pw") String pw,
 			HttpSession session , Model model,RedirectAttributes rttr) {
-
+		//session의 userid
 		String userid = (String) session.getAttribute("userid");
-
+		
+		//login 
+		UserEntity user = service.getByCredentials(userid, pw);
+		
 		if(userid == null) {
 			return"/user/login";
 		}
-		Boolean result = service.deleteUser(userid, pw);
-
-		if(result == true) {
-			rttr.addFlashAttribute("msg", "회원 삭제를 성공했습니다.");
-			return"redirect:/login";
+		if(user !=null) {
+			//deleteUser결과
+			Boolean result = service.deleteUser(userid, pw);
+			if(result == true) {
+			model.addAttribute("msg", "회원탈퇴가 완료되었습니다.");
+			return "/user/login";
 		}else {
 			model.addAttribute("msg", "비밀번호가 맞지 않습니다.");
 			return "/user/user_delete";
 		}
+	}else {
+		rttr.addFlashAttribute("msg","회원탈퇴를 실패했습니다.");
+		return "redirect:/login";
+	}
 
 	}
 
