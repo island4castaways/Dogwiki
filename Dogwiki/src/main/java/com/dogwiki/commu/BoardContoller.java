@@ -38,7 +38,7 @@ public class BoardContoller {
 		
 		Page<BoardEntity> boardpage;
 		if(search!=null) {
-			if(category==0) {
+			if(category == 0) {
 				boardpage = brdService.search_board(search, pageable);
 			}else {
 				boardpage = brdService.search_board(search, category, pageable);
@@ -54,8 +54,8 @@ public class BoardContoller {
 		model.addAttribute("page", boardpage.toList());
         model.addAttribute("boardList", boardpage);
         
-        int pageNumber=boardpage.getPageable().getPageNumber();	//현재 페이지
-        int pageSize =boardpage.getPageable().getPageSize();
+        int pageNumber = boardpage.getPageable().getPageNumber();	//현재 페이지
+        int pageSize = boardpage.getPageable().getPageSize();
         int totalPage = boardpage.getTotalPages();
         int startPage = (int)Math.floor(pageNumber / pageSize) * pageSize + 1;
         int tempEndPage = startPage+pageSize-1;
