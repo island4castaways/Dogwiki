@@ -40,11 +40,11 @@ public class BoardContoller {
 		
 		
 		if(userid!=null) {
-			boardpage=service.mypage_board(userid, pageable);
+			boardpage=brdService.mypage_board(userid, pageable);
 		}else if(search!=null) {
-			boardpage = service.search_board(search, category, pageable);
+			boardpage = brdService.search_board(search, category, pageable);
 		}else {
-			boardpage = service.board_select_category(category, pageable);
+			boardpage = brdService.board_select_category(category, pageable);
 		}
 		
 		model.addAttribute("page", boardpage.toList());

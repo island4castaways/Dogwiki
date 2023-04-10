@@ -1,60 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<section>
-   <div align="center">
-      <form>
-         <h2>게시판 글내용 보기</h2>
-         <hr>
-         <table border="1" width="500">
-            <tr>
-               <td width="20%">글번호</td>
-               <td width="30%">${boardContent.num }</td>
-               <td width="20%">조회수</td>
-               <td width="30%">${boardContent.hit }</td>
-            </tr>
-            <tr>
-               <td>작성일</td>
-               <td>${boardContent.regdate }</td>
-               <td>작성자</td>
-               <td>${boardContent.user.userid }</td>
-            </tr>
-            <tr>
-            <td>분류</td>
-            <td colspan="3">${boardContent.category }</td>
-            </tr>
-            <tr>
-               <td>제목</td>
-               <td colspan="3">${boardContent.title }</td>
-            </tr>
-            <tr>
-               <td>글내용</td>
-               <td colspan="3"height="100%"><pre>${boardContent.content }</pre></td>
-            </tr>
-            <tr>
-               <!-- 글 등록 메뉴 -->
-               <td colspan="2" align="center">
-                  <input type ="button" value="목록" onclick=history.go(-1)>
-                  <input type ="button" value="수정" onclick="location.href='board_modify?category=${param.category }&search=${param.search }&num=${boardContent.num}&page=${page}'">
-               </td>
-            </tr>
-         </table>
-
-      </form>
-   </div>
-   
-   
-   <form method="post" action="comment_write">
-  <div>
-   	<div class = "comment-txt">
-   	<input type="text" name="cmtContent" placeholder="댓글 작성"/>
-   	<input type ="submit" value="완료" >
-   	</div>
-   </div>
-  
-   </form>
-   
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <section>
 	<div align="center">
@@ -72,7 +17,7 @@
 					<td>작성일</td>
 					<td>${boardContent.regdate}</td>
 					<td>작성자</td>
-					<td>${boardContent.writer_id}</td>
+					<td>${boardContent.user.userid}</td>
 				</tr>
 				<tr>
 					<td>분류</td>
