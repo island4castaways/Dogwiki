@@ -78,7 +78,6 @@ public class BoardService {
 	}
 	
 	public boolean board_create(final BoardEntity entity) {
-		entity.setCategory(2);
 		repository.save(entity);
 		System.out.println(entity);
 //		if(boardEntity.getNum()==null) {
@@ -96,6 +95,10 @@ public class BoardService {
 	
 	public Page<BoardEntity> search_board(String search, Integer category, Pageable pageable){
 		return repository.getListWithQuery(category, search, pageable);
+	}
+	
+	public Page<BoardEntity> search_board(String search, Pageable pageable){
+		return repository.getListWithQuery(search, pageable);
 	}
 	
 	

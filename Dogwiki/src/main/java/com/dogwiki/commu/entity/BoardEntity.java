@@ -1,6 +1,5 @@
 package com.dogwiki.commu.entity;
 
-import java.sql.Timestamp;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -13,8 +12,6 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.CreationTimestamp;
-import org.springframework.data.annotation.CreatedDate;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

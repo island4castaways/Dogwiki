@@ -41,4 +41,16 @@
 
       </form>
    </div>
+   
+   
+   <form method="post" action="comment_write">
+  <div>
+   	<div class = "comment-txt">
+   	<input type="text" name="cmtContent" placeholder="댓글 작성"/>
+   	<input type ="submit" value="완료" >
+   	</div>
+   </div>
+  
+   </form>
+   
 </section>

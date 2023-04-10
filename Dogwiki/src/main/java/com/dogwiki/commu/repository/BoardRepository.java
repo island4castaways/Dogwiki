@@ -19,4 +19,9 @@ public interface BoardRepository extends JpaRepository<BoardEntity, Integer> {
 	@Query(value = "select b from Board b "
 			+ "where b.category = :category and b.title like %:search%")
 	Page<BoardEntity> getListWithQuery(@Param("category") int category,@Param("search")String search, Pageable pageable);
+	
+
+	@Query(value = "select b from Board b "
+			+"where b.title like %:search%")
+	Page<BoardEntity> getListWithQuery(@Param("search")String search, Pageable pageable);
 }

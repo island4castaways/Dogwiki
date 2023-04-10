@@ -36,11 +36,18 @@ public class BoardContoller {
 		
 		Page<BoardEntity> boardpage;
 		if(search!=null) {
-			boardpage = service.search_board(search, category, pageable);
+			if(category==0) {
+				boardpage = service.search_board(search, pageable);
+			}else {
+				boardpage = service.search_board(search, category, pageable);
+			}
 		}else {
-			boardpage = service.board_select_category(category, pageable);
+			if(category == 0) {
+				boardpage = service.pageList(pageable);
+			}else {
+				boardpage = service.board_select_category(category, pageable);
+			}
 		}
-		
 		
 		model.addAttribute("page", boardpage.toList());
         model.addAttribute("boardList", boardpage);
@@ -82,9 +89,9 @@ public class BoardContoller {
 	}
 	@RequestMapping(value = "/board_write", method=RequestMethod.POST)
 	public String board_write_ok( Model model, BoardEntity board) {
-		System.out.println();
+		System.out.println(board);
 		service.board_create(board);
-		return "redirect:/board/board_list";
+		return "redirect:/board/board_list?category="+board.getCategory();
 	}
 	
 	@RequestMapping(value = "/board_modify")
@@ -96,14 +103,14 @@ public class BoardContoller {
 	}
 	
 	@RequestMapping("/board_update")
-	public String board_update(@RequestParam("page") int page, BoardEntity boardEntity) {
+	public String board_update(BoardEntity boardEntity) {
 		service.update(boardEntity);
-		return "redirect:/board/board_list?page="+page;
+		return "redirect:/board/board_list?category="+boardEntity.getCategory();
 	}
 	
 	@RequestMapping("/board_delete")
-	public String board_delete(@RequestParam("page") int page, @RequestParam("num") int num) {
+	public String board_delete(@RequestParam("num") int num, @RequestParam("category") int category) {
 		service.board_delete(num);
-		return "redirect:/board/board_list?page="+page;
+		return "redirect:/board/board_list?&category="+category;
 	}
 }

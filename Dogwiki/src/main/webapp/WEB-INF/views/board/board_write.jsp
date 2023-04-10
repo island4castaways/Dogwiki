@@ -17,6 +17,15 @@
                <td><input type = "text" name ="title"></td>
             </tr>
             <tr>
+               <td>분류</td>
+               <td><select name="category">
+					<option value=1 >우리 아이가 제일 멋져</option>
+					<option value=2 >사료&간식 추천</option>
+					<option value=3 >아이가 아파요</option>
+				</select>
+				</td>
+            </tr>
+            <tr>
                <td>글내용</td>
                <td><textarea rows="10" style = "width:100%;" name ="content"></textarea></td>
             </tr>
@@ -24,6 +33,7 @@
             <tr>
                <!-- 글 등록 메뉴 -->
                <td colspan="2" align="center">
+               	  <input type = "hidden" name ="category" value="${param.category}">
                   <input type ="button" value="등록" onclick="registCheck()">
                   <input type ="button" value="목록" onclick="location.href='board_list?category=${param.category }&search=${param.search}&page=${param.page}'">
                </td>

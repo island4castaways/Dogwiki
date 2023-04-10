@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <section>
    <div align="center">
-      <form name = "regform" action="board_update?page=${param.page }" method="post">
+      <form name = "regform" action="board_update" method="post">
          <h2>게시판 글작성 페이지</h2>
          <hr>
          <table border="1" width="500">
@@ -25,9 +25,10 @@
             <tr>
                <!-- 글 등록 메뉴 -->
                <td colspan="2" align="center">
+               	  <input type = "hidden" name ="category" value="${param.category}">
                   <input type ="button" value="수정" onclick="modifyCheck()">
                   <input type ="button" value="목록" onclick="location.href='board_list?category=${param.category }&search=${param.search }&page=${param.page}'">
-                  <input type ="button" value="삭제하기" onclick="location.href='board_delete?num=${boardContent.num}&page=${param.page}'">
+                  <input type ="button" value="삭제하기" onclick="location.href='board_delete?num=${boardContent.num}&page=${param.page}&category=${param.category }'">
                </td>
             </tr>
          </table>
