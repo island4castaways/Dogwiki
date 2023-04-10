@@ -32,7 +32,7 @@
 					<tr>
 						<td colspan="4">
 							<input type="button" value="목록"
-								onclick="location.href='/training?pn=${param.pn}'">
+								onclick="location.href='/training?pn=${param.pn}&st=${param.st}&search=${param.search}'">
 						</td>
 					</tr>
 				</table>
