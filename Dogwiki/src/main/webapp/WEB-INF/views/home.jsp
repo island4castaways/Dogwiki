@@ -8,6 +8,6 @@
 		<title>Insert title here</title>
 	</head>
 	<body>
-		Hello, ${param.id}!
+		Hello, ${param.userid}!
 	</body>
 </html>
