@@ -1,6 +1,5 @@
 package com.dogwiki.commu;
 
-
 import java.util.List;
 import java.util.Optional;
 
@@ -8,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.repository.query.Param;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,15 +16,19 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.dogwiki.commu.entity.BoardEntity;
+import com.dogwiki.commu.entity.CommentEntity;
 import com.dogwiki.commu.service.BoardService;
-
+import com.dogwiki.commu.service.CommentService;
 
 @Controller
 @RequestMapping("/board")
 public class BoardContoller {
 	
 	@Autowired
-	private BoardService service;
+	private BoardService brdService;
+	
+	@Autowired
+	private CommentService cmtService;
 	
 	@GetMapping("/board_list")
 	public String board_list(Model model, @PageableDefault(size=10, sort="num", direction = Sort.Direction.DESC) Pageable pageable,
@@ -37,15 +39,15 @@ public class BoardContoller {
 		Page<BoardEntity> boardpage;
 		if(search!=null) {
 			if(category==0) {
-				boardpage = service.search_board(search, pageable);
+				boardpage = brdService.search_board(search, pageable);
 			}else {
-				boardpage = service.search_board(search, category, pageable);
+				boardpage = brdService.search_board(search, category, pageable);
 			}
 		}else {
 			if(category == 0) {
-				boardpage = service.pageList(pageable);
+				boardpage = brdService.pageList(pageable);
 			}else {
-				boardpage = service.board_select_category(category, pageable);
+				boardpage = brdService.board_select_category(category, pageable);
 			}
 		}
 		
@@ -75,10 +77,12 @@ public class BoardContoller {
 	@RequestMapping(value="/board_content", method =RequestMethod.GET)
 	public String board_content(@RequestParam("num") Integer num,@RequestParam("page") int page, Model model) {
 		System.out.println(num);
-		Optional<BoardEntity> content = service.selectOne(num);
+		Optional<BoardEntity> content = brdService.selectOne(num);
 		BoardEntity boardContent = content.get();
+		List<CommentEntity> cmtList = cmtService.selectByBoard_basic(num);
 		model.addAttribute("boardContent", boardContent);
 		model.addAttribute("page",page);
+		model.addAttribute("cmtList", cmtList);
 		return "/board/board_content";
 		
 	}
@@ -90,13 +94,13 @@ public class BoardContoller {
 	@RequestMapping(value = "/board_write", method=RequestMethod.POST)
 	public String board_write_ok( Model model, BoardEntity board) {
 		System.out.println(board);
-		service.board_create(board);
+		brdService.board_create(board);
 		return "redirect:/board/board_list?category="+board.getCategory();
 	}
 	
 	@RequestMapping(value = "/board_modify")
 	public String board_modify(@RequestParam("num") Integer num, Model model) {
-		Optional<BoardEntity> content = service.selectOne(num);
+		Optional<BoardEntity> content = brdService.selectOne(num);
 		BoardEntity boardContent = content.get();
 		model.addAttribute("boardContent", boardContent);
 		return "/board/board_modify";
@@ -104,13 +108,13 @@ public class BoardContoller {
 	
 	@RequestMapping("/board_update")
 	public String board_update(BoardEntity boardEntity) {
-		service.update(boardEntity);
+		brdService.update(boardEntity);
 		return "redirect:/board/board_list?category="+boardEntity.getCategory();
 	}
 	
 	@RequestMapping("/board_delete")
 	public String board_delete(@RequestParam("num") int num, @RequestParam("category") int category) {
-		service.board_delete(num);
+		brdService.board_delete(num);
 		return "redirect:/board/board_list?&category="+category;
 	}
 }

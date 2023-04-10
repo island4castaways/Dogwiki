@@ -20,7 +20,7 @@ import com.dogwiki.commu.service.UserService;
 public class UserController {
 
 	@Autowired
-	private UserService service;
+	private UserService userService;
 
 	@GetMapping("/login")
 	public String user_login_get(HttpSession session) { 
@@ -36,8 +36,8 @@ public class UserController {
 			HttpSession session,Model model) {  
 
 		try {
-			if(service.validateId(userid)) {
-				UserEntity entity = service.validate(userid) ;
+			if(userService.validateId(userid)) {
+				UserEntity entity = userService.validate(userid) ;
 				if(entity.getPw().equals(pw)) {
 					session.setAttribute("userid", entity.getUserid());
 					session.setAttribute("username", entity.getUsername());
@@ -69,7 +69,7 @@ public class UserController {
 			HttpSession session, Model model) {
 		//id,email 가 사용중인지 확인 후 값들을 받아서 entity생성 한 후 session을 가지고 return 
 		try {
-			if(service.validateId(userid)) {
+			if(userService.validateId(userid)) {
 
 				throw new RuntimeException("Invalide argument.");
 			}else {
@@ -81,7 +81,7 @@ public class UserController {
 						.email(email)
 						.build();
 
-				service.create(entity);
+				userService.create(entity);
 
 				session.setAttribute("userid", entity.getUserid());
 				session.setAttribute("username", entity.getUsername());
@@ -137,7 +137,7 @@ public class UserController {
 		if(userid == null) {
 			return "/user/login";
 		}
-		Boolean result = service.pwmodify(userid, oldpw, newpw);
+		Boolean result = userService.pwmodify(userid, oldpw, newpw);
 
 		if (result == true) { // 로그인 성공 : 1) 세션을 생성(id, name) 2)mypage로 이동
 			model.addAttribute("msg", "비밀번호 변경을 완료했습니다.");
@@ -168,7 +168,7 @@ public class UserController {
 		if(userid == null) {
 			return"/user/login";
 		}
-		Boolean result = service.deleteUser(userid, pw);
+		Boolean result = userService.deleteUser(userid, pw);
 
 		if(result == true) {
 			rttr.addFlashAttribute("msg", "회원 삭제를 성공했습니다.");
@@ -191,7 +191,7 @@ public class UserController {
 		}
 		String userid = (String)session.getAttribute("userid"); 
 
-		UserEntity entity = service.validate(userid);
+		UserEntity entity = userService.validate(userid);
 
 		model.addAttribute("entity",entity);
 		return "/user/user_update";
@@ -207,7 +207,7 @@ public class UserController {
 
 		String userid = (String)session.getAttribute("userid"); 
 		
-		Boolean result = service.modify(userid, username, phone, email);
+		Boolean result = userService.modify(userid, username, phone, email);
 		model.addAttribute("result",result); //model에 entity정보 넘김
 		
 		System.out.println(result);
