@@ -97,9 +97,7 @@ public class BoardService {
 		return repository.getListWithQuery(category, search, pageable);
 	}
 	
-	public Page<BoardEntity> search_board(String search, Pageable pageable){
-		return repository.getListWithQuery(search, pageable);
+	public Page<BoardEntity> mypage_board(String userid, Pageable pageable){
+		return repository.getListWithQuery(userid, pageable);
 	}
-	
-	
 }

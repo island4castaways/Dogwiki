@@ -8,9 +8,7 @@
          <table border="1" width="500">
             <tr>
                <td>작성자</td>
-               <!--<td><input type = "text" name ="writer_id" size="10" value="${sessionScope.user_name}"
-               ${sessionScope.user_name != null ? "readonly" : "" }></td>-->
-               <td><input type = "text" name ="writer_id"></td>
+               <td><input type = "text" name ="user" size="10" value="${sessionScope.userid}" ${sessionScope.userid != null ? "readonly" : "" }></td>
             </tr>
             <tr>
                <td>글제목</td>
@@ -45,7 +43,7 @@
 <!-- registCheck()구현: 작성자, 글제목에 공백을 확인하고, 공백이 아니라면 submit() 처리 -->
 <script type = "text/javascript">
    function registCheck(){
-      if(document.regform.writer_id.value == ""){
+      if(document.regform.user.value == ""){
          alert("작성자를 입력하세요.");
          return;
       }else if(document.regform.title.value == ""){

@@ -16,7 +16,7 @@
                <td>작성일</td>
                <td>${boardContent.regdate }</td>
                <td>작성자</td>
-               <td>${boardContent.writer_id }</td>
+               <td>${boardContent.user.userid }</td>
             </tr>
             <tr>
             <td>분류</td>
@@ -33,7 +33,7 @@
             <tr>
                <!-- 글 등록 메뉴 -->
                <td colspan="2" align="center">
-                  <input type ="button" value="목록" onclick="location.href='board_list?category=${param.category }&search=${param.search }&page=${page}'">
+                  <input type ="button" value="목록" onclick=history.go(-1)>
                   <input type ="button" value="수정" onclick="location.href='board_modify?category=${param.category }&search=${param.search }&num=${boardContent.num}&page=${page}'">
                </td>
             </tr>

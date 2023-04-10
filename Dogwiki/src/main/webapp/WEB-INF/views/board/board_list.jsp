@@ -8,7 +8,6 @@
 		<form method="get" action="board_list" onchange="selectOnChange(this.value)" name="category">
 				<label for = "category">분류</label>
 				<select name="category">
-				    <option value=0 ${cate == '0' ? 'selected="selected"' : '' }>전체보기</option>
 					<option value=1 ${cate == '1' ? 'selected="selected"' : '' }>우리 아이가 제일 멋져</option>
 					<option value=2 ${cate == '2' ? 'selected="selected"' : '' }>사료&간식 추천</option>
 					<option value=3 ${cate == '3' ? 'selected="selected"' : '' }>아이가 아파요</option>
@@ -30,7 +29,7 @@
 				<c:forEach var = "bo" items="${page }">
 				<tr>
 					<td>${bo.num }</td>
-					<td>${bo.writer_id }</td>
+					<td>${bo.user.userid }</td>
 					<td>
 						<a href = "board_content?category=${cate }&search=${filter }&num=${bo.num }&page=${pageNumber}">${bo.title }</a>
 					</td>

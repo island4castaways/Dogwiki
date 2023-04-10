@@ -31,22 +31,18 @@ public class BoardContoller {
 	@GetMapping("/board_list")
 	public String board_list(Model model, @PageableDefault(size=10, sort="num", direction = Sort.Direction.DESC) Pageable pageable,
 			@RequestParam(value="category", required = false, defaultValue = "2") int category,
-			@RequestParam(value="search", required= false) String search) {
+			@RequestParam(value="search", required= false) String search, @RequestParam(value="user", required=false) String userid) {
 		System.out.println(category);
 		
 		Page<BoardEntity> boardpage;
-		if(search!=null) {
-			if(category==0) {
-				boardpage = service.search_board(search, pageable);
-			}else {
-				boardpage = service.search_board(search, category, pageable);
-			}
+		
+		
+		if(userid!=null) {
+			boardpage=service.mypage_board(userid, pageable);
+		}else if(search!=null) {
+			boardpage = service.search_board(search, category, pageable);
 		}else {
-			if(category == 0) {
-				boardpage = service.pageList(pageable);
-			}else {
-				boardpage = service.board_select_category(category, pageable);
-			}
+			boardpage = service.board_select_category(category, pageable);
 		}
 		
 		model.addAttribute("page", boardpage.toList());

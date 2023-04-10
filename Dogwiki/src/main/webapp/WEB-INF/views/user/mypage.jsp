@@ -18,7 +18,7 @@
 				<input type="button" value="회원정보 변경" class="btn btn-primary" onclick="location.href='user_update' ">
 				<input type="button" value="회원탈퇴" class="btn btn-info" onclick="location.href='user_delete' ">
 				<input type="submit" value="로그아웃" class="btn btn-info" onclick="location.href='user_logout' ">
-				<input type="button" value="내가 쓴 글" class="btn btn-info" onclick="location.href='board' ">
+				<input type="button" value="내가 쓴 글" class="btn btn-info" onclick="location.href='board/board_list?user=${sessionScope.userid}' ">
 			</div>
 		</section>
 		
