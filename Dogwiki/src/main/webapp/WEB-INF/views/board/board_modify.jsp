@@ -12,7 +12,7 @@
             </tr>
             <tr>
                <td>작성자</td>
-               <td><input type = "text" name ="writer" value="${boardContent.writer_id}" readonly></td>
+               <td><input type = "text" name ="writer_id" value="${boardContent.writer_id}" readonly></td>
             </tr>
             <tr>
                <td>제목</td>
@@ -26,8 +26,8 @@
                <!-- 글 등록 메뉴 -->
                <td colspan="2" align="center">
                   <input type ="button" value="수정" onclick="modifyCheck()">
-                  <input type ="button" value="목록" onclick="location.href='board_list?page=${param.page}'">
-                  <input type ="button" value="삭제하기" onclick="location.href='board_delete?num=${vo.num}&pageNum=${param.page}'">
+                  <input type ="button" value="목록" onclick="location.href='board_list?category=${param.category }&search=${param.search }&page=${param.page}'">
+                  <input type ="button" value="삭제하기" onclick="location.href='board_delete?num=${boardContent.num}&page=${param.page}'">
                </td>
             </tr>
          </table>

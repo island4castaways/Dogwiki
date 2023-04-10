@@ -19,6 +19,10 @@
                <td>${boardContent.writer_id }</td>
             </tr>
             <tr>
+            <td>분류</td>
+            <td colspan="3">${boardContent.category }</td>
+            </tr>
+            <tr>
                <td>제목</td>
                <td colspan="3">${boardContent.title }</td>
             </tr>
@@ -29,8 +33,8 @@
             <tr>
                <!-- 글 등록 메뉴 -->
                <td colspan="2" align="center">
-                  <input type ="button" value="목록" onclick="location.href='board_list?page=${page}'">
-                  <input type ="button" value="수정" onclick="location.href='board_modify?num=${boardContent.num}&page=${page}'">
+                  <input type ="button" value="목록" onclick="location.href='board_list?category=${param.category }&search=${param.search }&page=${page}'">
+                  <input type ="button" value="수정" onclick="location.href='board_modify?category=${param.category }&search=${param.search }&num=${boardContent.num}&page=${page}'">
                </td>
             </tr>
          </table>

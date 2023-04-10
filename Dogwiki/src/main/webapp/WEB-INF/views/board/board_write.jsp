@@ -8,8 +8,9 @@
          <table border="1" width="500">
             <tr>
                <td>작성자</td>
-               <td><input type = "text" name ="writer" size="10" value="${sessionScope.user_name}"
-               ${sessionScope.user_name != null ? "readonly" : "" }></td>
+               <!--<td><input type = "text" name ="writer_id" size="10" value="${sessionScope.user_name}"
+               ${sessionScope.user_name != null ? "readonly" : "" }></td>-->
+               <td><input type = "text" name ="writer_id"></td>
             </tr>
             <tr>
                <td>글제목</td>
@@ -19,11 +20,12 @@
                <td>글내용</td>
                <td><textarea rows="10" style = "width:100%;" name ="content"></textarea></td>
             </tr>
+        
             <tr>
                <!-- 글 등록 메뉴 -->
                <td colspan="2" align="center">
                   <input type ="button" value="등록" onclick="registCheck()">
-                  <input type ="button" value="목록" onclick="location.href='board_list'">
+                  <input type ="button" value="목록" onclick="location.href='board_list?category=${param.category }&search=${param.search}&page=${param.page}'">
                </td>
             </tr>
          </table>
@@ -33,7 +35,7 @@
 <!-- registCheck()구현: 작성자, 글제목에 공백을 확인하고, 공백이 아니라면 submit() 처리 -->
 <script type = "text/javascript">
    function registCheck(){
-      if(document.regform.writer.value == ""){
+      if(document.regform.writer_id.value == ""){
          alert("작성자를 입력하세요.");
          return;
       }else if(document.regform.title.value == ""){
