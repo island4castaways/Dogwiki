@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -35,8 +37,9 @@ public class BoardEntity {
 	@Column(length = 100, nullable = false)
 	private String title;
 	
-	@Column(length = 40, nullable = false)
-	private String writer_id;
+	@ManyToOne
+	@JoinColumn(name="writer_id")
+	private UserEntity user;
 	
 	@Column(length = 255, nullable = false)
 	private String content;

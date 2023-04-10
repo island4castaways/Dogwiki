@@ -12,7 +12,7 @@
             </tr>
             <tr>
                <td>작성자</td>
-               <td><input type = "text" name ="writer_id" value="${boardContent.writer_id}" readonly></td>
+               <td><input type = "text" name ="user" value="${boardContent.user.userid}" readonly></td>
             </tr>
             <tr>
                <td>제목</td>

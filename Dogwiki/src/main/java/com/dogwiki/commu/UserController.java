@@ -77,7 +77,7 @@ public class UserController {
                   .userid(userid)
                   .pw(pw)
                   .username(username)
-                  .phone(콜)
+                  .phone(phone)
                   .email(email)
                   .build();
 
