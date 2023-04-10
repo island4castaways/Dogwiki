@@ -35,6 +35,7 @@
       </form>
    </div>
 </section>
+
 <!-- registCheck()구현: 작성자, 글제목에 공백을 확인하고, 공백이 아니라면 submit() 처리 -->
 <script type = "text/javascript">
    function modifyCheck(){

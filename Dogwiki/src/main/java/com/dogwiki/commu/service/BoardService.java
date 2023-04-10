@@ -21,35 +21,34 @@ import lombok.extern.slf4j.Slf4j;
 public class BoardService {
 	
 	@Autowired
-	private BoardRepository repository;
+	private BoardRepository brdRepository;
 	
 	public List<BoardEntity> selectAll(){
-		return repository.findAll();
+		return brdRepository.findAll();
 	}
 	
 	public Optional<BoardEntity> selectOne(Integer num) {
-		return repository.findById(num);
-				
+		return brdRepository.findById(num);
 	}
 	
 	@Transactional(readOnly = true)
 	public Page<BoardEntity> pageList(Pageable pageable){
-		return repository.findAll(pageable);
+		return brdRepository.findAll(pageable);
 	}
 	
 	public Optional<BoardEntity> update(BoardEntity entity){
 		validate(entity);
 		
-		final Optional<BoardEntity> original = repository.findById(entity.getNum());
+		final Optional<BoardEntity> original = brdRepository.findById(entity.getNum());
 		
 		original.ifPresent(board->{
 			board.setTitle(entity.getTitle());
 			board.setContent(entity.getContent());
 			
-			repository.save(board);
+			brdRepository.save(board);
 		});
 		
-		return repository.findById(entity.getNum());
+		return brdRepository.findById(entity.getNum());
 	}
 	
 	public void validate(final BoardEntity entity) {
@@ -64,13 +63,13 @@ public class BoardService {
 	}
 	
 	public boolean board_delete (Integer num) {
-		Optional<BoardEntity> board = repository.findById(num);
+		Optional<BoardEntity> board = brdRepository.findById(num);
 		BoardEntity entity = board.get();
 		validate(entity);
 		try {
-			repository.delete(entity);
+			brdRepository.delete(entity);
 			return true;
-		}catch(Exception e) {
+		} catch(Exception e) {
 			log.error("error deleting entity", entity.getNum(),e);
 			return false;
 			
@@ -78,7 +77,7 @@ public class BoardService {
 	}
 	
 	public boolean board_create(final BoardEntity entity) {
-		repository.save(entity);
+		brdRepository.save(entity);
 		System.out.println(entity);
 //		if(boardEntity.getNum()==null) {
 //			log.warn("unkown user");
@@ -89,12 +88,12 @@ public class BoardService {
 	
 	public Page<BoardEntity> board_select_category(Integer category, Pageable pageable) {
 //		return repository.findAll(category);
-		repository.findALLByCategory(category, pageable);
-		return repository.findALLByCategory(category, pageable);
+		brdRepository.findALLByCategory(category, pageable);
+		return brdRepository.findALLByCategory(category, pageable);
 	}
 	
 	public Page<BoardEntity> search_board(String search, Integer category, Pageable pageable){
-		return repository.getListWithQuery(category, search, pageable);
+		return brdRepository.getListWithQuery(category, search, pageable);
 	}
 	
 	public Page<BoardEntity> mypage_board(String userid, Pageable pageable){
