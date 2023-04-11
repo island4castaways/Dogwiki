@@ -1,8 +1,9 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <section>
 	<div align="center">
-		<form name = "regform" action="board_write" method="post">
+		<form name = "regform" action="../pic_board/write" method="post" enctype="multipart/form-data">
 			<h2>게시판 글작성 페이지</h2>
 			<hr>
 			<table border="1" width="500">
@@ -30,9 +31,9 @@
 					</td>
 				</tr>
 				<tr>
-					<td>글내용</td>
+					<td>사진</td>
 					<td>
-						<textarea rows="10" style = "width:100%;" name ="content"></textarea>
+						<input type="file" name="file""> 
 					</td>
 				</tr>
 				<tr>
@@ -40,7 +41,7 @@
 					<td colspan="2" align="center">
 						<input type = "hidden" name ="category" value="${param.category}">
 						<input type ="button" value="등록" onclick="registCheck()">
-						<input type ="button" value="목록" onclick="location.href='board_list?category=${param.category }&search=${param.search}&page=${param.page}'">
+						<input type ="button" value="목록" onclick="history.go(-1)">
 					</td>
 				</tr>
 			</table>
@@ -61,15 +62,15 @@
 		}
 	}
 </script>
+</body>
+</html>
 
 <script type = "text/javascript">
 function selectOnChange(value){
-	if(value==1){
-		location.href="../pic_board/write?category=1";
-	}else if(value==2){
-		location.href="board_write?category=2";
-	}else{
-		location.href="board_write?category=3";
+	if(value==2){
+		location.href="/board/board_write?category=2";
+	}else if(value==3){
+		location.href="/board/board_write?category=3"
 	}
 	var category = value;
 }

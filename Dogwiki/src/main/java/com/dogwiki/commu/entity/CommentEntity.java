@@ -30,19 +30,19 @@ public class CommentEntity {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer com_num;
+	private Integer cmtNum;
 	
 	@ManyToOne
-    @JoinColumn(name="board_num")
+    @JoinColumn(name="board_num", referencedColumnName="num")
 	private BoardEntity board_basic;
 	
 	@Column(length = 40, nullable = false)
-	private String com_writer_id;
+	private String cmtWriter;
 	
 	@Column(length = 255, nullable = false)
-	private String com_content;
+	private String cmtContent;
 	
 	@CreationTimestamp
 	@Temporal(TemporalType.TIMESTAMP)
-    private Date com_regdate;
+    private Date cmtDate;
 }
