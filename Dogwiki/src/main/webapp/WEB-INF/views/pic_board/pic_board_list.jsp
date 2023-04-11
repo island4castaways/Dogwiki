@@ -23,33 +23,33 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach var="bo" items="${page}">
-				<tr>
-					<td>${bo.num}</td>
-					<td>${bo.user.userid}</td>
-					<td>
-						<a href="board_content?category=${cate}&search=${filter}&num=${bo.num}&page=${pageNumber}">${bo.title}</a>
-					</td>
-					<td>${bo.regdate}</td>
-					<td>${bo.hit}</td>
-				</tr>
+			<c:forEach var = "bo" items="${list }">
+			<tr>
+				<td>${bo.picnum }</td>
+				<td>${bo.user.userid }</td>
+				<td>
+					<a href = "pic_content?category=${cate }&search=${filter }&num=${bo.picnum }&page=${pageNumber}">${bo.title }</a>
+				</td>
+				<td></td>
+				<td>${bo.hit }</td>
+			</tr>
 			</c:forEach>
 		</tbody>
 		<tbody>
 			<!-- 작성글 검색 및 글작성하기 메뉴 -->
 			<tr>
 				<td colspan="5" align="right">
-					<form method="get" action="board_list" class="form-inline">
-						<div class="form-group">
-							<c:if test="${empty cate}">
-								<input type="hidden" name="category" value=2>
-							</c:if>
-							<input type="hidden" name="category" value="${cate}">
-							<input type="text" name="search" placeholder="제목검색" value="${filter}" class="form-control">
-							<input type="submit" value="검색" class="btn btn-default">
-							<input type="button" value="글 작성" class="btn btn-primary" onclick="location.href='board_write?category=${cate}'">
-						</div>
-					</form>
+				<form method='get' action = "board_list" class="form-inline">
+					<div class="form-group">
+					<c:if test="${empty cate}">
+						<input type = "hidden" name ="category" value=2>
+					</c:if>
+						<input type = "hidden" name ="category" value="${cate}">
+						<input type="text" name="search" placeholder="제목검색" value="${filter }" class="form-control">
+						<input type = "submit" value="검색" class="btn btn-default">
+						<input type = "button" value="글 작성" class="btn btn-primary" onclick="location.href='write?category=${param.category }'">
+					</div>
+				</form>
 				</td>
 			</tr>
 		</tbody>
@@ -57,18 +57,18 @@
 	
 	<!-- 페이지 작업하는 공간 -->
 	<div align="center">
-		<ul class="pageination">
-			<c:if test="${!boardList.isFirst() && pageNumber > 9}">
-				<li><a href="board_list?category=${cate}&search=${filter}&page=${startPage-2}">이전</a></li>
+		<ul class = pageination pagination -sm">
+			<c:if test = "${!boardList.isFirst()&&pageNumber>9}">
+				<li><a href="board_list?category=${cate }&search=${filter}&page=${startPage-2}">이전</a></li>
 			</c:if>
 			<c:forEach var="page" begin="${startPage}" end="${endPage}">
     			<li class="${pageNumber-1 == page ? 'active' : ''}">
-       				<a href="board_list?category=${cate}&search=${filter}&page=${page-1}">${page}</a>
+       				<a href="board_list?category=${cate }&search=${filter}&page=${page-1}">${page}</a>
        			</li>
 			</c:forEach>
 			<c:if test = "${!boardList.isLast()&&endPage<totalPage}">
 				<li>
-					<a href="board_list?category=${cate}&search=${filter}&page=${endPage}">다음</a>
+					<a href="board_list?category=${cate }&search=${filter}&page=${endPage}">다음</a>
 				</li>
 			</c:if>
 		</ul>
@@ -90,9 +90,9 @@ function selectOnChange(value){
 	if(value==1){
 		location.href="../pic_board/pic_list?category=1";
 	}else if(value==2){
-		location.href="board_list?category=2";
+		location.href="../board/board_list?category=2";
 	}else{
-		location.href="board_list?category=3";
+		location.href="../board/board_list?category=3";
 	}
 }
 </script>

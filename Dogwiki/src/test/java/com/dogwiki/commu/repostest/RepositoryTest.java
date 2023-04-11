@@ -12,8 +12,14 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
+import com.dogwiki.commu.entity.BoardEntity;
+import com.dogwiki.commu.entity.CommentEntity;
 import com.dogwiki.commu.entity.TrainingEntity;
+import com.dogwiki.commu.entity.UserEntity;
+import com.dogwiki.commu.repository.BoardRepository;
+import com.dogwiki.commu.repository.CommentRepository;
 import com.dogwiki.commu.repository.TrainingRepository;
+import com.dogwiki.commu.repository.UserRepository;
 
 import lombok.extern.log4j.Log4j2;
 
@@ -23,6 +29,15 @@ public class RepositoryTest {
 	
 	@Autowired
 	TrainingRepository tr;
+	
+	@Autowired
+	BoardRepository bd;
+	
+	@Autowired
+	CommentRepository cmt;
+	
+	@Autowired
+	UserRepository us;
 	
 	@Test
 	public void testInsert() {
@@ -161,6 +176,40 @@ public class RepositoryTest {
 		System.out.println(testEntity.getTrUrl() + " -> " + updated.getTrUrl());
 		System.out.println(testEntity.getTrHit() + " -> " + updated.getTrHit());
 		System.out.println(testEntity.getTrDate() + " -> " + updated.getTrDate());
+	}
+	
+	@Test
+	public void testBoardInsert() {
+		UserEntity testuser = new UserEntity("testuser", "1234", "testname", "testphone", "test@email.com");
+		us.save(testuser);
+		IntStream.rangeClosed(1, 100).forEach(i -> {
+			BoardEntity en = BoardEntity.builder()
+					.category(2)
+					.user(testuser)
+					.title("test" + i)
+					.content("testContent" + i)
+					.build();
+			bd.save(en);
+		});
+	}
+	
+	@Test
+	public void testCommentInsert() {
+		IntStream.rangeClosed(1, 100).forEach(i -> {
+			CommentEntity en = CommentEntity.builder()
+					.board_basic(BoardEntity.builder()
+							.num(i)
+							.build())
+					.cmtWriter("testcomuser")
+					.cmtContent("testComment")
+					.build();
+			cmt.save(en);
+		});
+	}
+	
+	@Test
+	public void testCommentDelete() {
+		cmt.deleteById(8);
 	}
 
 }
