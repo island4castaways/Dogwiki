@@ -17,7 +17,7 @@
 					<td>작성일</td>
 					<td>${boardContent.regdate}</td>
 					<td>작성자</td>
-					<td>${boardContent.writer_id}</td>
+					<td>${boardContent.user.userid}</td>
 				</tr>
 				<tr>
 					<td>분류</td>

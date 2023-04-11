@@ -42,6 +42,7 @@ public class BoardContoller {
 			@RequestParam(value="search", required= false) String search, @RequestParam(value="user", required=false) String userid) {
 		System.out.println(category);
 		
+		
 		Page<BoardEntity> boardpage;
 		
 		if(userid!=null) {
@@ -157,17 +158,16 @@ public class BoardContoller {
 	}
 	
 	@RequestMapping(value = "/board_write", method = RequestMethod.GET)
-	public String board_write(Model model) {
+	public String board_write(Model model, @RequestParam("category") int category) {
+		if(category==1) {
+			return "/pic_board/pic_board_write";
+		}
 		return "/board/board_write";
 	}
 	
 	@RequestMapping(value = "/board_write", method = RequestMethod.POST)
 	public String board_write_ok(Model model, BoardEntity board) {
-		System.out.println(board);
-		
-		if(category==1) {
-			return "pic_board_write";
-		}
+		System.out.println(board);		
 		brdService.board_create(board);
 		return "redirect:/board/board_list?category="+board.getCategory();
 	}

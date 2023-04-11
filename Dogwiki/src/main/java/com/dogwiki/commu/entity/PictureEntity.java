@@ -31,7 +31,7 @@ public class PictureEntity {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int pic_num;
+	private int picnum;
 	
 	@Column(length = 200, nullable = false)
 	private String filename;

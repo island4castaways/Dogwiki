@@ -23,9 +23,9 @@
 					<td>분류</td>
 					<td>
 					<select name="category" onchange="selectOnChange(value)">
-							<option value=1 ${category == '1' ? 'selected="selected"' : '' }>우리 아이가 제일 멋져</option>
-							<option value=2 ${category == '2' ? 'selected="selected"' : '' }>사료&간식 추천</option>
-							<option value=3 ${category == '3' ? 'selected="selected"' : '' }>아이가 아파요</option>
+							<option value=1 ${param.category == '1' ? 'selected="selected"' : '' }>우리 아이가 제일 멋져</option>
+							<option value=2 ${param.category == '2' ? 'selected="selected"' : '' }>사료&간식 추천</option>
+							<option value=3 ${param.category == '3' ? 'selected="selected"' : '' }>아이가 아파요</option>
 						</select>
 					</td>
 				</tr>
@@ -65,7 +65,7 @@
 <script type = "text/javascript">
 function selectOnChange(value){
 	if(value==1){
-		location.href="board_write?category=1";
+		location.href="../pic_board/write?category=1";
 	}else if(value==2){
 		location.href="board_write?category=2";
 	}else{

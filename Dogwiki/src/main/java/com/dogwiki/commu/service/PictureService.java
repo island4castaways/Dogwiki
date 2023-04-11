@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -45,8 +47,17 @@ public class PictureService {
         picRepository.save(picEntity);
     }
 	
-	public List<PictureEntity> picBoardList(){
+	public Page<PictureEntity> picBoardList(Pageable pageable, int category){
         //findAll : 테스트보드라는 클래스가 담긴 List를 반환하는것을 확인할수있다
-        return picRepository.findAll();
-    }
+        return picRepository.findALLByCategory(category, pageable);
+	}
+	
+	public PictureEntity selectOnePicture(Integer id) {
+		PictureEntity picEntity = picRepository.findById(id).get();
+		return picEntity;
+	}
+	
+	public void deletePicture(Integer id) {
+		picRepository.deleteById(id);
+	}
 }

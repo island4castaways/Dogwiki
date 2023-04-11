@@ -24,9 +24,9 @@
 					<td>분류</td>
 					<td>
 					<select name="category" onchange="selectOnChange(value)">
-							<option value=1 ${category == '1' ? 'selected="selected"' : '' }>우리 아이가 제일 멋져</option>
-							<option value=2 ${category == '2' ? 'selected="selected"' : '' }>사료&간식 추천</option>
-							<option value=3 ${category == '3' ? 'selected="selected"' : '' }>아이가 아파요</option>
+							<option value=1 ${param.category == '1' ? 'selected="selected"' : '' }>우리 아이가 제일 멋져</option>
+							<option value=2 ${param.category == '2' ? 'selected="selected"' : '' }>사료&간식 추천</option>
+							<option value=3 ${param.category == '3' ? 'selected="selected"' : '' }>아이가 아파요</option>
 						</select>
 					</td>
 				</tr>
@@ -41,7 +41,7 @@
 					<td colspan="2" align="center">
 						<input type = "hidden" name ="category" value="${param.category}">
 						<input type ="button" value="등록" onclick="registCheck()">
-						<input type ="button" value="목록" onclick="location.href='board_list?category=${param.category }&search=${param.search}&page=${param.page}'">
+						<input type ="button" value="목록" onclick="history.go(-1)">
 					</td>
 				</tr>
 			</table>
@@ -62,24 +62,15 @@
 		}
 	}
 </script>
-
-<script type = "text/javascript">
-function selectOnChange(value){
-	if(value==1){
-		document.regform.submit();
-	}
-	var category = value;
-}
-</script>
 </body>
 </html>
 
 <script type = "text/javascript">
 function selectOnChange(value){
 	if(value==2){
-		location.href="board_write?category=2";
+		location.href="/board/board_write?category=2";
 	}else if(value==3){
-		location.href="board_write?category=3"
+		location.href="/board/board_write?category=3"
 	}
 	var category = value;
 }

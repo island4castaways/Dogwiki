@@ -4,15 +4,12 @@
 
 <div class = "container"></div>
 	<h3>Dogwiki 게시판</h3>
-	
-	<form method="get" action="../board/board_list" onchange="selectOnChange(this.value)" name="category">
 		<label for = "category">분류</label>
-		<select name="category">
-			<option value=1 ${cate == '1' ? 'selected="selected"' : '' }>우리 아이가 제일 멋져</option>
-			<option value=2 ${cate == '2' ? 'selected="selected"' : '' }>사료&간식 추천</option>
-			<option value=3 ${cate == '3' ? 'selected="selected"' : '' }>아이가 아파요</option>
+		<select name="category" onchange="selectOnChange(value)">
+			<option value=1 ${param.category == '1' ? 'selected="selected"' : '' }>우리 아이가 제일 멋져</option>
+			<option value=2 ${param.category == '2' ? 'selected="selected"' : '' }>사료&간식 추천</option>
+			<option value=3 ${param.category == '3' ? 'selected="selected"' : '' }>아이가 아파요</option>
 		</select>
-	</form>
 
 	<table class ="table table-boardered">
 		<!-- 게시글 -->
@@ -90,7 +87,12 @@ $(document).ready(function(){
 
 <script type = "text/javascript">
 function selectOnChange(value){
-	document.category.submit();
-	var category = value;
+	if(value==1){
+		location.href="../pic_board/pic_list?category=1";
+	}else if(value==2){
+		location.href="board_list?category=2";
+	}else{
+		location.href="board_list?category=3";
+	}
 }
 </script>
