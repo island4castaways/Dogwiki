@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -16,11 +16,11 @@
 					<input type="password" name="pw" placeholder="비밀번호"><br>
 					<br>
 					<input type="submit" value="로그인" class="btn btn-default">
-					<input type="button" value="회원가입" class="btn btn-primary" onclick="location.href='join'">				
-				</form>	
+					<input type="button" value="회원가입" class="btn btn-primary" onclick="location.href='join'">
+				</form>
 			</div>
 		</section>
-		
+	
 		<script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
 		<script>
 			$(document).ready(function(){

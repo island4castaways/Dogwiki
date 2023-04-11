@@ -15,9 +15,11 @@ import org.springframework.data.domain.Sort;
 import com.dogwiki.commu.entity.BoardEntity;
 import com.dogwiki.commu.entity.CommentEntity;
 import com.dogwiki.commu.entity.TrainingEntity;
+import com.dogwiki.commu.entity.UserEntity;
 import com.dogwiki.commu.repository.BoardRepository;
 import com.dogwiki.commu.repository.CommentRepository;
 import com.dogwiki.commu.repository.TrainingRepository;
+import com.dogwiki.commu.repository.UserRepository;
 
 import lombok.extern.log4j.Log4j2;
 
@@ -33,6 +35,9 @@ public class RepositoryTest {
 	
 	@Autowired
 	CommentRepository cmt;
+	
+	@Autowired
+	UserRepository us;
 	
 	@Test
 	public void testInsert() {
@@ -175,10 +180,12 @@ public class RepositoryTest {
 	
 	@Test
 	public void testBoardInsert() {
+		UserEntity entity = new UserEntity("testuser", "1234", "testname", "1234", "test@test.com");
+		us.save(entity);
 		IntStream.rangeClosed(1, 100).forEach(i -> {
 			BoardEntity en = BoardEntity.builder()
 					.category(1)
-					.writer_id("testuser")
+					.user(entity)
 					.title("test" + i)
 					.content("testContent" + i)
 					.build();

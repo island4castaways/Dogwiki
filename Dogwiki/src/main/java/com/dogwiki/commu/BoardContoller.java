@@ -6,6 +6,7 @@ import java.util.Optional;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dogwiki.commu.entity.BoardEntity;
 import com.dogwiki.commu.entity.CommentEntity;
@@ -39,16 +41,17 @@ public class BoardContoller {
 	public String board_list(Model model, 
 			@PageableDefault(size=10, sort="num", direction = Sort.Direction.DESC) Pageable pageable,
 			@RequestParam(value="category", required = false, defaultValue = "2") int category,
-			@RequestParam(value="search", required= false) String search, @RequestParam(value="user", required=false) String userid) {
+			@RequestParam(value="search", required= false) String search, 
+			@RequestParam(value="user", required=false) String userid) {
 		System.out.println(category);
 		
 		Page<BoardEntity> boardpage;
 		
-		if(userid!=null) {
+		if(userid != null) {
 			boardpage=brdService.mypage_board(userid, pageable);
-		}else if(search!=null) {
+		} else if(search != null) {
 			boardpage = brdService.search_board(search, category, pageable);
-		}else {
+		} else {
 			boardpage = brdService.board_select_category(category, pageable);
 		}
 		
@@ -62,20 +65,20 @@ public class BoardContoller {
         int tempEndPage = startPage+pageSize-1;
         int endPage = (tempEndPage > totalPage) ? totalPage : tempEndPage;
         
-        model.addAttribute("pageNumber",pageNumber);
-        model.addAttribute("pageSize",pageSize);
-        model.addAttribute("totalPage",totalPage);
-        model.addAttribute("startPage",startPage);
-        model.addAttribute("tempEndPage",tempEndPage);
-        model.addAttribute("endPage",endPage);
+        model.addAttribute("pageNumber", pageNumber);
+        model.addAttribute("pageSize", pageSize);
+        model.addAttribute("totalPage", totalPage);
+        model.addAttribute("startPage", startPage);
+        model.addAttribute("tempEndPage", tempEndPage);
+        model.addAttribute("endPage", endPage);
         
-        model.addAttribute("cate",category);
-        model.addAttribute("filter",search);
+        model.addAttribute("cate", category);
+        model.addAttribute("filter", search);
         
 		return "/board/board_list";
 	}
 	
-	@RequestMapping(value="/board_content", method = RequestMethod.GET)
+	@RequestMapping(value = "/board_content", method = RequestMethod.GET)
 	public String board_content(@RequestParam("num") Integer num, 
 			@RequestParam("page") int page, Model model, 
 			HttpServletRequest request, HttpServletResponse response) {
@@ -118,7 +121,12 @@ public class BoardContoller {
 			@RequestParam("board_num") Integer board_num, 
 			@RequestParam(value = "cmtNum", defaultValue = "0", required = false) Integer cmtNum, 
 			@RequestParam("cmtWriter") String cmtWriter, 
-			@RequestParam("cmtContent") String cmtContent) {
+			@RequestParam("cmtContent") String cmtContent, 
+			HttpSession session, RedirectAttributes rttr) {
+		if(session.getAttribute("userid") == null) {
+			rttr.addFlashAttribute("msg", "댓글 쓰기 권한이 없습니다. 로그인 해주세요.");
+			return "redirect:/login";
+		}
 		if(cmtNum != 0) {
 			CommentEntity entity = cmtService.selectOne(cmtNum).get();
 			entity.setCmtContent(cmtContent);
@@ -157,21 +165,17 @@ public class BoardContoller {
 	}
 	
 	@RequestMapping(value = "/board_write", method = RequestMethod.GET)
-	public String board_write(Model model) {
+	public String board_write(@RequestParam("category") int category, 
+			Model model, HttpSession session, RedirectAttributes rttr) {
+		if(session.getAttribute("userid") == null) {
+			rttr.addFlashAttribute("msg", "글쓰기 권한이 없습니다. 로그인 해주세요.");
+			return "redirect:/login";
+		}
+		if(category == 1) {
+			return "/pic_board/pic_board_write";
+		}
 		return "/board/board_write";
 	}
-	
-	@RequestMapping(value = "/board_write", method = RequestMethod.POST)
-	public String board_write_ok(Model model, BoardEntity board) {
-		System.out.println(board);
-		
-		if(category==1) {
-			return "pic_board_write";
-		}
-		brdService.board_create(board);
-		return "redirect:/board/board_list?category="+board.getCategory();
-	}
-	
 	@RequestMapping(value = "/board_modify")
 	public String board_modify(@RequestParam("num") Integer num, 
 			Model model) {
@@ -184,14 +188,13 @@ public class BoardContoller {
 	@RequestMapping("/board_update")
 	public String board_update(BoardEntity boardEntity) {
 		brdService.update(boardEntity);
-		return "redirect:/board/board_list?category="+boardEntity.getCategory();
+		return "redirect:/board/board_list?category=" + boardEntity.getCategory();
 	}
 	
 	@RequestMapping("/board_delete")
 	public String board_delete(@RequestParam("num") int num, 
 			@RequestParam("category") int category) {
-//		cmtService.deleteByBoard_num(num);
 		brdService.board_delete(num);
-		return "redirect:/board/board_list?&category="+category;
+		return "redirect:/board/board_list?&category=" + category;
 	}
 }
