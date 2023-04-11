@@ -46,23 +46,67 @@
 		<table>
 			<tr>
 				<td width="10%">작성자</td>
-				<td width="80%">댓글 내용</td>
+				<td width="70%">댓글 내용</td>
 				<td width="10%">작성일</td>
+				<td width="10%">&nbsp;</td>
 			</tr>
 			<c:forEach var="cmt" items="${cmtList}">
 				<tr>
-					<td>${cmt.com_writer_id}</td>
-					<td>${cmt.com_content}</td>
-					<td>${cmt.com_regdate}</td>
+					<c:choose>
+						<c:when test="${cmt.cmtWriter.equals(sessionScope.userId == null ? 'testUser' : sessionScope.userId)}">
+							<td>${cmt.cmtWriter}</td>
+							<td>
+								<form method="post" action="board_comment">
+									<input type="text" name="category" value="${param.category}" hidden>
+									<input type="text" name="search" value="${param.search}" hidden>
+									<input type="text" name="page" value="${page}" hidden>
+									<input type="text" name="board_num" value="${boardContent.num}" hidden>
+									<input type="text" name="cmtNum" value="${cmt.cmtNum}" hidden>
+									<input type="text" name="cmtWriter" value="${cmt.cmtWriter}" hidden>
+									<input type="text" name="cmtContent" value="${cmt.cmtContent}">
+									<input type="submit" name="modify_comment" value="수정">
+								</form>
+							</td>
+							<td>${cmt.cmtDate}</td>
+							<td>
+								<form name="deleteForm" method="post" action="board_comment_delete">
+									<input type="text" name="category" value="${param.category}" hidden>
+									<input type="text" name="search" value="${param.search}" hidden>
+									<input type="text" name="page" value="${page}" hidden>
+									<input type="text" name="board_num" value="${boardContent.num}" hidden>
+									<input type="text" name="cmtNum" value="${cmt.cmtNum}" hidden>
+									<input type="submit" name="delete_comment" value="삭제" onclick="check()">
+								</form>
+							</td>
+						</c:when>
+						<c:otherwise>
+							<td>${cmt.cmtWriter}</td>
+							<td>${cmt.cmtContent}</td>
+							<td>${cmt.cmtDate}</td>
+						</c:otherwise>
+					</c:choose>
 				</tr>
 			</c:forEach>
 		</table>
 	</div>
 	
 	<div class="comment-txt">
-		<form method="post" action="comment_write">
-			   <input type="text" name="cmt_content" placeholder="댓글 작성">
-			   <input type="submit" value="완료">
+		<form method="post" action="board_comment">
+			<input type="text" name="category" value="${param.category}" hidden>
+			<input type="text" name="search" value="${param.search}" hidden>
+			<input type="text" name="page" value="${page}" hidden>
+			<input type="text" name="board_num" value="${boardContent.num}" hidden>
+			<input type="text" name="cmtWriter" value="${sessionScope.userId == null ? 'testUser' : sessionScope.userId}" hidden>
+			<input type="text" name="cmtContent" placeholder="댓글 작성">
+			<input type="submit" value="완료">
 		</form>
 	</div>
 </section>
+
+<script>
+	function check() {
+		if(confirm("댓글을 삭제하시겠습니까?")) {
+			document.deleteForm.submit();
+		}
+	}
+</script>
