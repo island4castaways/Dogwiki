@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <section>
 	<div align="center">
 		<form>
@@ -35,7 +36,9 @@
 					<!-- 글 등록 메뉴 -->
 					<td colspan="2" align="center">
 						<input type ="button" value="목록" onclick="location.href='board_list?category=${param.category}&search=${param.search}&page=${page}'">
-						<input type ="button" value="수정" onclick="location.href='board_modify?category=${param.category}&search=${param.search}&num=${boardContent.num}&page=${page}'">
+						<c:if test="${boardContent.user.userid.equals(sessionScope.userid)}">
+							<input type ="button" value="수정" onclick="location.href='board_modify?category=${param.category}&search=${param.search}&num=${boardContent.num}&page=${page}'">
+						</c:if>
 					</td>
 				</tr>
 			</table>
@@ -53,7 +56,7 @@
 			<c:forEach var="cmt" items="${cmtList}">
 				<tr>
 					<c:choose>
-						<c:when test="${cmt.cmtWriter.equals(sessionScope.userId == null ? 'testUser' : sessionScope.userId)}">
+						<c:when test="${cmt.cmtWriter.equals(sessionScope.userId)}">
 							<td>${cmt.cmtWriter}</td>
 							<td>
 								<form method="post" action="board_comment">
@@ -96,7 +99,7 @@
 			<input type="text" name="search" value="${param.search}" hidden>
 			<input type="text" name="page" value="${page}" hidden>
 			<input type="text" name="board_num" value="${boardContent.num}" hidden>
-			<input type="text" name="cmtWriter" value="${sessionScope.userId == null ? 'testUser' : sessionScope.userId}" hidden>
+			<input type="text" name="cmtWriter" value="${sessionScope.userId}" hidden>
 			<input type="text" name="cmtContent" placeholder="댓글 작성">
 			<input type="submit" value="완료">
 		</form>
