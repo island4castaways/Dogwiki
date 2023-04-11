@@ -38,7 +38,6 @@ public class BoardContoller {
 		
 		Page<BoardEntity> boardpage;
 		
-		
 		if(userid!=null) {
 			boardpage=brdService.mypage_board(userid, pageable);
 		}else if(search!=null) {
@@ -84,12 +83,20 @@ public class BoardContoller {
 	}
 	
 	@RequestMapping(value = "/board_write", method=RequestMethod.GET)
-	public String board_write( Model model) {
+	public String board_write( Model model, @RequestParam(value="category", required = false)int category) {
+		model.addAttribute("category", category);
+		if(category==1) {
+			return "pic_board_write";
+		}
 		return "/board/board_write";
 	}
 	@RequestMapping(value = "/board_write", method=RequestMethod.POST)
-	public String board_write_ok( Model model, BoardEntity board) {
+	public String board_write_ok( Model model, BoardEntity board, @RequestParam(value="category", required = false)int category) {
 		System.out.println(board);
+		
+		if(category==1) {
+			return "pic_board_write";
+		}
 		brdService.board_create(board);
 		return "redirect:/board/board_list?category="+board.getCategory();
 	}
