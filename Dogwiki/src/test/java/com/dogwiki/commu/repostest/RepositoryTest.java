@@ -177,7 +177,7 @@ public class RepositoryTest {
 	public void testBoardInsert() {
 		IntStream.rangeClosed(1, 100).forEach(i -> {
 			BoardEntity en = BoardEntity.builder()
-					.category(2)
+					.category(1)
 					.writer_id("testuser")
 					.title("test" + i)
 					.content("testContent" + i)
@@ -193,11 +193,16 @@ public class RepositoryTest {
 					.board_basic(BoardEntity.builder()
 							.num(i)
 							.build())
-					.com_writer_id("testcomuser")
-					.com_content("testComment")
+					.cmtWriter("testcomuser")
+					.cmtContent("testComment")
 					.build();
 			cmt.save(en);
 		});
+	}
+	
+	@Test
+	public void testCommentDelete() {
+		cmt.deleteById(8);
 	}
 
 }

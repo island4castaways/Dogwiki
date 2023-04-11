@@ -3,6 +3,10 @@ package com.dogwiki.commu;
 import java.util.List;
 import java.util.Optional;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -11,6 +15,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -31,7 +36,8 @@ public class BoardContoller {
 	private CommentService cmtService;
 	
 	@GetMapping("/board_list")
-	public String board_list(Model model, @PageableDefault(size=10, sort="num", direction = Sort.Direction.DESC) Pageable pageable,
+	public String board_list(Model model, 
+			@PageableDefault(size=10, sort="num", direction = Sort.Direction.DESC) Pageable pageable,
 			@RequestParam(value="category", required = false, defaultValue = "2") int category,
 			@RequestParam(value="search", required= false) String search, @RequestParam(value="user", required=false) String userid) {
 		System.out.println(category);
@@ -69,29 +75,94 @@ public class BoardContoller {
 		return "/board/board_list";
 	}
 	
-	@RequestMapping(value="/board_content", method =RequestMethod.GET)
-	public String board_content(@RequestParam("num") Integer num,@RequestParam("page") int page, Model model) {
+	@RequestMapping(value="/board_content", method = RequestMethod.GET)
+	public String board_content(@RequestParam("num") Integer num, 
+			@RequestParam("page") int page, Model model, 
+			HttpServletRequest request, HttpServletResponse response) {
 		System.out.println(num);
-		Optional<BoardEntity> content = brdService.selectOne(num);
-		BoardEntity boardContent = content.get();
-		List<CommentEntity> cmtList = cmtService.selectByBoard_basic(num);
-		model.addAttribute("boardContent", boardContent);
-		model.addAttribute("page",page);
-		model.addAttribute("cmtList", cmtList);
-		return "/board/board_content";
 		
+		Optional<BoardEntity> op = brdService.selectOne(num);
+		BoardEntity entity = null;
+		Cookie hitCoo = null;
+		boolean cooExists = false;
+		
+		if(op.isPresent()) {
+			entity = op.get();
+			for(Cookie cookie : request.getCookies()) {
+				if(cookie.getName().equals("hit" + entity.getNum())) {
+					cooExists = true;
+				}
+			}
+			if(!cooExists) {	//쿠키 없을 때 hit + 1 -> update, new Cookie
+				entity.setHit(entity.getHit() + 1);
+				brdService.update(entity);
+				hitCoo = new Cookie("hit" + entity.getNum(), "" + entity.getHit());
+				hitCoo.setMaxAge(60 * 5);	//5분
+				response.addCookie(hitCoo);
+			}
+			model.addAttribute("boardContent", entity);
+		}
+		
+		model.addAttribute("page", page);
+
+		List<CommentEntity> cmtList = cmtService.selectByBoard_basic(num);
+		model.addAttribute("cmtList", cmtList);
+		
+		return "/board/board_content";
 	}
 	
-	@RequestMapping(value = "/board_write", method=RequestMethod.GET)
-	public String board_write( Model model, @RequestParam(value="category", required = false)int category) {
-		model.addAttribute("category", category);
-		if(category==1) {
-			return "pic_board_write";
+	@PostMapping("/board_comment")
+	public String board_comment(@RequestParam("category") String category, 
+			@RequestParam("search") String search,
+			@RequestParam("page") String page, 
+			@RequestParam("board_num") Integer board_num, 
+			@RequestParam(value = "cmtNum", defaultValue = "0", required = false) Integer cmtNum, 
+			@RequestParam("cmtWriter") String cmtWriter, 
+			@RequestParam("cmtContent") String cmtContent) {
+		if(cmtNum != 0) {
+			CommentEntity entity = cmtService.selectOne(cmtNum).get();
+			entity.setCmtContent(cmtContent);
+			cmtService.updateOne(entity);
+			return "redirect:/board/board_content?category=" + category 
+					+ "&search=" + search + "&num=" + board_num + "&page=" + page;
 		}
+		if(cmtContent != null && !cmtContent.isEmpty()) {
+			CommentEntity entity = CommentEntity.builder()
+					.board_basic(BoardEntity.builder()
+							.num(board_num)
+							.build())
+					.cmtWriter(cmtWriter)
+					.cmtContent(cmtContent)
+					.build();
+			cmtService.insert(entity);
+		}
+		if(category.isEmpty() || category == null) category = "";
+		if(search.isEmpty() || search == null) search = "";
+		return "redirect:/board/board_content?category=" + category 
+				+ "&search=" + search + "&num=" + board_num + "&page=" + page;
+	}
+	
+	@PostMapping("/board_comment_delete")
+	public String board_comment_delete(
+			@RequestParam("category") String category, 
+			@RequestParam("search") String search, 
+			@RequestParam("page") String page, 
+			@RequestParam("board_num") String board_num, 
+			@RequestParam("cmtNum") Integer cmtNum) {
+		cmtService.deleteById(cmtNum);
+		if(category.isEmpty() || category == null) category = "";
+		if(search.isEmpty() || search == null) search = "";
+		return "redirect:/board/board_content?category=" + category 
+				+ "&search=" + search + "&num=" + board_num + "&page=" + page;
+	}
+	
+	@RequestMapping(value = "/board_write", method = RequestMethod.GET)
+	public String board_write(Model model) {
 		return "/board/board_write";
 	}
-	@RequestMapping(value = "/board_write", method=RequestMethod.POST)
-	public String board_write_ok( Model model, BoardEntity board, @RequestParam(value="category", required = false)int category) {
+	
+	@RequestMapping(value = "/board_write", method = RequestMethod.POST)
+	public String board_write_ok(Model model, BoardEntity board) {
 		System.out.println(board);
 		
 		if(category==1) {
@@ -102,7 +173,8 @@ public class BoardContoller {
 	}
 	
 	@RequestMapping(value = "/board_modify")
-	public String board_modify(@RequestParam("num") Integer num, Model model) {
+	public String board_modify(@RequestParam("num") Integer num, 
+			Model model) {
 		Optional<BoardEntity> content = brdService.selectOne(num);
 		BoardEntity boardContent = content.get();
 		model.addAttribute("boardContent", boardContent);
@@ -116,7 +188,9 @@ public class BoardContoller {
 	}
 	
 	@RequestMapping("/board_delete")
-	public String board_delete(@RequestParam("num") int num, @RequestParam("category") int category) {
+	public String board_delete(@RequestParam("num") int num, 
+			@RequestParam("category") int category) {
+//		cmtService.deleteByBoard_num(num);
 		brdService.board_delete(num);
 		return "redirect:/board/board_list?&category="+category;
 	}

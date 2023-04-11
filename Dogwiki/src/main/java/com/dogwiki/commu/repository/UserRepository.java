@@ -13,6 +13,5 @@ public interface UserRepository extends JpaRepository<UserEntity, String> {
 	Boolean existsByUserid(String userid); //존재 여부
 	
 	UserEntity findByUseridAndPw(String userid,String pw); //검증
-	
  
 }
