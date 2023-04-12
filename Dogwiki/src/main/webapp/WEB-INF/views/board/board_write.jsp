@@ -9,7 +9,7 @@
 				<tr>
 					<td>작성자</td>
 					
-					<td><input type = "text" name ="user" size="10" value="${sessionScope.id}"
+					<td><input type = "text" name ="user" size="10" value="${sessionScope.userid}"
 					${sessionScope.userid != null ? "readonly" : "" }></td>
 					
 				</tr>
@@ -23,9 +23,9 @@
 					<td>분류</td>
 					<td>
 					<select name="category" onchange="selectOnChange(value)">
-							<option value=1 ${param.category == '1' ? 'selected="selected"' : '' }>우리 아이가 제일 멋져</option>
-							<option value=2 ${param.category == '2' ? 'selected="selected"' : '' }>사료&간식 추천</option>
-							<option value=3 ${param.category == '3' ? 'selected="selected"' : '' }>아이가 아파요</option>
+							<option value=1 ${param.category == '1' ? 'selected="selected"' : ''}>우리 아이가 제일 멋져</option>
+							<option value=2 ${param.category == '2' ? 'selected="selected"' : ''}>사료&간식 추천</option>
+							<option value=3 ${param.category == '3' ? 'selected="selected"' : ''}>아이가 아파요</option>
 						</select>
 					</td>
 				</tr>

@@ -19,13 +19,16 @@ import javax.persistence.TemporalType;
 import org.hibernate.annotations.CreationTimestamp;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@Getter
+@Setter
 @Table(name = "board_basic")
 @Entity(name = "Board")
 public class BoardEntity {
@@ -55,5 +58,6 @@ public class BoardEntity {
 	private int hit;
 	
 	@OneToMany(mappedBy = "board_basic", cascade = {CascadeType.ALL}, orphanRemoval = true)
+	@EqualsAndHashCode.Exclude
 	private List<CommentEntity> comments;
 }

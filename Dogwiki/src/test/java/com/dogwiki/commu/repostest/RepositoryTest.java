@@ -206,7 +206,9 @@ public class RepositoryTest {
 					.board_basic(BoardEntity.builder()
 							.num(i)
 							.build())
-					.cmtWriter("testcomuser")
+					.user(UserEntity.builder()
+							.userid("testuser")
+							.build())
 					.cmtContent("testComment")
 					.build();
 			cmt.save(en);

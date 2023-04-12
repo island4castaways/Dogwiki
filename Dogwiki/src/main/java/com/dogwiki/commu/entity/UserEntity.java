@@ -11,15 +11,15 @@ import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-//Model역할
-
-@Data
 @Entity
 @Builder
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "user")
@@ -49,4 +49,7 @@ public class UserEntity {
 	@EqualsAndHashCode.Exclude
 	private List<PictureEntity> pictures;
 	
+	@OneToMany(mappedBy = "user", cascade = {CascadeType.ALL}, orphanRemoval = true)
+	@EqualsAndHashCode.Exclude
+	private List<CommentEntity> comments;
 }

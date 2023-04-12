@@ -56,16 +56,16 @@
 			<c:forEach var="cmt" items="${cmtList}">
 				<tr>
 					<c:choose>
-						<c:when test="${cmt.cmtWriter.equals(sessionScope.userId)}">
-							<td>${cmt.cmtWriter}</td>
+						<c:when test="${cmt.user.userid.equals(sessionScope.userid)}">
+							<td>${cmt.user.userid}</td>
 							<td>
 								<form method="post" action="board_comment">
-									<input type="text" name="category" value="${param.category}" hidden>
-									<input type="text" name="search" value="${param.search}" hidden>
-									<input type="text" name="page" value="${page}" hidden>
-									<input type="text" name="board_num" value="${boardContent.num}" hidden>
-									<input type="text" name="cmtNum" value="${cmt.cmtNum}" hidden>
-									<input type="text" name="cmtWriter" value="${cmt.cmtWriter}" hidden>
+									<input type="hidden" name="category" value="${param.category}">
+									<input type="hidden" name="search" value="${param.search}">
+									<input type="hidden" name="page" value="${page}">
+									<input type="hidden" name="board_basic" value="${boardContent.num}">
+									<input type="hidden" name="cmtNum" value="${cmt.cmtNum}">
+									<input type="hidden" name="user" value="${cmt.user.userid}">
 									<input type="text" name="cmtContent" value="${cmt.cmtContent}">
 									<input type="submit" name="modify_comment" value="수정">
 								</form>
@@ -83,7 +83,7 @@
 							</td>
 						</c:when>
 						<c:otherwise>
-							<td>${cmt.cmtWriter}</td>
+							<td>${cmt.user.userid}</td>
 							<td>${cmt.cmtContent}</td>
 							<td>${cmt.cmtDate}</td>
 						</c:otherwise>
@@ -98,8 +98,8 @@
 			<input type="text" name="category" value="${param.category}" hidden>
 			<input type="text" name="search" value="${param.search}" hidden>
 			<input type="text" name="page" value="${page}" hidden>
-			<input type="text" name="board_num" value="${boardContent.num}" hidden>
-			<input type="text" name="cmtWriter" value="${sessionScope.userId}" hidden>
+			<input type="text" name="board_basic" value="${boardContent.num}" hidden>
+			<input type="text" name="user" value="${sessionScope.userid}" hidden>
 			<input type="text" name="cmtContent" placeholder="댓글 작성">
 			<input type="submit" value="완료">
 		</form>

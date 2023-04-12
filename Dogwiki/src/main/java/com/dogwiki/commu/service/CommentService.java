@@ -22,16 +22,12 @@ public class CommentService {
 		return cmtRepository.getByBoard_num(board_num);
 	}
 	
-	public CommentEntity insert(CommentEntity entity) {
+	public CommentEntity saveOne(CommentEntity entity) {
 		return cmtRepository.save(entity);
 	}
 	
 	public Optional<CommentEntity> selectOne(Integer cmtNum) {
 		return cmtRepository.findById(cmtNum);
-	}
-	
-	public CommentEntity updateOne(CommentEntity entity) {
-		return cmtRepository.save(entity);
 	}
 	
 	public void deleteById(Integer cmtNum) {
