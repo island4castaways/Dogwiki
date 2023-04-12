@@ -36,7 +36,8 @@ public class CommentEntity {
     @JoinColumn(name="board_num", referencedColumnName="num")
 	private BoardEntity board_basic;
 	
-	@Column(length = 40, nullable = false)
+	@ManyToOne
+	@JoinColumn(name = "cmt_writer_id", referencedColumnName = "userid")
 	private String cmtWriter;
 	
 	@Column(length = 255, nullable = false)
