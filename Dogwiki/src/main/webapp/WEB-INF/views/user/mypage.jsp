@@ -13,7 +13,7 @@
 		  <div class="image-slider">
    
     <div>
-      <img src="../img/img1.jpg" width="400" height="450">
+      <img src="/resiurces/img/img1.jpg" width="400" height="450">
     </div>
   </div>
 
@@ -37,9 +37,6 @@
 					<input type="submit" value="로그아웃"  onclick="location.href='user_logout' " style="border-radius: 13px;">
 					</div>
       
-        		<div class="btn-my">			
-					<input type="button" value="내가 쓴 글"  onclick="location.href='board/board_list' " style="border-radius: 13px;">
-				</div>       
 
     </div>
 

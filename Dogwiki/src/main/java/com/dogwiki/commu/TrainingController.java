@@ -29,68 +29,70 @@ public class TrainingController {
 	private TrainingService trService;
 	
 	@GetMapping
-	public String main(Model model, 
-			@RequestParam(value = "pn", defaultValue = "0", required = false) int pageNum,
-			@RequestParam(value = "ps", defaultValue = "10", required = false) int pageSize,
-			@RequestParam(value = "sb", defaultValue = "trId", required = false) String sortBy, 
-			@RequestParam(value = "st", required = false) String trProf, 
-			@RequestParam(value = "search", required = false) String search, 
-			HttpServletRequest request, HttpServletResponse response) {
-		List<TrainingEntity> list = null;
-		String msg = null;
-		int total = 0;
-		boolean latestCooExist = false;
-		
-		for(Cookie cookie : request.getCookies()) {
-			if(cookie.getName().equals("latestCoo")) {
-				latestCooExist = true;
-			}
-		}
-		
-		if(!latestCooExist) {
-			Cookie latestCoo = new Cookie("latestCoo", "true");
-			latestCoo.setMaxAge(60 * 60 * 12);	//12시간
-			response.addCookie(latestCoo);
-		}
-		
-		
-		if((trProf == null || trProf.isEmpty()) 
-				&& (search == null || search.isEmpty())) {
-			total = trService.countTotal();
-			list = trService
-					.selectAll(pageNum, pageSize, sortBy, !latestCooExist)
-					.getContent();
-		} else if(trProf != null && (search == null || search.isEmpty())) {
-			total = trService.countByTrProf(trProf);
-			msg = trProf + " 모아 보기";
-			list = trService
-					.selectByTrProf(trProf, pageNum, pageSize, sortBy);
-		} else if(search != null && trProf.isEmpty()) {
-			total = trService.countByTrTitle(search);
-			msg = "제목으로 검색 결과";
-			list = trService
-					.selectByTrTitle(search, pageNum, pageSize, sortBy);
-		} else if(trProf != null && search != null) {
-			total = trService.countByTrProfAndTrTitle(trProf, search);
-			msg = trProf + " 모아 보기 검색 결과";
-			list = trService
-					.selectByTrProfAndTrTitle(trProf, search, 
-							pageNum, pageSize, sortBy);
-		}
-		
-		System.out.println("total pageNum : " + total);
-		PageDTO page = new PageDTO(pageNum, pageSize, total);
-		model.addAttribute("page", page);
-		
-		if(msg != null) model.addAttribute("msg", msg);
+	   public String main(Model model, 
+	         @RequestParam(value = "pn", defaultValue = "0", required = false) int pageNum,
+	         @RequestParam(value = "ps", defaultValue = "10", required = false) int pageSize,
+	         @RequestParam(value = "sb", defaultValue = "trId", required = false) String sortBy, 
+	         @RequestParam(value = "st", required = false) String trProf, 
+	         @RequestParam(value = "search", required = false) String search, 
+	         HttpServletRequest request, HttpServletResponse response) {
+	      List<TrainingEntity> list = null;
+	      String msg = null;
+	      int total = 0;
+	      boolean latestCooExist = false;
+	      
+	      if(request.getCookies() != null) {
+	         for(Cookie cookie : request.getCookies()) {
+	            if(cookie.getName().equals("latestCoo")) {
+	               latestCooExist = true;
+	            }
+	         }
+	      }
+	      
+	      if(latestCooExist == false) {   //쿠키 없을 때
+	         Cookie latestCoo = new Cookie("latestCoo", "true");
+	         latestCoo.setMaxAge(60 * 60 * 12);   //12시간
+	         response.addCookie(latestCoo);
+	      }
+	      
+	      
+	      if((trProf == null || trProf.isEmpty()) 
+	            && (search == null || search.isEmpty())) {
+	         total = trService.countTotal();
+	         list = trService
+	               .selectAll(pageNum, pageSize, sortBy, !latestCooExist)
+	               .getContent();
+	      } else if(trProf != null && (search == null || search.isEmpty())) {
+	         total = trService.countByTrProf(trProf);
+	         msg = trProf + " 모아 보기";
+	         list = trService
+	               .selectByTrProf(trProf, pageNum, pageSize, sortBy);
+	      } else if(search != null && trProf.isEmpty()) {
+	         total = trService.countByTrTitle(search);
+	         msg = "제목으로 검색 결과";
+	         list = trService
+	               .selectByTrTitle(search, pageNum, pageSize, sortBy);
+	      } else if(trProf != null && search != null) {
+	         total = trService.countByTrProfAndTrTitle(trProf, search);
+	         msg = trProf + " 모아 보기 검색 결과";
+	         list = trService
+	               .selectByTrProfAndTrTitle(trProf, search, 
+	                     pageNum, pageSize, sortBy);
+	      }
+	      
+	      System.out.println("total pageNum : " + total);
+	      PageDTO page = new PageDTO(pageNum, pageSize, total);
+	      model.addAttribute("page", page);
+	      
+	      if(msg != null) model.addAttribute("msg", msg);
 
-		model.addAttribute("st", trProf);
-		model.addAttribute("search", search);
-		
-		model.addAttribute("list", list);
-		
-		return "/training/training";
-	}
+	      model.addAttribute("st", trProf);
+	      model.addAttribute("search", search);
+	      
+	      model.addAttribute("list", list);
+	      
+	      return "/training/training";
+	   }
 			
 	@GetMapping("/content")
 	public String content(@RequestParam("num") Integer trId, 

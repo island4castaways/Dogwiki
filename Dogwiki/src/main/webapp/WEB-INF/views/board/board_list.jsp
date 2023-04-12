@@ -1,12 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ include file="/resources/include/header.jsp"%>
+		<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core" %>
-
+<link rel="stylesheet" type="text/css" href="/resources/css/main.css">
 <div class = "container"></div>
 	<h3>Dogwiki 게시판</h3>
 		<label for = "category">분류</label>
 		<select name="category" onchange="selectOnChange(value)">
-			<option value=1 ${param.category == '1' ? 'selected="selected"' : '' }>우리 아이가 제일 멋져</option>
+			<option value=1 ${param.category == '1' ? 'selected="selected"' : '' }>우리 아이가 제일 멋져!</option>
 			<option value=2 ${param.category == '2' ? 'selected="selected"' : '' }>사료&간식 추천</option>
 			<option value=3 ${param.category == '3' ? 'selected="selected"' : '' }>아이가 아파요</option>
 		</select>
@@ -46,8 +47,14 @@
 							</c:if>
 							<input type="hidden" name="category" value="${cate}">
 							<input type="text" name="search" placeholder="제목검색" value="${filter}" class="form-control">
-							<input type="submit" value="검색" class="btn btn-default">
-							<input type="button" value="글 작성" class="btn btn-primary" onclick="location.href='board_write?category=${cate}'">
+							
+							<div class="btn-area">
+								<input type="submit" value="검색" style="border-radius: 13px">
+							</div>
+							
+							<div class="btn-area">
+								<input type="button" value="글 작성" style="border-radius: 13px" onclick="location.href='board_write?category=${cate}'">
+							</div>
 						</div>
 					</form>
 				</td>

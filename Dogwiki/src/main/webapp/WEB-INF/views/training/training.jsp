@@ -1,29 +1,31 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-	<html>
-	<head>
-		<meta charset="UTF-8">
+<%@ include file="/resources/include/header.jsp"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+		<title>Join</title>
+
 		<title>training info</title>
-	</head>
-	<body>
-		<h2>훈련 정보</h2>
-		<hr>
-		<table class="table">
+
+
+	<section style="margin-top: 150px;">
+		<table>
 			<tr>
 				<ul>
+		<h2>훈련 정보</h2>
 					<td>
-						<li><a href="/training">전체 보기</a></li>
+						<li>
+							<a href="/training">전체 보기</a>
+						</li>
 					</td>
-					<td>&nbsp;</td>
+
 					<td>
-						<li><a href="/training?st=강형욱">강형욱 훈련사</a></li>
-					</td>
-					<td>&nbsp;</td>
+						<li>
+							<a href="/training?st=강형욱">강형욱 훈련사</a>
+						</li>
+					</td>				
 					<td>
-						<li><a href="/training?st=설채현">설채현 수의사</a></li>
-					</td>
+						<li>
+							<a href="/training?st=설채현">설채현 수의사</a>
+						</li>					
+					</td>					
 				</ul>
 			</tr>
 		</table>
@@ -32,62 +34,69 @@
 			<p>${msg}</p>
 		</c:if>
 		
-		<table class="table">
+		<table class="training" >
 			<thead>
 				<tr>
 					<th>전문가</th>
-					<th>훈련 내용</th>
-					<th>업로드일</th>
+					<th align="left">훈련 내용</th>
+					<th align="left">업로드일</th>
 					<th>조회수</th>
 				</tr>
 			</thead>
 			
-			<tbody>
+			<tbody class="trainig">
 				<c:forEach var="en" items="${list}">
 					<tr>
-						<td>${en.trProf}</td>
-						<td>
+						<td style="width: 90px;">${en.trProf}</td>
+						<td style="width: 700px;">
 							<a href="/training/content?num=${en.trId}
 								&pn=${page.pageNum}&st=${st}&search=${search}">
 								${en.trTitle}
 							</a>
 						</td>
 						<td>${en.trDate}</td>
-						<td>${en.trHit}</td>
+						<td style="width: 30px;" >${en.trHit}</td>
 					</tr>
 				</c:forEach>
 			</tbody>
+		</table>
 			
 			<tbody>
 				<tr>
-					<td colspan="5" align="right">
-						<form action="/training" class="form" method="get">
-							<div>
-								<input type="text" name="search" 
-									placeholder="제목 검색" class="form">
-								<input type="text" name="st" value="${st}" class="form" hidden>
-								<input type="submit" value="검색" class="button">
+					<td colspan="5" >						
+						<form action="/training" method="get" class="trining-form">
+						<div class="input-wrapper">
+							<div class="int-area">
+								<input type="text" name="search" placeholder="제목 검색" >
 							</div>
-						</form>
-					</td>
+							<div class="int-area">
+								<input type="hidden" name="st" value="${st}">
+							</div>
+
+							<div class="btn-training">
+								<input type="submit" value="검색" style="border-radius: 13px;" >
+							</div>
+						</div>
+					</form>
+				</td>
 				</tr>
 			</tbody>
-		</table>
 		
-		<div align="center">
-			<ul>
+		<div align="center" class="paging">
+			<ul class="paging-list">
 				<c:if test="${page.hasPrev}">
-					<li>
+					<li class="paging-item">
 						<a href="/training?pn=${page.startPage - 1}
-							&st=${st}&search=${search}">
+							&st=${st}&search=${search}" class="paging-link">
 							이전
 						</a>
 					</li>
 				</c:if>
+
 				
 				<c:forEach var="num" begin="${page.startPage}" 
 					end="${page.endPage}" step="1">
-					<li>
+					<li class="paging-item">
 						<a href="/training?pn=${num - 1}&st=${st}&search=${search}">
 							${num}
 						</a>
@@ -95,9 +104,9 @@
 				</c:forEach>
 				
 				<c:if test="${page.hasNext}">
-					<li>
+					<li class="paging-item">
 						<a href="/training?pn=${page.endPage + 1}
-									&st=${st}&search=${search}">
+									&st=${st}&search=${search}" class="paging-link">
 									다음
 						</a>
 					</li>
@@ -105,5 +114,5 @@
 			</ul>
 		</div>
 		
-	</body>
+	</section>
 </html>
