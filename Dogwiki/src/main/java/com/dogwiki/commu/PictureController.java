@@ -1,18 +1,13 @@
 package com.dogwiki.commu;
 
 
-import java.io.File;
-
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.dogwiki.commu.entity.PictureEntity;
@@ -36,8 +31,8 @@ public class PictureController {
     	picService.write(picEntity, file);
 
         //메세지띄우기2
-        model.addAttribute("message","글작성이 완료되었습니다");
-        model.addAttribute("searchUrl","/board/list");
+        model.addAttribute("msg", "글 작성이 완료되었습니다.");
+        model.addAttribute("searchUrl", "/board/list");
 
         return "../board/board_list";
     }
@@ -48,7 +43,7 @@ public class PictureController {
         model.addAttribute("list" , picService.picBoardList()); //4번
         return "/pic_board_list";
     }
-//
+
 //    @GetMapping("/board/view") //localhost:8080/board/view?id=1 //(get방식 파라미터)
 //    public String boardView(Model model, Integer id){
 //        model.addAttribute("testboard", picService.boardview(id));

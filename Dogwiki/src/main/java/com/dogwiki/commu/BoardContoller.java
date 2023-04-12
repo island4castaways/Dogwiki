@@ -176,6 +176,7 @@ public class BoardContoller {
 		}
 		return "/board/board_write";
 	}
+	
 	@RequestMapping(value = "/board_modify")
 	public String board_modify(@RequestParam("num") Integer num, 
 			Model model) {
