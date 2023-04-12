@@ -41,7 +41,7 @@ public class BoardEntity {
 	private String title;
 	
 	@ManyToOne
-	@JoinColumn(name="writer_id")
+	@JoinColumn(name = "writer_id", referencedColumnName = "userid")
 	private UserEntity user;
 	
 	@Column(length = 255, nullable = false)

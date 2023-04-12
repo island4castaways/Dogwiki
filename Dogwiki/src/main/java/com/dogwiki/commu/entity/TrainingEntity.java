@@ -27,14 +27,19 @@ public class TrainingEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer trId;
+	
 	@Column(length = 40, nullable = false)
 	private String trProf;
+	
 	@Column(length = 255, nullable = false)
 	private String trTitle;
+	
 	@Column(length = 100, nullable = false)
 	private String trUrl;
+	
 	@CreationTimestamp
 	private Timestamp trDate;
+	
 	@Column
 	private int trHit;
 
