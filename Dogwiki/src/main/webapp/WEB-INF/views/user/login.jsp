@@ -1,28 +1,35 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="UTF-8">
-		<title>로그인페이지</title>
-	</head>
-	<body>
-		<section>
-			<div align="center">
-				<h2>로그인 페이지</h2>
-				<hr>
-				<form action="/login" method="post">
-					<input type="text" name="userid" placeholder="아이디"><br>
-					<input type="password" name="pw" placeholder="비밀번호"><br>
-					<br>
-					<input type="submit" value="로그인" class="btn btn-default">
-					<input type="button" value="회원가입" class="btn btn-primary" onclick="location.href='join'">
-				</form>
+<%@ include file="/resources/include/header.jsp"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<title>Login</title>
+<link rel="stylesheet" type="text/css" href="/resources/css/main.css">
+</head>
+<section class="input-form">
+	<h2>로그인 페이지</h2>
+	<form action="/login" method="post">
+
+		<div class="int-area">
+			<input type="text" id="userid" name="userid" autocomplete="off" required>
+			<label for="userid">아이디</label>
+		</div>
+
+		<div class="int-area">
+			<input type="password" id="pw" name="pw" autocomplete="off" required>
+			<label for="pw">비밀번호</label>
+		</div>
+
+		<div class="btn-area">
+			<input type="submit" value="로그인"
+				style="border-radius: 13px; margin-right: 20px;">
 			</div>
-		</section>
-	
-		<script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
-		<script>
+
+		<div class="btn-area">
+			<input type="button" value="회원가입" onclick="location.href='join'" style="border-radius: 13px">
+		</div>
+	</form>
+</section>
+
+<script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
+<script>
 			$(document).ready(function(){
 				var msg = '${msg}';
 				if(msg != ''){
@@ -30,5 +37,5 @@
 				}
 			})
 		</script>
-	</body>
+</body>
 </html>
