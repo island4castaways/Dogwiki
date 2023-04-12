@@ -23,9 +23,9 @@
 	
 		<script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
 		<script>
-			$(document).ready(function(){
+			$(document).ready(function() {
 				var msg = '${msg}';
-				if(msg != ''){
+				if(msg != '') {
 					alert(msg);
 				}
 			})

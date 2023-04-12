@@ -61,31 +61,29 @@
 			function check() {
 				//form은 document.태그이름.태그이름으로 하위태그에 접근이 가능함...(dom접근)
 				//console.log(document.regForm.id.value); 공백이 출력됨...
-				if(document.regForm.userid.value.includes(" ")){
+				if(document.regForm.userid.value.includes(" ")) {
 					alert("아이디에 공백은 넣을 수 없습니다.")
 					return;
-				}
-				else if(document.regForm.userid.value == '') {
+				} else if(document.regForm.userid.value == '') {
 					alert("아이디는 필수 사항입니다.")
 					return;
 				} else if(document.regForm.userid.value.length < 4 
-						|| document.regForm.userid.value.length > 8){
+						|| document.regForm.userid.value.length > 8) {
 					alert("아이디는 4글자 이상 8글자 이하로 입력하세요")
 					return;
 				} else if(document.regForm.pw.value == '') {
 					alert("비밀번호는 필수 사항입니다.")
 					return;
-				}
-				else if(document.regForm.pw.value.includes(" ")){
+				} else if(document.regForm.pw.value.includes(" ")) {
 					alert("비밀번호에 공백은 넣을 수 없습니다.")
 					return;
-				}else if(document.regForm.pw.value != document.regForm.pw_check.value){
+				} else if(document.regForm.pw.value != document.regForm.pw_check.value) {
 					alert("비밀번호 확인란을 확인해주세요")
 					return;
-				} else if(document.regForm.username.value == ''){
+				} else if(document.regForm.username.value == '') {
 					alert("이름은 필수 사항입니다.");
 					return;
-				} else if(confirm("회원 가입을 하시겠습니까?")){
+				} else if(confirm("회원 가입을 하시겠습니까?")) {
 					document.regForm.submit(); //자바스크립트의 submit()는 form태그 submit기능
 				}
 			}
@@ -93,9 +91,9 @@
 		
 		<script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
 		<script>
-			$(document).ready(function(){
+			$(document).ready(function() {
 				var msg = '${msg}';
-				if(msg != ''){
+				if(msg != '') {
 					alert(msg);
 				}
 			})

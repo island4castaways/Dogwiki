@@ -31,9 +31,9 @@
 				<tr>
 					<!-- 글 등록 메뉴 -->
 					<td colspan="2" align="center">
-						<input type ="button" value="목록" onclick="location.href='board_list?category=${param.category}&search=${param.search}&page=${page}'">
+						<input type="button" value="목록" onclick="location.href='board_list?category=${param.category}&search=${param.search}&page=${page}'">
 						<c:if test="${boardContent.user.userid.equals(sessionScope.userid)}">
-							<input type ="button" value="수정" onclick="location.href='board_modify?category=${param.category}&search=${param.search}&num=${boardContent.num}&page=${page}'">
+							<input type="button" value="수정" onclick="location.href='board_modify?category=${param.category}&search=${param.search}&num=${boardContent.num}&page=${page}'">
 						</c:if>
 					</td>
 				</tr>

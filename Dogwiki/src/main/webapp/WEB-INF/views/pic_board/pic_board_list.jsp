@@ -6,8 +6,8 @@
 	<h3>Dogwiki 게시판</h3>
 		<label for="category">분류</label>
 		<select name="category" onchange="selectOnChange(value)">
-			<option value=1 ${param.category == '1' ? 'selected="selected"' : ''}>우리 아이가 제일 멋져</option>
-			<option value=2 ${param.category == '2' ? 'selected="selected"' : ''}>사료&간식 추천</option>
+			<option value=1 ${param.category == '1' ? 'selected="selected"' : ''}>내새끼 짱</option>
+			<option value=2 ${param.category == '2' ? 'selected="selected"' : ''}>사료간식 추천</option>
 			<option value=3 ${param.category == '3' ? 'selected="selected"' : ''}>아이가 아파요</option>
 		</select>
 

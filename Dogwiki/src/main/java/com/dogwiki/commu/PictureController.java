@@ -44,7 +44,9 @@ public class PictureController {
 
     //여기에도 MultipartFile file 받아줌 //예외처리
     @PostMapping("/write")
-    public String boardWritePro(PictureEntity picEntity, Model model, MultipartFile file, RedirectAttributes rttr)throws Exception{
+    public String boardWritePro(PictureEntity picEntity, 
+    		Model model, MultipartFile file, 
+    		RedirectAttributes rttr) throws Exception {
     	if(file.isEmpty()) {
     		rttr.addFlashAttribute("msg", "사진은 필수사항입니다.");
     		return "redirect:/pic_board/write";
@@ -68,14 +70,11 @@ public class PictureController {
     	
     	if(search!=null) {
     		picPage = picService.searchPicBoard(search, pageable);
-    	}else {
+    	} else {
     		picPage = picService.picBoardList(pageable, category);
     	}
     	List<PictureEntity> picList = picPage.getContent();
-    	System.out.println(picList);
     	model.addAttribute("list" , picList);
-    	
-    	
     	
     	int pageNumber = picPage.getPageable().getPageNumber();	//현재 페이지
         int pageSize = picPage.getPageable().getPageSize();
@@ -94,7 +93,6 @@ public class PictureController {
         model.addAttribute("category", category);
         model.addAttribute("search", search);
         return "pic_board/pic_board_list";
-        
     }
     
     @RequestMapping("/pic_content")

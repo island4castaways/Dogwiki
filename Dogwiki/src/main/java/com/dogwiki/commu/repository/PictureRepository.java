@@ -6,7 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import com.dogwiki.commu.entity.BoardEntity;
 import com.dogwiki.commu.entity.PictureEntity;
 
 public interface PictureRepository extends JpaRepository<PictureEntity, Integer> {

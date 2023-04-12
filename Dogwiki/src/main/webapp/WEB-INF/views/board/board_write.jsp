@@ -9,7 +9,7 @@
 				<tr>
 					<td>작성자</td>
 					
-					<td><input type = "text" name ="user" size="10" value="${sessionScope.userid}"
+					<td><input type="text" name="user" size="10" value="${sessionScope.userid}"
 					${sessionScope.userid != null ? "readonly" : "" }></td>
 					
 				</tr>
@@ -48,7 +48,7 @@
 	</div>
 </section>
 <!-- registCheck()구현: 작성자, 글제목에 공백을 확인하고, 공백이 아니라면 submit() 처리 -->
-<script type = "text/javascript">
+<script type="text/javascript">
 	function registCheck() {
 		if(document.regform.user.value == "") {
 			alert("작성자를 입력하세요.");
@@ -62,7 +62,7 @@
 	}
 </script>
 
-<script type = "text/javascript">
+<script type="text/javascript">
 	function selectOnChange(value) {
 		if(value == 1) {
 			location.href="../pic_board/write?category=1";

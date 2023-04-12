@@ -42,16 +42,10 @@ public class BoardContoller {
 	public String board_list(Model model, 
 			@PageableDefault(size=10, sort="num", direction = Sort.Direction.DESC) Pageable pageable,
 			@RequestParam(value="category", required = false, defaultValue = "2") int category,
-			@RequestParam(value="search", required= false) String search, 
-			@RequestParam(value="user", required=false) String userid) {
-		System.out.println(category);
-		
-		
+			@RequestParam(value="search", required= false) String search) {
 		Page<BoardEntity> boardpage;
 		
-		if(userid != null) {
-			boardpage=brdService.mypage_board(userid, pageable);
-		} else if(search != null) {
+		if(search != null) {
 			boardpage = brdService.search_board(search, category, pageable);
 		} else {
 			boardpage = brdService.board_select_category(category, pageable);
@@ -84,8 +78,6 @@ public class BoardContoller {
 	public String board_content(@RequestParam("num") Integer num, 
 			@RequestParam("page") int page, Model model, 
 			HttpServletRequest request, HttpServletResponse response) {
-		System.out.println(num);
-		
 		Optional<BoardEntity> op = brdService.selectOne(num);
 		BoardEntity entity = null;
 		Cookie hitCoo = null;
