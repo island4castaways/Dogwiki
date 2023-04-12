@@ -64,4 +64,9 @@ public class PictureService {
 	public PictureEntity updatePicture(PictureEntity entity) {
 		return picRepository.save(entity);
 	}
+	
+	public Page<PictureEntity> searchPicBoard(String search, Pageable pageable){
+		return picRepository.getListWithQuery(search, pageable);
+	}
+
 }

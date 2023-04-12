@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
@@ -43,13 +44,16 @@ public class PictureController {
 
     //여기에도 MultipartFile file 받아줌 //예외처리
     @PostMapping("/write")
-    public String boardWritePro(PictureEntity picEntity, Model model, MultipartFile file)throws Exception{
+    public String boardWritePro(PictureEntity picEntity, Model model, MultipartFile file, RedirectAttributes rttr)throws Exception{
+    	if(file.isEmpty()) {
+    		rttr.addFlashAttribute("msg", "사진은 필수사항입니다.");
+    		return "redirect:/pic_board/write";
+    	}
     	System.out.println(file);
     	picService.write(picEntity, file);
-
+    	
         //메세지띄우기2
-        model.addAttribute("msg", "글 작성이 완료되었습니다.");
-        model.addAttribute("searchUrl", "/board/list");
+        rttr.addAttribute("msg", "글 작성이 완료되었습니다.");
 
         return "redirect:/pic_board/pic_list?category=1";
     }
@@ -60,10 +64,37 @@ public class PictureController {
     		@RequestParam(value = "category", required = false, defaultValue = "1") int category, 
     		@RequestParam(value = "search", required = false) String search, 
     		@RequestParam(value = "page", required = false) String page) {
-    	List<PictureEntity> picList = picService.picBoardList(pageable, category).getContent();
+    	Page<PictureEntity> picPage;
+    	
+    	if(search!=null) {
+    		picPage = picService.searchPicBoard(search, pageable);
+    	}else {
+    		picPage = picService.picBoardList(pageable, category);
+    	}
+    	List<PictureEntity> picList = picPage.getContent();
     	System.out.println(picList);
     	model.addAttribute("list" , picList);
+    	
+    	
+    	
+    	int pageNumber = picPage.getPageable().getPageNumber();	//현재 페이지
+        int pageSize = picPage.getPageable().getPageSize();
+        int totalPage = picPage.getTotalPages();
+        int startPage = (int)Math.floor(pageNumber / pageSize) * pageSize + 1;
+        int tempEndPage = startPage+pageSize-1;
+        int endPage = (tempEndPage > totalPage) ? totalPage : tempEndPage;
+        
+        model.addAttribute("pageNumber", pageNumber);
+        model.addAttribute("pageSize", pageSize);
+        model.addAttribute("totalPage", totalPage);
+        model.addAttribute("startPage", startPage);
+        model.addAttribute("tempEndPage", tempEndPage);
+        model.addAttribute("endPage", endPage);
+        
+        model.addAttribute("category", category);
+        model.addAttribute("search", search);
         return "pic_board/pic_board_list";
+        
     }
     
     @RequestMapping("/pic_content")
@@ -100,7 +131,7 @@ public class PictureController {
     @RequestMapping("/pic_delete")
     public String pictureDelete(@RequestParam("picnum") Integer picnum) {
     	picService.deletePicture(picnum);
-    	return "pic_board/pic_board_list";
+    	return "redirect:/pic_board/pic_list?category=1";
     }
     
     @PostMapping("/pic_joa")
@@ -134,44 +165,5 @@ public class PictureController {
     	return "redirect:/pic_board/pic_content?category=" + category 
 				+ "&search=" + search + "&num=" + picnum + "&page=" + page;
     }
-
-//    @GetMapping("/board/view") //localhost:8080/board/view?id=1 //(get방식 파라미터)
-//    public String boardView(Model model, Integer id){
-//        model.addAttribute("testboard", picService.boardview(id));
-//        return "boardview";
-//    }
-//
-//    @GetMapping("/board/delete")
-//    public String boardDelete(Integer id){
-//
-//    	picService.boardDelete(id);
-//        //게시물삭제하고 게시물리스트로 넘어가야하므로
-//        return "redirect:/board/list";
-//    }
-//
-//    //PathVariable이라는 것은 modify 뒤에있는 {id}부분이 인식이되서 Integer형태의 id로 들어온다는것
-//    @GetMapping("/board/modify/{id}")
-//    public String boardModify(@PathVariable("id") Integer id, Model model){
-//
-//        //상세페이지에 있는 내용과, 수정페이지의 내용이 같기때문에 위 코드와 같은 것을 확인할수있다
-//        model.addAttribute("testboard", picService.boardview(id));
-//
-//        return "boardmodify";
-//    }
-//
-//    //수정부분에도 MultipartFile 와 throw IOEException 추가
-//    @PostMapping("/board/update/{id}")
-//    public String boardUpdate(@PathVariable("id") Integer id, PictureEntity picEntity, MultipartFile file)throws Exception {
-//        //기존에있던글이 담겨져서온다.
-//    	picEntity boardTemp = picService.boardview(id);
-//
-//        //기존에있던 내용을 새로운 내용으로 덮어씌운다.
-//        boardTemp.setTitle(board.getTitle());
-//        boardTemp.setContent(board.getContent());
-//
-//        picService.write(boardTemp, file); //추가 → 수정한내용을 boardService의 write부분에 넣기
-//
-//        return "redirect:/board/list";
-//    }
 	
 }

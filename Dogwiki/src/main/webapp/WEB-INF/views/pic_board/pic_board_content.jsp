@@ -7,20 +7,16 @@
 		<hr>
 		<table border="1" width="500">
 			<tr>
-				<td width="20%">글번호</td>
-				<td width="30%">${picEntity.picnum}</td>
+				<td width="20%">분류</td>
+				<td width="30%">내새끼 짱</td>
 				<td width="20%">조회수</td>
 				<td width="30%">${picEntity.hit}</td>
 			</tr>
 			<tr>
-				<td>작성일</td>
-				<td>${picEntity.pic_regdate}</td>
 				<td>작성자</td>
 				<td>${picEntity.user.userid}</td>
-			</tr>
-			<tr>
-				<td>분류</td>
-				<td colspan="3">${picEntity.category}</td>
+				<td>작성일</td>
+				<td>${picEntity.pic_regdate}</td>
 			</tr>
 			<tr>
 				<td>제목</td>
@@ -49,7 +45,9 @@
 					<input type="button" value="목록" onclick="location.href='pic_list?category=${param.category}&search=${param.search}&page=${page}'">
 					<form name="deleteForm" action="pic_delete" method="get">
 						<input type="hidden" name="picnum" value="${picEntity.picnum}">
-						<input type="submit" value="삭제" onclick="check()">
+						<c:if test="${picEntity.user.userid.equals(sessionScope.userid)}">
+							<input type ="submit" value="삭제" onclick="check()">
+						</c:if>
 					</form>
 				</td>
 			</tr>

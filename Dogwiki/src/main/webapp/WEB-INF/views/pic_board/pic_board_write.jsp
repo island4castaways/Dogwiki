@@ -75,3 +75,14 @@
 		var category = value;
 	}
 </script>
+
+<script src="http://code.jquery.com/jquery-3.4.0.min.js"></script>
+
+<script>
+	$(document).ready(function() {
+		var msg = '${msg}';
+		if(msg != ''){
+			alert(msg);
+		}
+	})
+</script>

@@ -74,8 +74,8 @@ public class BoardContoller {
         model.addAttribute("tempEndPage", tempEndPage);
         model.addAttribute("endPage", endPage);
         
-        model.addAttribute("cate", category);
-        model.addAttribute("filter", search);
+        model.addAttribute("category", category);
+        model.addAttribute("search", search);
         
 		return "/board/board_list";
 	}

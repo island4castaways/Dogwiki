@@ -15,7 +15,6 @@
 		<!-- 게시글 -->
 		<thead>
 			<tr>
-				<th>글 번호</th>
 				<th>작성자</th>
 				<th>제목</th>
 				<th>날짜</th>
@@ -26,7 +25,6 @@
 		<tbody>
 			<c:forEach var="bo" items="${list}">
 			<tr>
-				<td>${bo.picnum}</td>
 				<td>${bo.user.userid}</td>
 				<td>
 					<a href="pic_content?category=${category}&search=${search}&num=${bo.picnum}&page=${pageNumber}">${bo.title}</a>
@@ -41,7 +39,7 @@
 			<!-- 작성글 검색 및 글작성하기 메뉴 -->
 			<tr>
 				<td colspan="5" align="right">
-					<form method="get" action="board_list" class="form-inline">
+					<form method="get" action="pic_list" class="form-inline">
 						<div class="form-group">
 						<c:if test="${empty category}">
 							<input type="hidden" name="category" value=2>
@@ -62,17 +60,17 @@
 		<ul class=pageination pagination -sm">
 			<c:if test="${!boardList.isFirst() && pageNumber>9}">
 				<li>
-					<a href="board_list?category=${category}&search=${search}&page=${startPage-2}">이전</a>
+					<a href="pic_list?category=${category}&search=${search}&page=${startPage-2}">이전</a>
 				</li>
 			</c:if>
 			<c:forEach var="page" begin="${startPage}" end="${endPage}">
     			<li class="${pageNumber-1 == page ? 'active' : ''}">
-       				<a href="board_list?category=${category}&search=${search}&page=${page-1}">${page}</a>
+       				<a href="pic_list?category=${category}&search=${search}&page=${page-1}">${page}</a>
        			</li>
 			</c:forEach>
 			<c:if test="${!boardList.isLast() && endPage<totalPage}">
 				<li>
-					<a href="board_list?category=${category}&search=${search}&page=${endPage}">다음</a>
+					<a href="pic_list?category=${category}&search=${search}&page=${endPage}">다음</a>
 				</li>
 			</c:if>
 		</ul>
