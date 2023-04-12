@@ -9,7 +9,7 @@
 				<tr>
 					<td>작성자</td>
 					
-					<td><input type = "text" name ="user" size="10" value="${sessionScope.id}"
+					<td><input type = "text" name ="user" size="10" value="${sessionScope.userid}"
 					${sessionScope.userid != null ? "readonly" : "" }></td>
 					
 				</tr>

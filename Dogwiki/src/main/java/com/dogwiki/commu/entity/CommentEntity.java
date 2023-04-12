@@ -38,7 +38,7 @@ public class CommentEntity {
 	
 	@ManyToOne
 	@JoinColumn(name = "cmt_writer_id", referencedColumnName = "userid")
-	private String cmtWriter;
+	private UserEntity user;
 	
 	@Column(length = 255, nullable = false)
 	private String cmtContent;
