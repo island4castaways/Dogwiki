@@ -1,10 +1,12 @@
 package com.dogwiki.commu;
 
-
-import java.io.File;
 import java.util.List;
+import java.util.Optional;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -13,12 +15,11 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dogwiki.commu.entity.PictureEntity;
 import com.dogwiki.commu.service.PictureService;
@@ -26,11 +27,17 @@ import com.dogwiki.commu.service.PictureService;
 @Controller
 @RequestMapping("/pic_board")
 public class PictureController {
+	
     @Autowired
     private PictureService picService;
 
     @GetMapping("/write") //어떤 url로 접근할 것인지 정해주는 어노테이션 //localhost:8080/board/write
-    public String boardWriteForm() {
+    public String boardWriteForm(HttpSession session, 
+    		RedirectAttributes rttr) {
+    	if(session.getAttribute("userid") == null) {
+    		rttr.addFlashAttribute("msg", "글쓰기 권한이 없습니다. 로그인 해주세요.");
+    		return "redirect:/login";
+    	}
         return "pic_board/pic_board_write";
     }
 
@@ -41,16 +48,18 @@ public class PictureController {
     	picService.write(picEntity, file);
 
         //메세지띄우기2
-        model.addAttribute("message","글작성이 완료되었습니다");
-        model.addAttribute("searchUrl","/board/list");
+        model.addAttribute("msg", "글 작성이 완료되었습니다.");
+        model.addAttribute("searchUrl", "/board/list");
 
         return "redirect:/pic_board/pic_list?category=1";
     }
 
     @GetMapping("/pic_list")
     public String boardList(Model model, 
-    		@PageableDefault(size=10, sort="picnum", direction = Sort.Direction.DESC) Pageable pageable
-    		,@RequestParam(value = "category", required = false)int category){
+    		@PageableDefault(size = 10, sort = "picnum", direction = Sort.Direction.DESC)Pageable pageable, 
+    		@RequestParam(value = "category", required = false, defaultValue = "1") int category, 
+    		@RequestParam(value = "search", required = false) String search, 
+    		@RequestParam(value = "page", required = false) String page) {
     	List<PictureEntity> picList = picService.picBoardList(pageable, category).getContent();
     	System.out.println(picList);
     	model.addAttribute("list" , picList);
@@ -58,9 +67,33 @@ public class PictureController {
     }
     
     @RequestMapping("/pic_content")
-    public String pictureContent(@RequestParam("num") int picnum, Model model) {
-    	PictureEntity picEntity= picService.selectOnePicture(picnum);
-    	model.addAttribute("picEntity", picEntity);
+    public String pictureContent(Model model, 
+    		@RequestParam("num") int picnum, 
+    		@RequestParam("page") String page, 
+    		HttpServletRequest request, HttpServletResponse response) {
+    	Optional<PictureEntity> op = picService.selectOnePicture(picnum);
+		PictureEntity entity = null;
+		Cookie hitCoo = null;
+		boolean cooExists = false;
+		
+		if(op.isPresent()) {
+			entity = op.get();
+			for(Cookie cookie : request.getCookies()) {
+				if(cookie.getName().equals("hit" + entity.getPicnum())) {
+					cooExists = true;
+				}
+			}
+			if(!cooExists) {	//쿠키 없을 때 hit + 1 -> update, new Cookie
+				entity.setHit(entity.getHit() + 1);
+				picService.updatePicture(entity);
+				hitCoo = new Cookie("hit" + entity.getPicnum(), "" + entity.getHit());
+				hitCoo.setMaxAge(60 * 5);	//5분
+				response.addCookie(hitCoo);
+			}
+			model.addAttribute("picEntity", entity);
+		}
+		
+		model.addAttribute("page", page);
     	return "pic_board/pic_board_content";
     }
     
@@ -69,7 +102,39 @@ public class PictureController {
     	picService.deletePicture(picnum);
     	return "pic_board/pic_board_list";
     }
-//
+    
+    @PostMapping("/pic_joa")
+    public String pictureJoa(Model model, 
+    		@RequestParam(value = "category", defaultValue = "1", required = false) String category, 
+    		@RequestParam(value = "search", required = false) String search, 
+    		@RequestParam("page") String page, 
+    		@RequestParam("picnum") Integer picnum, 
+    		HttpServletRequest request, HttpServletResponse response) {
+    	Optional<PictureEntity> op = picService.selectOnePicture(picnum);
+		PictureEntity entity = null;
+		Cookie joaCoo = null;
+		boolean cooExists = false;
+		
+		if(op.isPresent()) {
+			entity = op.get();
+			for(Cookie cookie : request.getCookies()) {
+				if(cookie.getName().equals("joa" + entity.getPicnum())) {
+					cooExists = true;
+				}
+			}
+			if(!cooExists) {	//쿠키 없을 때 hit + 1 -> update, new Cookie
+				entity.setJoa(entity.getJoa() + 1);
+				picService.updatePicture(entity);
+				joaCoo = new Cookie("joa" + entity.getPicnum(), "" + entity.getJoa());
+				joaCoo.setMaxAge(60 * 5);	//5분
+				response.addCookie(joaCoo);
+			}
+			model.addAttribute("picEntity", entity);
+		}
+    	return "redirect:/pic_board/pic_content?category=" + category 
+				+ "&search=" + search + "&num=" + picnum + "&page=" + page;
+    }
+
 //    @GetMapping("/board/view") //localhost:8080/board/view?id=1 //(get방식 파라미터)
 //    public String boardView(Model model, Integer id){
 //        model.addAttribute("testboard", picService.boardview(id));

@@ -180,12 +180,18 @@ public class RepositoryTest {
 	
 	@Test
 	public void testBoardInsert() {
-		UserEntity testuser = new UserEntity("testuser", "1234", "testname", "testphone", "test@email.com");
-		us.save(testuser);
+		UserEntity entity = UserEntity.builder()
+				.userid("testuser")
+				.pw("1234")
+				.username("testname")
+				.phone("1234")
+				.email("test@test.com")
+				.build();
+		us.save(entity);
 		IntStream.rangeClosed(1, 100).forEach(i -> {
 			BoardEntity en = BoardEntity.builder()
 					.category(2)
-					.user(testuser)
+					.user(entity)
 					.title("test" + i)
 					.content("testContent" + i)
 					.build();

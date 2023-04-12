@@ -73,11 +73,11 @@
 							<td>${cmt.cmtDate}</td>
 							<td>
 								<form name="deleteForm" method="post" action="board_comment_delete">
-									<input type="text" name="category" value="${param.category}" hidden>
-									<input type="text" name="search" value="${param.search}" hidden>
-									<input type="text" name="page" value="${page}" hidden>
-									<input type="text" name="board_num" value="${boardContent.num}" hidden>
-									<input type="text" name="cmtNum" value="${cmt.cmtNum}" hidden>
+									<input type="hidden" name="category" value="${param.category}">
+									<input type="hidden" name="search" value="${param.search}">
+									<input type="hidden" name="page" value="${page}">
+									<input type="hidden" name="board_num" value="${boardContent.num}">
+									<input type="hidden" name="cmtNum" value="${cmt.cmtNum}">
 									<input type="submit" name="delete_comment" value="삭제" onclick="check()">
 								</form>
 							</td>
