@@ -66,7 +66,7 @@
        				<a href="board_list?category=${cate}&search=${filter}&page=${page-1}">${page}</a>
        			</li>
 			</c:forEach>
-			<c:if test = "${!boardList.isLast()&&endPage<totalPage}">
+			<c:if test="${!boardList.isLast()&&endPage<totalPage}">
 				<li>
 					<a href="board_list?category=${cate}&search=${filter}&page=${endPage}">다음</a>
 				</li>
@@ -74,25 +74,25 @@
 		</ul>
 	</div>
 
-<script src = "http://code.jquery.com/jquery-3.4.0.min.js"></script>
+<script src="http://code.jquery.com/jquery-3.4.0.min.js"></script>
 
 <script>
-$(document).ready(function(){
-	var msg = '${msg}';
-	if(msg != ''){
-		alert(msg);
-	}
-})
+	$(document).ready(function() {
+		var msg = '${msg}';
+		if(msg != ''){
+			alert(msg);
+		}
+	})
 </script>
 
 <script type = "text/javascript">
-function selectOnChange(value){
-	if(value==1){
-		location.href="../pic_board/pic_list?category=1";
-	}else if(value==2){
-		location.href="board_list?category=2";
-	}else{
-		location.href="board_list?category=3";
+	function selectOnChange(value) {
+		if(value == 1) {
+			location.href="../pic_board/pic_list?category=1";
+		} else if(value == 2) {
+			location.href="board_list?category=2";
+		} else {
+			location.href="board_list?category=3";
+		}
 	}
-}
 </script>

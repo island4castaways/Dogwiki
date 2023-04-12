@@ -31,9 +31,22 @@
 				<td colspan="3" height="100%"><img src="/files/${picEntity.filename}" style="width:300px;height:auto;"></td>
 			</tr>
 			<tr>
+				<td width="20%">좋아요</td>
+				<td width="80%">
+					<form name="joaForm" method="post" action="pic_joa">
+						<input type="hidden" name="category" value="${param.category}">
+						<input type="hidden" name="search" value="${param.search}">
+						<input type="hidden" name="page" value="${page}">
+						<input type="hidden" name="picnum" value="${picEntity.picnum}">
+						<input type="submit" name="joa" value="&#9829;&nbsp;+">
+						${picEntity.joa}
+					</form>
+				</td>
+			</tr>
+			<tr>
 				<!-- 글 등록 메뉴 -->
 				<td colspan="2" align="center">
-					<input type="button" value="목록" onclick='history.go(-1)'>
+					<input type="button" value="목록" onclick="location.href='pic_list?category=${param.category}&search=${param.search}&page=${page}'">
 					<form name="deleteForm" action="pic_delete" method="get">
 						<input type="hidden" name="picnum" value="${picEntity.picnum}">
 						<input type="submit" value="삭제" onclick="check()">

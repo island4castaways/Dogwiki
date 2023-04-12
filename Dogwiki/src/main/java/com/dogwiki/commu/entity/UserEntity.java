@@ -12,6 +12,7 @@ import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 //Model역할
@@ -41,9 +42,11 @@ public class UserEntity {
 	private String email;
 	
 	@OneToMany(mappedBy = "user", cascade = {CascadeType.ALL}, orphanRemoval = true)
+	@EqualsAndHashCode.Exclude
 	private List<BoardEntity> boards;
 	
 	@OneToMany(mappedBy = "user", cascade = {CascadeType.ALL}, orphanRemoval = true)
+	@EqualsAndHashCode.Exclude
 	private List<PictureEntity> pictures;
 	
 }

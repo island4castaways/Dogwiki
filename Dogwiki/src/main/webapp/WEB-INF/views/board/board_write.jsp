@@ -49,28 +49,28 @@
 </section>
 <!-- registCheck()구현: 작성자, 글제목에 공백을 확인하고, 공백이 아니라면 submit() 처리 -->
 <script type = "text/javascript">
-	function registCheck(){
-		if(document.regform.user.value == ""){
+	function registCheck() {
+		if(document.regform.user.value == "") {
 			alert("작성자를 입력하세요.");
 			return;
-		}else if(document.regform.title.value == ""){
+		} else if(document.regform.title.value == "") {
 			alert("제목을 입력하세요.");
 			return;
-		}else if(confirm("게시글을 등록하겠습니까?")){
+		} else if(confirm("게시글을 등록하겠습니까?")) {
 			document.regform.submit();
 		}
 	}
 </script>
 
 <script type = "text/javascript">
-function selectOnChange(value){
-	if(value==1){
-		location.href="../pic_board/write?category=1";
-	}else if(value==2){
-		location.href="board_write?category=2";
-	}else{
-		location.href="board_write?category=3";
+	function selectOnChange(value) {
+		if(value == 1) {
+			location.href="../pic_board/write?category=1";
+		} else if(value == 2) {
+			location.href="board_write?category=2";
+		} else {
+			location.href="board_write?category=3";
+		}
+		var category = value;
 	}
-	var category = value;
-}
 </script>

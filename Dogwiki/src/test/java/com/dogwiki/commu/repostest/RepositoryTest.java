@@ -191,7 +191,7 @@ public class RepositoryTest {
 		IntStream.rangeClosed(1, 100).forEach(i -> {
 			BoardEntity en = BoardEntity.builder()
 					.category(2)
-					.user(testuser)
+					.user(entity)
 					.title("test" + i)
 					.content("testContent" + i)
 					.build();
