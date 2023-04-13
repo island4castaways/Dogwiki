@@ -43,10 +43,6 @@ public class HomeCotroller {
 	
 	
 	
-//	@GetMapping("/user")
-//	public String home() {
-//		System.out.println("Home Controller has started");
-//		return "/user_join";
-//	}
+
 
 }

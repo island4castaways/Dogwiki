@@ -87,12 +87,11 @@ a {
 body {
   margin: 0;
 }
-
 #wrapper{
-	margin-top:200px;
-  height : 100%;
+	width: 100%;
+	height: auto;
 }
-footer{
-  position : relative;
-  transform : translateY(-100%);
+#footer{
+	background-color: #ccc;	
 }
+	

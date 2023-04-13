@@ -1,0 +1,48 @@
+h3,h4,p{
+	color: gray;
+	text-align: center;
+}
+
+.home{
+	margin: 0 auto;
+	padding: 10px 10px;
+}
+.home-top{
+	padding-top:100px;
+	width: 60%;
+	height: auto;
+	border-bottom: 1px solid #ccc;
+}
+
+.content-img img{
+	text-align:center;
+	border-bottom: 1px solid grey;
+	border-top: 1px solid grey;  
+}
+.content-img {
+
+  box-sizing:border-box;
+  display: inline-block;
+  vertical-align: center;
+  margin-left:25px;
+  width:30%;
+  text-align: center;
+  padding:10px 20px;
+  
+}
+.home-middle{
+	width: 50%;
+	height: auto;
+	text-align: center;
+	border-bottom: 1px solid #ccc;
+	padding:10px 20px;
+}
+.home-bottom{
+	width: 50%;
+	height: auto;
+	text-align: center;
+	border-bottom: 1px solid #ccc;
+}
+table td{
+	padding: 5px 5px 5px;
+}

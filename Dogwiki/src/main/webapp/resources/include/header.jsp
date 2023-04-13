@@ -15,9 +15,7 @@
 	<body>
 	<div id="menu">
 		<ul class="main1">
-			<li style="border: none;"><a href="#"><b
-					style="font-size: 20px;"><span style="font-size: 20px;">≡</span>
-						Home</b></a></li>
+			<li style="border: none;"><a href=""> <img href="/home" src="/resources/img/logo.png" width="214.5px"></li>
 			<li style="border: none;"><a href="/board/board_list">Board</a>
 				<ul class="main2">
 					<li><a href="/pic_board/pic_list">미모</a></li>
