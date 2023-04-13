@@ -17,13 +17,11 @@ public class UserService {
 
 	// 사용자 생성
 	public UserEntity create(final UserEntity userEntity) {
-
 		// 유효성 체크(valid 검증)
 		if (userEntity == null || userEntity.getUsername() == null) {
 			System.out.println("1번");
 			throw new RuntimeException("Invalid arguments");
 		}
-
 		return userRepository.save(userEntity); // 사용자 저장 및 결과 반환...
 	}
 
@@ -33,13 +31,17 @@ public class UserService {
 	}
 
 	// id로 entity객체 반환
-	public UserEntity validate(final String userid) {
+	public UserEntity selectById(final String userid) {
 		return userRepository.findByUserid(userid);
 	}
 
 	// id 존재 여부 확인
 	public Boolean validateId(final String userid) {
 		return userRepository.existsByUserid(userid);
+	}
+	
+	public Boolean validateEmail(final String email) {
+		return userRepository.existsByEmail(email);
 	}
 
 	// pw수정

@@ -51,7 +51,7 @@
 		<script>
 		$(document).ready(function(){
 			var msg = '${msg}';
-			if(msg != ''){
+			if(msg != '') {
 				alert(msg);
 			}
 		})

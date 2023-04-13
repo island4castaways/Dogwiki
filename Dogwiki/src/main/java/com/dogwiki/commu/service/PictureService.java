@@ -1,8 +1,7 @@
 package com.dogwiki.commu.service;
 
-
 import java.io.File;
-import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,12 +51,20 @@ public class PictureService {
         return picRepository.findALLByCategory(category, pageable);
 	}
 	
-	public PictureEntity selectOnePicture(Integer id) {
-		PictureEntity picEntity = picRepository.findById(id).get();
-		return picEntity;
+	public Optional<PictureEntity> selectOnePicture(Integer id) {
+		return picRepository.findById(id);
 	}
 	
 	public void deletePicture(Integer id) {
 		picRepository.deleteById(id);
 	}
+	
+	public PictureEntity updatePicture(PictureEntity entity) {
+		return picRepository.save(entity);
+	}
+	
+	public Page<PictureEntity> searchPicBoard(String search, Pageable pageable){
+		return picRepository.getListWithQuery(search, pageable);
+	}
+
 }

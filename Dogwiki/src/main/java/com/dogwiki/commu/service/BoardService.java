@@ -3,8 +3,6 @@ package com.dogwiki.commu.service;
 import java.util.List;
 import java.util.Optional;
 
-import javax.management.RuntimeErrorException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -23,7 +21,7 @@ public class BoardService {
 	@Autowired
 	private BoardRepository brdRepository;
 	
-	public List<BoardEntity> selectAll(){
+	public List<BoardEntity> selectAll() {
 		return brdRepository.findAll();
 	}
 	
@@ -32,11 +30,11 @@ public class BoardService {
 	}
 	
 	@Transactional(readOnly = true)
-	public Page<BoardEntity> pageList(Pageable pageable){
+	public Page<BoardEntity> pageList(Pageable pageable) {
 		return brdRepository.findAll(pageable);
 	}
 	
-	public Optional<BoardEntity> update(BoardEntity entity){
+	public Optional<BoardEntity> update(BoardEntity entity) {
 		validate(entity);
 		
 		final Optional<BoardEntity> original = brdRepository.findById(entity.getNum());
@@ -52,11 +50,11 @@ public class BoardService {
 	}
 	
 	public void validate(final BoardEntity entity) {
-		if(entity==null) {
+		if(entity == null) {
 			log.warn("Entity cannot be null");
 			throw new RuntimeException("Entity cannot be null");
 		}
-		if(entity.getNum()==null) {
+		if(entity.getNum() == null) {
 			log.warn("Unkwon user");
 			throw new RuntimeException("Unkown user");
 		}
@@ -78,25 +76,19 @@ public class BoardService {
 	
 	public boolean board_create(final BoardEntity entity) {
 		brdRepository.save(entity);
-		System.out.println(entity);
-//		if(boardEntity.getNum()==null) {
-//			log.warn("unkown user");
-//			throw new RuntimeException("Unkown user");
-//		}
 		return true;
 	}
 	
 	public Page<BoardEntity> board_select_category(Integer category, Pageable pageable) {
-//		return repository.findAll(category);
 		brdRepository.findALLByCategory(category, pageable);
 		return brdRepository.findALLByCategory(category, pageable);
 	}
 	
-	public Page<BoardEntity> search_board(String search, Integer category, Pageable pageable){
+	public Page<BoardEntity> search_board(String search, Integer category, Pageable pageable) {
 		return brdRepository.getListWithQuery(category, search, pageable);
 	}
 	
-	public Page<BoardEntity> mypage_board(String userid, Pageable pageable){
+	public Page<BoardEntity> mypage_board(String userid, Pageable pageable) {
 		return brdRepository.getListWithQuery(userid, pageable);
 	}
 }
