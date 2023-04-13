@@ -1,12 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ include file="/resources/include/header.jsp"%>
+		<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core" %>
 
 <section>
 	<div align="center">
 		<form>
 			<h2>게시판 글내용 보기</h2>
-			<hr>
 			<table border="1" width="500">
 				<tr>
 					<td width="20%">분류</td>
@@ -14,6 +14,7 @@
 					<td width="20%">조회수</td>
 					<td width="30%">${boardContent.hit}</td>
 				</tr>
+				</section>
 				<tr>
 					<td>작성자</td>
 					<td>${boardContent.user.userid}</td>
