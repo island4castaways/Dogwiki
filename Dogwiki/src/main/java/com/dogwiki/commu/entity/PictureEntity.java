@@ -18,11 +18,13 @@ import org.hibernate.annotations.CreationTimestamp;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-
-@Data
 @Builder
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -33,7 +35,7 @@ public class PictureEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int picnum;
 	
-	@Column(length = 200, nullable = false)
+	@Column(length = 500, nullable = false)
 	private String filename;
 		
 	@Column(length = 500, nullable = false)
@@ -46,7 +48,7 @@ public class PictureEntity {
 	private String title;
 	
 	@ManyToOne
-	@JoinColumn(name="pic_writer_id")
+	@JoinColumn(name = "pic_writer_id", referencedColumnName = "userid")
 	private UserEntity user;
 	
 	@CreationTimestamp
@@ -55,5 +57,8 @@ public class PictureEntity {
 	
 	@Column
 	private int hit;
+	
+	@Column
+	private int joa;
 	
 }

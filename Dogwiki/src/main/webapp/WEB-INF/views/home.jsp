@@ -1,152 +1,102 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html>
 
-<%@ include file="include/header.jsp" %>
-    <div class="container">
-    
-      <div id="wrap">
-        <section id="profile">
-            <div class="profile_main">
-                <div class="p_left fl">
-                    <div class="img"></div>
-                </div>
-                <div class="p_right fr">
-                    <dl>
-                        <dt>Dogwiki<br/>
-                            <span>&amp; WEB DEVELOPER</span>
-                        </dt>
-                        <dd ><span class="intro">강아지를 사랑하는 모임</span></dd>
-                        
-                    </dl>
-                </div>
-            </div>
-        </section>
-               
-        <section id="hot_board">
-            <h2>Dogwiki</h2>
-            <h3>인기 게시판</h3>
-            <div class="portfolio_main">
-                <dl class="cf">
-                    <dt class="fl"></dt>
-                    <dd class="fl">
-                        <h4>이 달의 강아지 사진</h4>
-                        <h5>CLIO<br/>
-                            클리오 브랜드 공식 홈페이지
-                        </h5><br/>
-                        <p>HTML & CSS
-                            제작 : 메인,  NEW ARRIVAL, #CLIO@SNS<br /><br /><br />
-                            기존의 사이트를 가져와서 제작하였다. <br />
-                            COPY SITE 
-                                
-                        </p>
-                        <p class="site_btn">
-                            <a href="port2/index.html" target="_blank">WEBSITE</a>
-                        </p>
-                    </dd>
-                </dl>
-                <dl class="cf">
-                    <dt class="fr"></dt>
-                    <dd class="fr">
-                        <h4>02. 나이키</h4>
-                        <h5>NIKE<br/>
-                           나이키 리뉴얼 홈페이지
-                        </h5><br/>
-                        <p>HTML & CSS
-                            제작 : 메인<br /><br /><br />
-                            기존의 사이트를 리뉴얼하였다. <br />
-                            (transition과 animation 적용)
-                                
-                        </p>
-                        <p class="site_btn">
-                            <a href="port1/index.html" target="_blank">WEBSITE</a>
-                        </p>
-                    </dd>
-                </dl>
+<table class="table table-boardered">
+	<!-- 게시글 -->
+	<thead>
+		<tr>
+			<th colspan="2"><a href="/pic_board/pic_list">more</a></th>
+		</tr>
+		<tr>
+			<th>사진</th>
+			<th>좋아요</th>
+		</tr>
+	</thead>
+	<tbody>
+		<c:forEach var="bo" items="${picEntity}">
+			<tr>
+				<td><a
+					href="/pic_board/pic_content?category=1&search=${search}&num=${bo.picnum}&page=${pageNumber}">
+						<img src="/files/${bo.filename}"
+						style="width: 300px; height: auto;">
+				</a></td>
+				<td>${bo.joa}</td>
+			</tr>
+		</c:forEach>
+	</tbody>
+	<tbody>
+	</tbody>
+</table>
 
-                <dl class="cf">
-                    <dt class="fr"></dt>
-                    <dd class="fr">
-                        <h4>03. MOLDIVES</h4>
-                        <h5>NIKE<br/>
-                           몰디브 ㅇㅇ 반응형 홈페이지 제작.
-                        </h5><br/>
-                        <p>HTML & CSS
-                            제작 : 메인<br /><br /><br />
-                            기존의 사이트를 리뉴얼하였다. <br />
-                            (transition과 animation 적용)
-                                
-                        </p>
-                        <p class="site_btn">
-                            <a href="port3/index.html" target="_blank">WEBSITE</a>
-                        </p>
-                    </dd>
-                </dl>
+<table class="table table-boardered">
+	<!-- 게시글 -->
+	<thead>
+		<tr>
+			<th colspan="2"><a href="/board/board_list?category=2">more</a></th>
+		</tr>
+		<tr>
+			<th>작성자</th>
+			<th>제목</th>
+			<th>날짜</th>
+			<th>조회수</th>
+		</tr>
+	</thead>
+	<tbody>
+		<c:forEach var="bo" items="${board2Entity}">
+			<tr>
+				<td>${bo.user.userid}</td>
+				<td><a
+					href="/board/board_content?category=2&search=${search}&num=${bo.num}&page=${pageNumber}">${bo.title}</a>
+				</td>
+				<td>${bo.regdate}</td>
+				<td>${bo.hit}</td>
+			</tr>
+		</c:forEach>
+	</tbody>
+</table>
 
-                <dl class="cf">
-                    <dt class="fr"></dt>
-                    <dd class="fr">
-                        <h4>04. MOLDIVES</h4>
-                        <h5>NIKE<br/>
-                           부트스트랩 활용하여 홈페이지 제작.
-                        </h5><br/>
-                        <p>HTML & CSS
-                            제작 : 메인<br /><br /><br />
-                            기존의 사이트를 리뉴얼하였다. <br />
-                            (transition과 animation 적용)
-                                
-                        </p>
-                        <p class="site_btn">
-                            <a href="port4/index.html" target="_blank">WEBSITE</a>
-                        </p>
-                    </dd>
-                </dl>
-                
-						<h3>화보 영상</h3>
-						
-						<iframe width="100%" height="372px" src="https://www.youtube.com/embed/1C6dcnVQjSM?autoplay=1&amp;loop=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>></iframe>
-					
-                 </div>   
-                    
-                
-            </div>
-            
-          
-            
-        </div>
+<table class="table table-boardered">
+	<!-- 게시글 -->
+	<thead>
+		<tr>
+			<th colspan="2"><a href="/board/board_list?category=3">more</a></th>
+		</tr>
+		<tr>
+			<th>작성자</th>
+			<th>제목</th>
+			<th>날짜</th>
+			<th>조회수</th>
+		</tr>
+	</thead>
+	<tbody>
+		<c:forEach var="bo" items="${board3Entity}">
+			<tr>
+				<td>${bo.user.userid}</td>
+				<td><a
+					href="/board/board_content?category=3&search=${search}&num=${bo.num}&page=${pageNumber}">${bo.title}</a>
+				</td>
+				<td>${bo.regdate}</td>
+				<td>${bo.hit}</td>
+			</tr>
+		</c:forEach>
+	</tbody>
+</table>
 
-        <div class="row">
-            <div class="box">
-            
-                      
-        
-                <div class="col-lg-12">
-                    <hr>
-                    <h2 class="intro-text text-center">Jimin World
-                        <strong>유의 사항!</strong>
-                    </h2>
-                    <hr>
-		                <div class="inner" align="center">
-		                    <img class="img-responsive img-center" src="img/intro.jpg" alt=""><!-- img-border --> 
-		                    
-		                    <hr class="visible-xs">
-		                   
-		                    <p>1. 모든 자료는 회원 가입 후에 이용하실 수 있습니다.</p>
-		                    <p>2. ------------------------------------------------------</p>
-		                    <p>3. ------------------------------------------------------</p>
-	                    	
-	                    </div>
-	                    	
-                    
-                </div>
-              
-                
-                
-                
-            </div>
-        </div>
+<table>
+	<tr>
+		<th><a href="/training">more</a></th>
+	</tr>
+	<tr>
+		<td>최신 훈련 영상</td>
+	</tr>
+	<tr>
+		<td><iframe src="${trainingEntity.trUrl}"></iframe></td>
+	</tr>
 
-          
-    <!-- /.container -->
-    </div>
-    <%@ include file="include/footer.jsp" %>
-    
+</table>
+
+
+
+

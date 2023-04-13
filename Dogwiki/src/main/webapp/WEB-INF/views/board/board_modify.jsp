@@ -1,5 +1,7 @@
+<%@ include file="/resource/include/header.jsp"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+      <link rel="stylesheet" type="text/css" href="/resources/css/main.css">
 <section>
    <div align="center">
       <form name = "regform" action="board_update" method="post">

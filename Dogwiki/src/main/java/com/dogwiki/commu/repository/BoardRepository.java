@@ -10,6 +10,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.dogwiki.commu.entity.BoardEntity;
+import com.dogwiki.commu.entity.PictureEntity;
 
 @Repository
 public interface BoardRepository extends JpaRepository<BoardEntity, Integer> {
@@ -25,5 +26,7 @@ public interface BoardRepository extends JpaRepository<BoardEntity, Integer> {
 	@Query(value = "select b from Board b "
 			+ "where b.user.userid = :user")
 	Page<BoardEntity> getListWithQuery(@Param("user")String userid, Pageable pageable);
+	
+	List<BoardEntity> findTop5ByCategoryOrderByHitDesc(Integer category);
 	
 }
