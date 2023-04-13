@@ -16,7 +16,7 @@
 					</div>
 					
 					<div class="btn-area">
-						<input type = "submit" value="확인" style="border-radius: 13px; background-color: #FEEBB6; margin-right: 20px;">
+						<input type = "submit" value="확인" style="border-radius: 13px; margin-right: 20px;">
 						<input type = "button" value="취소" onclick="history.go(-1)" style="border-radius: 13px;">
 					</div>
 

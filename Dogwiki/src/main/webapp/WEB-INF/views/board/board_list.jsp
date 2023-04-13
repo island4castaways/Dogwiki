@@ -46,15 +46,19 @@
 							<c:if test="${empty category}">
 								<input type="hidden" name="category" value=2>
 							</c:if>
-							<input type="hidden" name="category" value="${category}">
-							<input type="text" name="search" placeholder="제목검색" value="${filter}" class="form-control">
+							<div class="board-input-wrapper">
+								<input type="hidden" name="category" value="${category}">
+							<div class="board-int-area">
+								<input type="text" name="search" value="${filter}">
+							</div>
 							
 							<div class="btn-board">
 								<input type="submit" value="검색" style="border-radius: 13px">
 							</div>
 							
-							<div class="btn-area">
+							<div class="write-brn">
 								<input type="button" value="글 작성" style="border-radius: 13px" onclick="location.href='board_write?category=${category}'">
+							</div>
 							</div>
 						</div>
 					</form>

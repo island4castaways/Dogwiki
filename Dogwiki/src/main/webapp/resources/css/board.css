@@ -265,7 +265,7 @@ table.board-wrap th {
 }
 table.board-wrap td {
   padding: 10px;
-  border-right: 2px solid #ccc;
+  border-right: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
 }
 
@@ -294,7 +294,105 @@ tbody.board-wrap td {
 
 
 
+/*댓글*/
 
+
+table.content-wrap {
+  border-collapse: collapse;
+  text-align: left;
+  line-height: 1.5;
+  border-top: 1px solid #F9F8F3;
+  border-left: 3px solid #F9F8F3;
+  margin : 20px 10px;
+}
+table.content-wrap th {
+  width: 147px;
+  padding: 10px;
+  font-weight: bold;
+  vertical-align: top;
+  color: #153d73;
+  border-right: 1px solid #F9F8F3;
+  border-bottom: 1px solid #F9F8F3;
+
+}
+table.content-wrap td {
+  padding: 10px;
+  border-right: 1px solid #F9F8F3;
+  border-bottom: 1px solid #F9F8F3;
+}
+
+tbody.content-wrap {
+  border-collapse: separate;
+  border-spacing: 1px;
+  text-align: left;
+  line-height: 1.5;
+  border-top: 1px solid #F9F8F3;
+  margin : 20px 10px;
+}
+tbody.content-wrap th {
+  width: 150px;
+  padding: 10px;
+  font-weight: bold;
+  vertical-align: top;
+  border-bottom: 1px solid #F9F8F3;
+}
+
+tbody.content-wrap td {
+  width: 400px;
+  padding: 13px;
+  vertical-align: top;
+  border-bottom: 1px solid #F9F8F3;
+}
+
+/*pic-board-wrap-write*/
+
+
+table.pic-board-wrap {
+  border-collapse: collapse;
+  text-align: left;
+  line-height: 1.5;
+  border-top: 1px solid #ccc;
+  border-left: 3px solid #FEEBB6;
+  margin : 20px 10px;
+}
+table.pic-board-wrap th {
+  width: 147px;
+  padding: 10px;
+  font-weight: bold;
+  vertical-align: top;
+  color: #153d73;
+  border-right: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+
+}
+table.pic-board-wrap td {
+  padding: 10px;
+  border-right: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+
+tbody.pic-board-wrap {
+  border-collapse: separate;
+  border-spacing: 1px;
+  text-align: left;
+  line-height: 1.5;
+  border-top: 1px solid #ccc;
+  margin : 20px 10px;
+}
+tbody.pic-board-wrap th {
+  width: 150px;
+  padding: 10px;
+  font-weight: bold;
+  vertical-align: top;
+  border-bottom: 1px solid #ccc;
+}
+
+tbody.pic-board-wrap td {
+  width: 400px;
+  padding: 13px;
+  vertical-align: top;
+  border-bottom: 1px solid #ccc;
+}
 
 
 

@@ -47,7 +47,7 @@
 						</div>
 						<div class="write-brn">
 							<input type="button" value="목록" onclick="history.go(-1)">
-						</div>
+							</div>
 					</td>
 				</tr>
 			</table>

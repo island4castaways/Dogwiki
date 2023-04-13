@@ -5,7 +5,7 @@
 </head>
 <section class="input-form">
 	<h2>로그인 페이지</h2>
-	<form action="/login" method="post">
+	<form action="/login" method="post" class="login">
 
 		<div class="int-area">
 			<input type="text" id="userid" name="userid" autocomplete="off" required>
@@ -20,9 +20,7 @@
 		<div class="btn-area">
 			<input type="submit" value="로그인"
 				style="border-radius: 13px; margin-right: 20px;">
-			</div>
 
-		<div class="btn-area">
 			<input type="button" value="회원가입" onclick="location.href='join'" style="border-radius: 13px">
 		</div>
 	</form>

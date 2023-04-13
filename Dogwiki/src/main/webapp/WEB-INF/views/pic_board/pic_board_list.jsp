@@ -8,12 +8,12 @@
 	<section>
 	<section class="section1">
 		<label for="category">분류</label>
-		<select name="category" onchange="selectOnChange(value)">
+		<select name="category" onchange="selectOnChange(value)" style="height: 35px;">
 			<option value=1 ${param.category == '1' ? 'selected="selected"' : ''}>내새끼 짱</option>
 			<option value=2 ${param.category == '2' ? 'selected="selected"' : ''}>사료간식 추천</option>
 			<option value=3 ${param.category == '3' ? 'selected="selected"' : ''}>아이가 아파요</option>
 		</select>
-		</section>
+	</section>
 
 	<table class="table-boardered">
 		<!-- 게시글 -->
@@ -29,13 +29,13 @@
 		<tbody class="table-boardered">
 			<c:forEach var="bo" items="${list}">
 			<tr>
-				<td>${bo.user.userid}</td>
-				<td>
+				<td style="width: 90px;">${bo.user.userid}</td>
+				<td  style="width: 380px;">
 					<a href="pic_content?category=${category}&search=${search}&num=${bo.picnum}&page=${pageNumber}">${bo.title}</a>
 				</td>
-				<td>${bo.pic_regdate }</td>
-				<td>${bo.joa}</td>
-				<td>${bo.hit}</td>
+				<td  style="width: 200px;">${bo.pic_regdate }</td>
+				<td  style="width: 80px;">${bo.joa}</td>
+				<td> style="width: 80px;"${bo.hit}</td>
 			</tr>
 			</c:forEach>
 		</tbody>
@@ -43,7 +43,7 @@
 		
 			<!-- 작성글 검색 및 글작성하기 메뉴 -->
 			<tr>
-				<td colspan="5" align="right">
+				<td colspan="5" class="board_list">
 					<form method="get" action="pic_list" class="form-inline">
 						<div class="form-group">
 						<c:if test="${empty category}">
