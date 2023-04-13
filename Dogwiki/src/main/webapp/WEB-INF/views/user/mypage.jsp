@@ -10,10 +10,9 @@
 	<body>	
 	<section class="mypage-form">
 
-		  <div class="image-slider">
-   
+		  <div class="image-slider">   
     <div>
-      <img src="/resiurces/img/img1.jpg" width="400" height="450">
+      <img src="/resources/img/img1.jpg" width="400" height="450">
     </div>
   </div>
 

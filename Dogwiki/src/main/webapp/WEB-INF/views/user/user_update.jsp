@@ -12,7 +12,7 @@
 				<h2>Update</h2>
 				
 				<div class="int-area">
-					<input type="text" name="userid" size="15" value="id" readonly style="margin-bottom: 2px">
+					<input type="text" name="userid" size="15" value="${entity.userid}" readonly style="margin-bottom: 2px">
 					<label for="id"></label>
 				</div>
 				
@@ -31,11 +31,9 @@
 					<label for="email">이메일</label>
 				</div>
 				
-				<div class="btn-area" style="margin-top: 5px;">			
-					<input type="submit" value="정보수정" style="border-radius: 13px;" onclick="check()"> 
-				</div>
-									
 				<div class="btn-area">			
+					<input type="submit" value="정보수정" style="border-radius: 13px; margin-right: 10px;"  onclick="check()" > 
+						
 					<input type="button" value="마이페이지" style="border-radius: 13px;"onclick="location.href='mypage'">
 				</div>
 			</form>

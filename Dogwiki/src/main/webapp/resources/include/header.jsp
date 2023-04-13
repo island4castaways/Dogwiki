@@ -26,12 +26,12 @@
 			<li style="border: none;">
 				<a href="/board/board_list">Board</a>
 				<ul class="main2">
-					<li><a href="/pic_board/pic_list">미모</a></li>
-					<li><a href="/board/board_list?category=2">먹이</a></li>
-					<li><a href="/board/board_list?category=3">병원과 진료의</a></li>
-				</ul>
-			</li>
-			<li><a href="/training">Training</a></li>
+					<li><a href="/pic_board/pic_list">내 새끼 짱</a></li>
+					<li><a href="/board/board_list?category=2">사료 간식 추천</a></li>
+					<li><a href="/board/board_list?category=3">아이가 아파요</a></li>
+				</ul></li>
+
+			<li><a href="/training">Training</a>
 			<c:choose>
 				<c:when test="${sessionScope.userid == null}">
 					<li><a href="/login">Login</a></li>

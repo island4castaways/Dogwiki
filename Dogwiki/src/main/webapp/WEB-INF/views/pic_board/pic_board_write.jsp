@@ -1,12 +1,14 @@
+<%@ include file="/resources/include/header.jsp"%>
+		<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core" %>
 
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
 <section>
 	<div align="center">
 		<form name="regform" action="../pic_board/write" method="post" enctype="multipart/form-data">
 			<h2>게시판 글작성 페이지</h2>
 			<hr>
-			<table border="1" width="500">
+			<table border="1" style="width: 500px;" class="board-wrap">
 				<tr>
 					<td>작성자</td>
 					
@@ -33,15 +35,19 @@
 				<tr>
 					<td>사진</td>
 					<td>
-						<input type="file" name="file""> 
+						<input type="file" name="file"> 
 					</td>
 				</tr>
 				<tr>
 				<!-- 글 등록 메뉴 -->
 					<td colspan="2" align="center">
 						<input type="hidden" name="category" value="${param.category}">
-						<input type="button" value="등록" onclick="registCheck()">
-						<input type="button" value="목록" onclick="history.go(-1)">
+						<div class="write-brn">
+							<input type="button" value="등록" onclick="registCheck()">
+						</div>
+						<div class="write-brn">
+							<input type="button" value="목록" onclick="history.go(-1)">
+							</div>
 					</td>
 				</tr>
 			</table>
