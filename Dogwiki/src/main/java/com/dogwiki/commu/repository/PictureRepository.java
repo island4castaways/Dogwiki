@@ -11,15 +11,13 @@ import org.springframework.data.repository.query.Param;
 import com.dogwiki.commu.entity.PictureEntity;
 
 public interface PictureRepository extends JpaRepository<PictureEntity, Integer> {
+	
 	Page<PictureEntity> findALLByCategory(Integer category, Pageable pageable);
 	
 	@Query(value = "select p from PictureEntity p "
 			+ "where p.title like %:search%")
 	Page<PictureEntity> getListWithQuery(@Param("search")String search, Pageable pageable);
 	
-//	@Query(value = "select p from PictureEntity p order by joa desc limit 3 ")
-//	List<PictureEntity> getListOrderbyJoa();
+	List<PictureEntity> findTop3ByOrderByHeartDesc();
 
-	
-	List<PictureEntity> findTop3ByOrderByJoaDesc();
 }

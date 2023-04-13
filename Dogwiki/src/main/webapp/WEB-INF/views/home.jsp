@@ -22,7 +22,7 @@
 						<img src="/files/${bo.filename}"
 						style="width: 300px; height: auto;">
 				</a></td>
-				<td>${bo.joa}</td>
+				<td>${bo.heart}</td>
 			</tr>
 		</c:forEach>
 	</tbody>

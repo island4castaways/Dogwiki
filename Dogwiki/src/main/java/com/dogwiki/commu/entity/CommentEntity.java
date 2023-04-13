@@ -35,7 +35,7 @@ public class CommentEntity {
 	private Integer cmtNum;
 	
 	@ManyToOne
-    @JoinColumn(name="board_num", referencedColumnName="num")
+    @JoinColumn(name = "board_num", referencedColumnName = "num")
 	private BoardEntity board_basic;
 	
 	@ManyToOne

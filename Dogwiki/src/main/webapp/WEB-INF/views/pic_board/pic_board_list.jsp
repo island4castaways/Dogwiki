@@ -30,12 +30,12 @@
 			<c:forEach var="bo" items="${list}">
 			<tr>
 				<td style="width: 90px;">${bo.user.userid}</td>
-				<td  style="width: 380px;">
+				<td style="width: 380px;">
 					<a href="pic_content?category=${category}&search=${search}&num=${bo.picnum}&page=${pageNumber}">${bo.title}</a>
 				</td>
-				<td  style="width: 200px;">${bo.pic_regdate }</td>
-				<td  style="width: 80px;">${bo.joa}</td>
-				<td> style="width: 80px;"${bo.hit}</td>
+				<td style="width: 200px;">${bo.pic_regdate}</td>
+				<td style="width: 80px;">${bo.heart}</td>
+				<td style="width: 80px;">${bo.hit}</td>
 			</tr>
 			</c:forEach>
 		</tbody>

@@ -22,8 +22,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.dogwiki.commu.entity.HeartEntity;
 import com.dogwiki.commu.entity.PictureEntity;
+import com.dogwiki.commu.entity.UserEntity;
+import com.dogwiki.commu.service.HeartService;
 import com.dogwiki.commu.service.PictureService;
+import com.dogwiki.commu.service.UserService;
 
 @Controller
 @RequestMapping("/pic_board")
@@ -31,8 +35,14 @@ public class PictureController {
 	
     @Autowired
     private PictureService picService;
+    
+    @Autowired
+    private HeartService hrtService;
+    
+    @Autowired
+    private UserService userService;
 
-    @GetMapping("/write") //어떤 url로 접근할 것인지 정해주는 어노테이션 //localhost:8080/board/write
+    @GetMapping("/write")
     public String boardWriteForm(HttpSession session, 
     		RedirectAttributes rttr) {
     	if(session.getAttribute("userid") == null) {
@@ -48,13 +58,13 @@ public class PictureController {
     		Model model, MultipartFile file, 
     		RedirectAttributes rttr) throws Exception {
     	if(file.isEmpty()) {
+    		//message
     		rttr.addFlashAttribute("msg", "사진은 필수사항입니다.");
     		return "redirect:/pic_board/write";
     	}
     	System.out.println(file);
     	picService.write(picEntity, file);
     	
-        //메세지띄우기2
         rttr.addAttribute("msg", "글 작성이 완료되었습니다.");
 
         return "redirect:/pic_board/pic_list?category=1";
@@ -96,7 +106,7 @@ public class PictureController {
     }
     
     @RequestMapping("/pic_content")
-    public String pictureContent(Model model, 
+    public String pictureContent(Model model, HttpSession session, 
     		@RequestParam("num") int picnum, 
     		@RequestParam("page") String page, 
     		HttpServletRequest request, HttpServletResponse response) {
@@ -122,6 +132,15 @@ public class PictureController {
 			model.addAttribute("picEntity", entity);
 		}
 		
+    	String userid = (String)session.getAttribute("userid");
+    	boolean heartExists = false;
+    	for(UserEntity user : hrtService.getUserList(picnum)) {
+    		if(user.getUserid().equals(userid)) {
+    			heartExists = true;
+    		}
+    	}
+    	model.addAttribute("heartExists", heartExists);
+		
 		model.addAttribute("page", page);
     	return "pic_board/pic_board_content";
     }
@@ -132,34 +151,55 @@ public class PictureController {
     	return "redirect:/pic_board/pic_list?category=1";
     }
     
-    @PostMapping("/pic_joa")
-    public String pictureJoa(Model model, 
+    @PostMapping("/pic_heart")
+    public String pictureJoa(Model model, HttpSession session, 
     		@RequestParam(value = "category", defaultValue = "1", required = false) String category, 
     		@RequestParam(value = "search", required = false) String search, 
     		@RequestParam("page") String page, 
     		@RequestParam("picnum") Integer picnum, 
     		HttpServletRequest request, HttpServletResponse response) {
-    	Optional<PictureEntity> op = picService.selectOnePicture(picnum);
-		PictureEntity entity = null;
-		Cookie joaCoo = null;
-		boolean cooExists = false;
-		
-		if(op.isPresent()) {
-			entity = op.get();
-			for(Cookie cookie : request.getCookies()) {
-				if(cookie.getName().equals("joa" + entity.getPicnum())) {
-					cooExists = true;
-				}
-			}
-			if(!cooExists) {	//쿠키 없을 때 hit + 1 -> update, new Cookie
-				entity.setJoa(entity.getJoa() + 1);
-				picService.updatePicture(entity);
-				joaCoo = new Cookie("joa" + entity.getPicnum(), "" + entity.getJoa());
-				joaCoo.setMaxAge(60 * 5);	//5분
-				response.addCookie(joaCoo);
-			}
-			model.addAttribute("picEntity", entity);
-		}
+//    	Optional<PictureEntity> op = picService.selectOnePicture(picnum);
+//		PictureEntity entity = null;
+//		Cookie heartCoo = null;
+//		boolean cooExists = false;
+//		
+//		if(op.isPresent()) {
+//			entity = op.get();
+//			for(Cookie cookie : request.getCookies()) {
+//				if(cookie.getName().equals("heart" + entity.getPicnum())) {
+//					cooExists = true;
+//				}
+//			}
+//			if(!cooExists) {	//쿠키 없을 때 hit + 1 -> update, new Cookie
+//				entity.setHeart(entity.getHeart() + 1);
+//				picService.updatePicture(entity);
+//				heartCoo = new Cookie("heart" + entity.getPicnum(), "" + entity.getHeart());
+//				heartCoo.setMaxAge(60 * 5);	//5분
+//				response.addCookie(heartCoo);
+//			}
+//			model.addAttribute("picEntity", entity);
+//		}
+    	PictureEntity picEntity = picService.selectOnePicture(picnum).get();
+    	String userid = (String)session.getAttribute("userid");
+    	boolean heartExists = false;
+    	for(UserEntity user : hrtService.getUserList(picnum)) {
+    		if(user.getUserid().equals(userid)) {
+    			heartExists = true;
+    			HeartEntity tempEntity = hrtService.SelectOne(picnum, userid);
+    			hrtService.deleteOne(tempEntity.getHrtNum());
+    			picEntity.setHeart(picEntity.getHeart() - 1);
+    			picService.saveOne(picEntity);
+    		}
+    	}
+    	if(!heartExists) {
+    		HeartEntity hrtEntity = HeartEntity.builder()
+    				.picture(picEntity)
+    				.user(userService.selectById(userid))
+    				.build();
+    		hrtService.insertOne(hrtEntity);
+    		picEntity.setHeart(picEntity.getHeart() + 1);
+    		picService.saveOne(picEntity);
+    	}
     	return "redirect:/pic_board/pic_content?category=" + category 
 				+ "&search=" + search + "&num=" + picnum + "&page=" + page;
     }
