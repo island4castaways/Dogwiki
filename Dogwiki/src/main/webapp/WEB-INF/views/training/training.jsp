@@ -3,32 +3,28 @@
 		<title>Join</title>
 
 		<title>training info</title>
-
-
 	<section style="margin-top: 150px;">
-		<table>
-			<tr>
-				<ul>
-		<h2>훈련 정보</h2>
-					<td>
-						<li>
-							<a href="/training">전체 보기</a>
-						</li>
-					</td>
+		<table class="table1">
+    <h2>훈련 정보</h2>
+    <tr>
+        <td>
+                <li>
+                    <a href="/training" >전체 보기</a>
+                </li>
+        </td>
 
-					<td>
-						<li>
-							<a href="/training?st=강형욱">강형욱 훈련사</a>
-						</li>
-					</td>				
-					<td>
-						<li>
-							<a href="/training?st=설채현">설채현 수의사</a>
-						</li>					
-					</td>					
-				</ul>
-			</tr>
-		</table>
+        <td >
+                <li>
+                    <a href="/training?st=강형욱">강형욱 훈련사</a>
+                </li>
+        </td>                
+        <td >
+                <li>
+                    <a href="/training?st=설채현">설채현 수의사</a>
+                </li>                   
+        </td>                   
+    </tr>
+</table>
 		
 		<c:if test="${msg != null}">
 			<p>${msg}</p>
