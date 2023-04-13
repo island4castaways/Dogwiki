@@ -1,6 +1,7 @@
 package com.dogwiki.commu.service;
 
 import java.io.File;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -65,6 +66,10 @@ public class PictureService {
 	
 	public Page<PictureEntity> searchPicBoard(String search, Pageable pageable){
 		return picRepository.getListWithQuery(search, pageable);
+	}
+	
+	public List<PictureEntity> homePicBoard(){
+		return picRepository.findTop3ByOrderByJoaDesc();
 	}
 
 }

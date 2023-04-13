@@ -43,7 +43,7 @@
 							<c:if test="${empty category}">
 								<input type="hidden" name="category" value=2>
 							</c:if>
-							<input type="hidden" name="category" value="${cate}">
+							<input type="hidden" name="category" value="${category}">
 							<input type="text" name="search" placeholder="제목검색" value="${filter}" class="form-control">
 							
 							<div class="btn-area">
@@ -51,7 +51,7 @@
 							</div>
 							
 							<div class="btn-area">
-								<input type="button" value="글 작성" style="border-radius: 13px" onclick="location.href='board_write?category=${cate}'">
+								<input type="button" value="글 작성" style="border-radius: 13px" onclick="location.href='board_write?category=${category}'">
 							</div>
 						</div>
 					</form>

@@ -29,7 +29,7 @@
 				<td>
 					<a href="pic_content?category=${category}&search=${search}&num=${bo.picnum}&page=${pageNumber}">${bo.title}</a>
 				</td>
-				<td></td>
+				<td>${bo.pic_regdate }</td>
 				<td>${bo.joa}</td>
 				<td>${bo.hit}</td>
 			</tr>

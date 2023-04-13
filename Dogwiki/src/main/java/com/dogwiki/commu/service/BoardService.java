@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.dogwiki.commu.entity.BoardEntity;
+import com.dogwiki.commu.entity.PictureEntity;
 import com.dogwiki.commu.repository.BoardRepository;
 
 import lombok.extern.slf4j.Slf4j;
@@ -90,5 +91,9 @@ public class BoardService {
 	
 	public Page<BoardEntity> mypage_board(String userid, Pageable pageable) {
 		return brdRepository.getListWithQuery(userid, pageable);
+	}
+	
+	public List<BoardEntity> homeBoard(Integer category){
+		return brdRepository.findTop5ByCategoryOrderByHitDesc(category);
 	}
 }

@@ -23,28 +23,7 @@ public class TrainingService {
 	
 	@Autowired
 	private TrainingRepository trRepository;
-	
-//	public String testService() {
-//		TrainingEntity entity = TrainingEntity.builder()
-//				.trProf("test")
-//				.trTitle("test1")
-//				.trDate(null)
-//				.trHit(0)
-//				.build();
-//		trRepository.save(entity);
-//		
-//		TrainingEntity savedEntity = trRepository
-//				.findById(entity.getTrId())
-//				.get();
-//		log.info(savedEntity.getTrId());
-//		log.info(savedEntity.getTrProf());
-//		log.info(savedEntity.getTrTitle());
-//		log.info(savedEntity.getTrDate());
-//		log.info(savedEntity.getTrHit());
-//		
-//		return savedEntity.getTrTitle();
-//	}
-	
+		
 	public Page<TrainingEntity> selectAll(int pageNum, 
 			int pageSize, String sortBy, boolean start) {
 		if(start) {
@@ -127,6 +106,10 @@ public class TrainingService {
 	
 	public TrainingEntity updateOne(TrainingEntity entity) {
 		return trRepository.save(entity);
+	}
+	
+	public TrainingEntity homeTraining() {
+		return trRepository.findFirstByOrderByTrIdDesc();
 	}
 
 }

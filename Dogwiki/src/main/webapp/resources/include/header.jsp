@@ -20,15 +20,22 @@
 						Home</b></a></li>
 			<li style="border: none;"><a href="/board/board_list">Board</a>
 				<ul class="main2">
-					<li><a href="#">미모</a></li>
-					<li><a href="#">먹이</a></li>
-					<li><a href="#">병원과 진료의</a></li>
+					<li><a href="/pic_board/pic_list">미모</a></li>
+					<li><a href="/board/board_list?category=2">먹이</a></li>
+					<li><a href="/board/board_list?category=3">병원과 진료의</a></li>
 				</ul></li>
 
 			<li><a href="/training">Training</a>
-			<li><a href="/login">Login</a></li>
-			<li><a href="/join">Join</a></li>
-			<li><a href="/mypage">My page</a>			
+			<c:choose>
+				<c:when test="${sessionScope.userid == null}">
+					<li><a href="/login">Login</a></li>
+					<li><a href="/join">Join</a></li>
+				</c:when>
+				<c:otherwise>
+					<li><a href="/user_logout">Logout</a></li>
+					<li><a href="/mypage">My page</a>			
+				</c:otherwise>
+			</c:choose>
 		</ul>
 	</div>
 </body>

@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import com.dogwiki.commu.entity.PictureEntity;
 import com.dogwiki.commu.entity.TrainingEntity;
 
 @Repository
@@ -31,5 +32,7 @@ public interface TrainingRepository extends JpaRepository<TrainingEntity, Intege
 	
 	@Query("SELECT count(tr) FROM TrainingEntity tr WHERE tr.trProf=:trProf AND tr.trTitle LIKE %:search%")
 	long getCountByTrProfAndTrTitle(@Param("trProf") String trProf, @Param("search") String search);
+	
+	TrainingEntity findFirstByOrderByTrIdDesc();
 
 }

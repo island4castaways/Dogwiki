@@ -76,7 +76,7 @@ public class BoardContoller {
 	
 	@RequestMapping(value = "/board_content", method = RequestMethod.GET)
 	public String board_content(@RequestParam("num") Integer num, 
-			@RequestParam("page") int page, Model model, 
+			@RequestParam(value="page",  required = false, defaultValue = "0") int page, Model model, 
 			HttpServletRequest request, HttpServletResponse response) {
 		Optional<BoardEntity> op = brdService.selectOne(num);
 		BoardEntity entity = null;

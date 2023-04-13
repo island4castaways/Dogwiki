@@ -1,5 +1,7 @@
 package com.dogwiki.commu.repository;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -14,4 +16,10 @@ public interface PictureRepository extends JpaRepository<PictureEntity, Integer>
 	@Query(value = "select p from PictureEntity p "
 			+ "where p.title like %:search%")
 	Page<PictureEntity> getListWithQuery(@Param("search")String search, Pageable pageable);
+	
+//	@Query(value = "select p from PictureEntity p order by joa desc limit 3 ")
+//	List<PictureEntity> getListOrderbyJoa();
+
+	
+	List<PictureEntity> findTop3ByOrderByJoaDesc();
 }

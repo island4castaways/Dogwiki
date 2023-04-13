@@ -65,7 +65,7 @@ public class PictureController {
     		@PageableDefault(size = 10, sort = "picnum", direction = Sort.Direction.DESC)Pageable pageable, 
     		@RequestParam(value = "category", required = false, defaultValue = "1") int category, 
     		@RequestParam(value = "search", required = false) String search, 
-    		@RequestParam(value = "page", required = false) String page) {
+    		@RequestParam(value = "page", required = false, defaultValue = "0") String page) {
     	Page<PictureEntity> picPage;
     	
     	if(search!=null) {
