@@ -12,7 +12,6 @@ import org.springframework.stereotype.Repository;
 import com.dogwiki.commu.entity.BoardEntity;
 import com.dogwiki.commu.entity.PictureEntity;
 
-@Repository
 public interface BoardRepository extends JpaRepository<BoardEntity, Integer> {
 	
 	List<BoardEntity> findALLByCategory(Integer category);

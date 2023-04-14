@@ -69,7 +69,11 @@ public class PictureService {
 	}
 	
 	public List<PictureEntity> homePicBoard(){
-		return picRepository.findTop3ByOrderByJoaDesc();
+		return picRepository.findTop3ByOrderByHeartDesc();
+	}
+	
+	public PictureEntity saveOne(PictureEntity entity) {
+		return picRepository.save(entity);
 	}
 
 }

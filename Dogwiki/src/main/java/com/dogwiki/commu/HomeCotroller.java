@@ -40,13 +40,5 @@ public class HomeCotroller {
 		model.addAttribute("trainingEntity", trainingEntity);
 		return "/home";
 	}
-	
-	
-	
-//	@GetMapping("/user")
-//	public String home() {
-//		System.out.println("Home Controller has started");
-//		return "/user_join";
-//	}
 
 }
