@@ -158,27 +158,6 @@ public class PictureController {
     		@RequestParam("page") String page, 
     		@RequestParam("picnum") Integer picnum, 
     		HttpServletRequest request, HttpServletResponse response) {
-//    	Optional<PictureEntity> op = picService.selectOnePicture(picnum);
-//		PictureEntity entity = null;
-//		Cookie heartCoo = null;
-//		boolean cooExists = false;
-//		
-//		if(op.isPresent()) {
-//			entity = op.get();
-//			for(Cookie cookie : request.getCookies()) {
-//				if(cookie.getName().equals("heart" + entity.getPicnum())) {
-//					cooExists = true;
-//				}
-//			}
-//			if(!cooExists) {	//쿠키 없을 때 hit + 1 -> update, new Cookie
-//				entity.setHeart(entity.getHeart() + 1);
-//				picService.updatePicture(entity);
-//				heartCoo = new Cookie("heart" + entity.getPicnum(), "" + entity.getHeart());
-//				heartCoo.setMaxAge(60 * 5);	//5분
-//				response.addCookie(heartCoo);
-//			}
-//			model.addAttribute("picEntity", entity);
-//		}
     	PictureEntity picEntity = picService.selectOnePicture(picnum).get();
     	String userid = (String)session.getAttribute("userid");
     	boolean heartExists = false;

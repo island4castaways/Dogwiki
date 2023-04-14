@@ -33,20 +33,31 @@
 			<input type="hidden" name="search" value="${param.search}">
 			<input type="hidden" name="page" value="${page}">
 			<input type="hidden" name="picnum" value="${picEntity.picnum}">
-			<input class="${heartExists ? 'heartOn' : 'heartOff'}" type="submit" name="heart" value="좋아요&nbsp;&#9829;&nbsp;+${picEntity.heart}">
+			<input class="${heartExists ? 'heartOn' : 'heartOff'}" type="button" name="heart" value="좋아요&nbsp;&#9829;&nbsp;+${picEntity.heart}" 
+				onclick="heartCheck()">
 			<input type="button" value="목록" onclick="location.href='pic_list?category=${param.category}&search=${param.search}&page=${page}'">
 		</form>
 		<form name="deleteForm" action="pic_delete" method="get">
 			<input type="hidden" name="picnum" value="${picEntity.picnum}">
 			<c:if test="${picEntity.user.userid.equals(sessionScope.userid)}">
-				<input type ="submit" value="삭제" onclick="check()">
+				<input type ="submit" value="삭제" onclick="deleteCheck()">
 			</c:if>
 		</form>
 	</div>
 </section>
 
 <script>
-	function check() {
+	function heartCheck() {
+		if(${sessionScope.userid != null}) {
+			document.heartForm.submit();
+		} else {
+			if(confirm("좋아요를 누르시려면 로그인이 필요합니다. 로그인 하시겠습니까?")) {
+				location.href="/login";
+			}
+		}
+	}
+	
+	function deleteCheck() {
 		if(confirm("게시글을 삭제하시겠습니까?")) {
 			document.deleteForm.submit();
 		}
