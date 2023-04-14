@@ -25,7 +25,7 @@
 			</tr>
 			<tr>
 				<td>사진</td>
-				<td colspan="3" height="100%"><img src="/files/${picEntity.filename}" style="width:300px; height:auto;"></td>
+				<td colspan="3" height="100%" align="center"><img src="/files/${picEntity.filename}" style="width:300px; height:auto;"></td>
 			</tr>
 		</table>
 		<form name="heartForm" method="post" action="pic_heart" class="content-btn">
