@@ -14,6 +14,7 @@ body {
   flex-direction: column;
   font-family: 'Montserrat', sans-serif;
   height: 1000px;
+
   margin: 0 0 50px;
   background-size: cover;
 }
@@ -267,6 +268,8 @@ form.trining-form {
   background-color: #FEEBB6;
   color: black;
 }
+  
+  /* 이미지의 크기를 조정하기 위한 스타일 */
 
 /*board_list css*/
 
