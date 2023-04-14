@@ -51,33 +51,32 @@ public class TrainingController {
 	      
 	      if(latestCooExist == false) {   //쿠키 없을 때
 	         Cookie latestCoo = new Cookie("latestCoo", "true");
-	         latestCoo.setMaxAge(60 * 60 * 12);   //12시간
+	         latestCoo.setMaxAge(60 * 60 * 1);   //1시간
 	         response.addCookie(latestCoo);
 	      }
 	      
-	      
 	      if((trProf == null || trProf.isEmpty()) 
 	            && (search == null || search.isEmpty())) {
-	         total = trService.countTotal();
 	         list = trService
 	               .selectAll(pageNum, pageSize, sortBy, !latestCooExist)
 	               .getContent();
+	         total = trService.countTotal();
 	      } else if(trProf != null && (search == null || search.isEmpty())) {
-	         total = trService.countByTrProf(trProf);
 	         msg = trProf + " 모아 보기";
 	         list = trService
 	               .selectByTrProf(trProf, pageNum, pageSize, sortBy);
+	         total = trService.countByTrProf(trProf);
 	      } else if(search != null && trProf.isEmpty()) {
-	         total = trService.countByTrTitle(search);
 	         msg = "제목으로 검색 결과";
 	         list = trService
 	               .selectByTrTitle(search, pageNum, pageSize, sortBy);
+	         total = trService.countByTrTitle(search);
 	      } else if(trProf != null && search != null) {
-	         total = trService.countByTrProfAndTrTitle(trProf, search);
 	         msg = trProf + " 모아 보기 검색 결과";
 	         list = trService
 	               .selectByTrProfAndTrTitle(trProf, search, 
 	                     pageNum, pageSize, sortBy);
+	         total = trService.countByTrProfAndTrTitle(trProf, search);
 	      }
 	      
 	      System.out.println("total pageNum : " + total);
