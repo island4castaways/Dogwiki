@@ -129,6 +129,17 @@ tbody.training td {
   font-weight: bold;
 }
 
+.selected {
+ background-color: #FEEBB6;
+  color: #333;
+}
+.active{
+ background-color: #FEEBB6;
+  color: #333;
+}
+
+
+
 
 /*board_list css 부분*/
 

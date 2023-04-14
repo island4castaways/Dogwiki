@@ -73,11 +73,13 @@
 			<c:if test="${!boardList.isFirst() && pageNumber > 9}">
 				<li><a href="board_list?category=${category}&search=${search}&page=${startPage-2}">이전</a></li>
 			</c:if>
-			<c:forEach var="page" begin="${startPage}" end="${endPage}">
-    			<li class="${pageNumber-1 == page ? 'active' : ''}">
+			
+			<c:forEach var="page" begin="${startPage}" end="${endPage}" step="1">
+    			<li class="${pageNumber == (page-1) ? 'active' : 'paging'}" >    			
        				<a href="board_list?category=${category}&search=${search}&page=${page-1}">${page}</a>
        			</li>
 			</c:forEach>
+			
 			<c:if test="${!boardList.isLast()&&endPage<totalPage}">
 				<li>
 					<a href="board_list?category=${category}&search=${search}&page=${endPage}">다음</a>
@@ -85,6 +87,7 @@
 			</c:if>
 		</ul>
 	</div>
+
 	
 	</section>
 
