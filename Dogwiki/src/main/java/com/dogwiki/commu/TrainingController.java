@@ -41,7 +41,7 @@ public class TrainingController {
 	      int total = 0;
 	      boolean latestCooExist = false;
 	      
-	      if(request.getCookies() != null) {
+	      if(request.getCookies() != null) {	//쿠키 존재 확인
 	         for(Cookie cookie : request.getCookies()) {
 	            if(cookie.getName().equals("latestCoo")) {
 	               latestCooExist = true;
@@ -49,7 +49,7 @@ public class TrainingController {
 	         }
 	      }
 	      
-	      if(latestCooExist == false) {   //쿠키 없을 때
+	      if(latestCooExist == false) {   //쿠키 없을 때 쿠키 만들어 줌
 	         Cookie latestCoo = new Cookie("latestCoo", "true");
 	         latestCoo.setMaxAge(60 * 60 * 1);   //1시간
 	         response.addCookie(latestCoo);
