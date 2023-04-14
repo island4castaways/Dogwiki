@@ -14,7 +14,7 @@
                     <h4>${bo.title}</h4>
                     <a href="/pic_board/pic_content?category=1&search=${search}&num=${bo.picnum}&page=${pageNumber}">
                         <img src="/files/${bo.filename}" style="width:auto; height: 150px; ">
-                        <p><i class="fa-sharp fa-solid fa-heart"></i> &nbsp; ${bo.joa}</p>
+                        <p><i class="fa-sharp fa-solid fa-heart"></i> &nbsp; ${bo.heart}</p>
                     </a>
                 </div>
         </c:forEach>
