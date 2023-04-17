@@ -47,7 +47,6 @@
                         아파요</option>
                </select></td>
             </tr>
-
             <tr>
                <th style="font-size: 18px; text-align: center;">사진</th>
                <td></td>
