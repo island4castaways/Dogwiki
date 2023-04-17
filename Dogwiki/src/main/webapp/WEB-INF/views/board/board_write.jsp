@@ -4,7 +4,8 @@
 <%@ taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <link rel="stylesheet" type="text/css" href="/resources/css/write.css">
 
-	<form name = "regform" action="board_write" method="post" style="margin-top: 100px;">
+	<section style="margin-top: 150px;">
+	<form name = "regform" action="board_write" method="post" style="margin-top: 150px;">
    	 <section class="article-detail table-common con row" style="text-align:center;">
     <h1 class="con" style="margin-bottom: 20px;">게시글 작성</h1>
 
@@ -51,7 +52,7 @@
 					<div class="write-brn" >
 						<input type ="button" value="등록" onclick="registCheck()">
 					</div>
-					<div class="write-brn">
+					<div class="write-brn" style="margin-bottom: 20px;">
 						<input type ="button" value="목록" onclick="location.href='board_list?category=${param.category }&search=${param.search}&page=${param.page}'">
 					</div>
     </section>
@@ -84,4 +85,5 @@
 		var category = value;
 	}
 </script>
+</section>
 <%@ include file="/resources/include/footer.jsp"%>

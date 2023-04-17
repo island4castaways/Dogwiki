@@ -4,6 +4,7 @@
 <%@ taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <link rel="stylesheet" type="text/css" href="/resources/css/write.css">
 
+<section style="margin-top: 150px;">
     <section class="article-detail table-common con row" style="text-align:center;">
 			<h2 style="margin-bottom: 15px;">훈련 영상 보기</h2>
         <table class="cell" border="1">
@@ -36,6 +37,6 @@
 			</div>
 		</section>
 
-	</body>
+
+	</section>
 <%@ include file="/resources/include/footer.jsp"%>
-</html>

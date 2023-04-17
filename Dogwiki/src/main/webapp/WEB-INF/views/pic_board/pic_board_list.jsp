@@ -3,11 +3,11 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core" %>
 
-<div class="container"></div>
-	<h3>Dogwiki 게시판</h3>
+<section style="margin-top: 150px;">
+	<h3 style="text-align: center;">Dogwiki 게시판</h3>
 	<section>
 	<section class="section1">
-		<label for="category">분류</label>
+		
 		<select name="category" onchange="selectOnChange(value)" style="height: 35px;">
 			<option value=1 ${param.category == '1' ? 'selected="selected"' : ''}>내새끼 짱</option>
 			<option value=2 ${param.category == '2' ? 'selected="selected"' : ''}>사료간식 추천</option>
@@ -41,26 +41,28 @@
 		</tbody>
 		<tbody>
 		
-			<!-- 작성글 검색 및 글작성하기 메뉴 -->
+					<!-- 작성글 검색 및 글작성하기 메뉴 -->
 			<tr>
 				<td colspan="5" class="board_list">
-					<form method="get" action="pic_list" class="form-inline">
+					<form method="get" action="board_list" class="form-inline">
 						<div class="form-group">
-						<c:if test="${empty category}">
-							<input type="hidden" name="category" value=2>
-						</c:if>
-						<div class="board-input-wrapper">
-							<input type="hidden" name="category" value="${category}">
+							<c:if test="${empty category}">
+								<input type="hidden" name="category" value=2>
+							</c:if>
+							<div class="board-input-wrapper">
+								<input type="hidden" name="category" value="${category}">
 							<div class="board-int-area">
-								<input type="text" name="search" placeholder="제목검색" value="${search}">
+								<input type="text" name="search" value="${filter}">
 							</div>
-							<div class="btn-board">
-								<input type="submit" value="검색">
+							
+							<div class="write-brn">
+								<input type="submit" value="검색" style="border-radius: 10px">
 							</div>
-							<div class="btn-board">
-								<input type="button" value="글 작성" onclick="location.href='write?category=${param.category}'">
+							
+							<div class="write-brn" style="margin-left: 10px;">
+								<input type="button" value="글 작성" style="border-radius: 10px" onclick="location.href='board_write?category=${category}'">
 							</div>
-						</div>
+							</div>
 						</div>
 					</form>
 				</td>
@@ -112,4 +114,5 @@
 		}
 	}
 </script>
+</section>
 <%@ include file="/resources/include/footer.jsp"%>
