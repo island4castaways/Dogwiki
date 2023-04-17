@@ -1,10 +1,7 @@
 <%@ include file="/resources/include/header.jsp"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<title>update</title>
-<link rel="stylesheet" type="text/css" href="/resources/css/main.css">
-</head>
-<body>
+<section style="margin-top: 150px;">
 
 	<div align="center">
 			<!-- 구분 값을 사용하겠다 , name ="regForm" -->

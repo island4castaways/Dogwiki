@@ -1,12 +1,10 @@
 <%@ include file="/resources/include/header.jsp"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 		<title>password change</title>
-		<link rel="stylesheet" type="text/css" href="/resources/css/main.css">
-	</head>
-	<body>
-		<section class="input-form">
+
+		<section class="input-form" style="margin-top: 150px;">
 			<div align="center">
-				<h3>비밀번호 변경</h3>
+				<h1>비밀번호 변경</h1>
 				<form action = "/user_change_pw" method="post">
 				
 				<div class="int-area">

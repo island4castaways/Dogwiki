@@ -2,13 +2,10 @@
 		<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 		<title>user delete</title>
-		<link rel="stylesheet" type="text/css" href="/resources/css/main.css">
-	</head>
-		<body>
-			<section>
+			<section style="margin-top: 150px;">
 			<div align="center">
 				<form action = "/user_delete" method = "post">
-					<h3>회원 탈퇴</h3>
+					<h1>회원 탈퇴</h1>
 					
 					<div class="int-area">
 						<input type="password" id="pw" name="pw" autocomplete="off" required>
