@@ -12,8 +12,5 @@
             <span>Copyr 1ght 2020. cocoder. All| Rights Reserved. </span>
             </p>
    </footer>
-
-
-
 </body>
 </html>

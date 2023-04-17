@@ -8,29 +8,56 @@
     <!-- 게시글 -->
     
     <div class="home home-top">
-    <h3>조회수 TOP3 미모</h3>
+    <h2>조회수 TOP3 미모</h2>
         <c:forEach var="bo" items="${picEntity}">
                 <div class="content-img">
-                    <h4>${bo.title}</h4>
-                    <a href="/pic_board/pic_content?category=1&search=${search}&num=${bo.picnum}&page=${pageNumber}">
-                        <img src="/files/${bo.filename}" style="width:auto; height: 150px; ">
-                        <p><i class="fa-sharp fa-solid fa-heart"></i> &nbsp; ${bo.joa}</p>
-                    </a>
+                    <h3>${bo.title}</h3>
+                    <div class="img">
+	                    <a href="/pic_board/pic_content?category=1&search=${search}&num=${bo.picnum}&page=${pageNumber}">
+	                        <img src="/files/${bo.filename}" style="width:auto; height: 150px; ">
+	                        <p><i class="fa-sharp fa-solid fa-heart" style="color: red;"></i> &nbsp; ${bo.joa}</p>
+	                    </a>
+                    </div>
                 </div>
         </c:forEach>
         <div style="text-align: right">
-            <a href="/pic_board/pic_list">more &nbsp;<i class="fa-solid fa-arrow-right"></i></a>
+            <a href="/pic_board/pic_list">view more &nbsp;<i class="fa-solid fa-arrow-right"></i></a>
         </div>
     </div>
 
-	
-	<table class="home home-middle">
+	<div class="home home-middle">
+		<table>
+			<!-- 게시글 -->
+			<h2>사료간식 추천 TOP 5</h2>
+			<thead>
+				<tr>
+					<th>작성자</th>
+					<th>제목</th>
+					<th>날짜</th>
+					<th>조회수</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach var="bo" items="${board2Entity}">
+					<tr>
+						<td>${bo.user.userid}</td>
+						<td ><a
+							href="/board/board_content?category=2&search=${search}&num=${bo.num}&page=${pageNumber}">${bo.title}</a>
+						</td>
+						<td>${bo.regdate}</td>
+						<td>${bo.hit}</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+	</div>
+
+
+<div  class="home home-bottom">
+	<table>
 		<!-- 게시글 -->
-		<h3>게시판 조회수 TOP 5</h3>
+		<h2>아이가 아파요 TOP 5</h2>
 		<thead>
-			<tr>
-				<th><a href="/board/board_list?category=2">more &nbsp;<i class="fa-solid fa-arrow-right"></i></a></th>
-			</tr>
 			<tr>
 				<th>작성자</th>
 				<th>제목</th>
@@ -39,11 +66,11 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach var="bo" items="${board2Entity}">
+			<c:forEach var="bo" items="${board3Entity}">
 				<tr>
 					<td>${bo.user.userid}</td>
 					<td><a
-						href="/board/board_content?category=2&search=${search}&num=${bo.num}&page=${pageNumber}">${bo.title}</a>
+						href="/board/board_content?category=3&search=${search}&num=${bo.num}&page=${pageNumber}">${bo.title}</a>
 					</td>
 					<td>${bo.regdate}</td>
 					<td>${bo.hit}</td>
@@ -51,48 +78,15 @@
 			</c:forEach>
 		</tbody>
 	</table>
+</div>
 
-
-<table class="home home-bottom">
-	<!-- 게시글 -->
-	<thead>
-		<tr>
-			<th><a href="/board/board_list?category=3">more &nbsp;<i class="fa-solid fa-arrow-right"></i></a></th>
-		</tr>
-		<tr>
-			<th>작성자</th>
-			<th>제목</th>
-			<th>날짜</th>
-			<th>조회수</th>
-		</tr>
-	</thead>
-	<tbody>
-		<c:forEach var="bo" items="${board3Entity}">
-			<tr>
-				<td>${bo.user.userid}</td>
-				<td><a
-					href="/board/board_content?category=3&search=${search}&num=${bo.num}&page=${pageNumber}">${bo.title}</a>
-				</td>
-				<td>${bo.regdate}</td>
-				<td>${bo.hit}</td>
-			</tr>
-		</c:forEach>
-	</tbody>
-</table>
-
-<table class="home home-avi">
-	<tr>
-		<th><a href="/training">
-</a></th>
-	</tr>
-	<tr>
-		<h3>최신 훈련 영상</h3>
-	</tr>
-	<tr>
-		<td><iframe src="${trainingEntity.trUrl}" width="800" height="450" ></iframe></td>
-	</tr>
-
-</table>
+   <div  class="home home-avi">
+				<h2>최신 훈련 영상</h2>
+			<div class="av">
+				<iframe src="${trainingEntity.trUrl}" width="800" height="450" ></iframe>
+			</div>
+	</div>
+	
 <%@ include file="/resources/include/footer.jsp"%>
 
 
