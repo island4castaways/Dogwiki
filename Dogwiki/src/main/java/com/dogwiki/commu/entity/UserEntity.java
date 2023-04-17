@@ -52,4 +52,9 @@ public class UserEntity {
 	@OneToMany(mappedBy = "user", cascade = {CascadeType.ALL}, orphanRemoval = true)
 	@EqualsAndHashCode.Exclude
 	private List<CommentEntity> comments;
+	
+	@OneToMany(mappedBy = "user", cascade = {CascadeType.ALL}, orphanRemoval = true)
+	@EqualsAndHashCode.Exclude
+	private List<HeartEntity> heart;
+	
 }

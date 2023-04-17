@@ -1,42 +1,41 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="UTF-8">
-		<title>Training content</title>
-	</head>
-	<body>
-		<section>
-			<div align="center">
-				<h2>훈련 영상 보기</h2>
-				<hr>
-				<table border="1" width="500">
-					<tr>
-						<td width="20%">전문가</td>
-						<td width="40%">${en.trProf}</td>
-						<td width="20%">업로드일</td>
-						<td width="20%">${en.trDate}</td>
+<%@ include file="/resources/include/header.jsp"%>
+		<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<link rel="stylesheet" type="text/css" href="/resources/css/write.css">
+
+    <section class="article-detail table-common con row" style="text-align:center;">
+			<h2 style="margin-bottom: 15px;">훈련 영상 보기</h2>
+        <table class="cell" border="1">
+            <colgroup>
+                <col width="100px">
+            </colgroup>
+            
+            <tbody>
+                <tr class="article-title">
+                  <th style="font-size: 17px;">훈련사</th>
+						<td colspan="3">${en.trProf}</td>
 					</tr>
 					<tr>
-						<td width="20%">제목</td>
-						<td width="40%">${en.trTitle}</td>
-						<td width="20%">조회수</td>
-						<td width="20%">${en.trHit}</td>
+						<th style="font-size: 17px;">제목</th>
+						<td width="80%" style="font-size: 15px;">${en.trTitle}</td>
+						
 					</tr>
-					<tr>
-						<td colspan="4">
-							<iframe src="${en.trUrl}"></iframe>
-						</td>
-					</tr>
-					<tr>
-						<td colspan="4">
-							<input type="button" value="목록"
-								onclick="location.href='/training?pn=${param.pn}&st=${param.st}&search=${param.search}'">
-						</td>
-					</tr>
-				</table>
+					
+					</table>
+	<table>
+		<tr>
+			<td colspan="1" align="center"><iframe src="${en.trUrl}"
+					width="930" height="523.125"></iframe></td>
+		</tr>
+	</table>
+
+	<div class="content-btn">
+				<input type="button" value="목록"
+					onclick="location.href='/training?pn=${param.pn}&st=${param.st}&search=${param.search}'">
 			</div>
 		</section>
+
 	</body>
+<%@ include file="/resources/include/footer.jsp"%>
 </html>

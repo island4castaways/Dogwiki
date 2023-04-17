@@ -1,37 +1,37 @@
 *{
-	margin: 0 auto;
-	text-align: center;
+   margin: 0 auto;
+   text-align: center;
 }
 h2,h4,h3{
-	color: gray;
-	text-align: center;
+   color: gray;
+   text-align: center;
 }
 h3{
-	margin-bottom: 10px;
+   margin-bottom: 10px;
 }
 td{
  font-size: 20px;
 }
 h2{
-	margin-bottom: 30px;
+   margin-bottom: 30px;
 }
 .home{
-	margin-top:50px;
-	margin: 0 auto;
-	margin-top: 15px;
-	margin-bottom: 15px;
+   margin-top:50px;
+   margin: 0 auto;
+   margin-top: 15px;
+   margin-bottom: 15px;
 }
 .home-top{
-	padding-top:100px;
-	width: 80%;
-	height: auto;
-	border-bottom: 1px solid #ccc;
+   padding-top:100px;
+   width: 80%;
+   height: auto;
+   border-bottom: 1px solid #ccc;
 }
 
 .content-img img{
-	text-align:center;
-	border-bottom: 1px solid grey;
-	border-top: 1px solid grey;  
+   text-align:center;
+   border-bottom: 1px solid grey;
+   border-top: 1px solid grey;  
 }
 .content-img {
 
@@ -45,18 +45,18 @@ h2{
   
 }
 .home-middle{
-	width: 50%;
-	height: auto;
-	text-align: center;
-	border-bottom: 1px solid #ccc;
-	padding:10px 20px;
+   width: 50%;
+   height: auto;
+   text-align: center;
+   border-bottom: 1px solid #ccc;
+   padding:10px 20px;
 }
 
 .home-bottom{
-	width: 50%;
-	height: auto;
-	text-align: center;
-	border-bottom: 1px solid #ccc;
+   width: 50%;
+   height: auto;
+   text-align: center;
+   border-bottom: 1px solid #ccc;
 }
 table td{
 	padding: 5px 90px 5px;
@@ -69,4 +69,14 @@ table td{
 table th{
 	background-color:  #FEEBB6;
 	padding: 10px 5px;
+   padding: 5px 90px 5px;
+}
+
+.more a{
+   text-align: right;
+}
+
+table th{
+   background-color:  #FEEBB6;
+   padding: 10px 5px;
 }

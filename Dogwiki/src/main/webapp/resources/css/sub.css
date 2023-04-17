@@ -7,8 +7,8 @@ a {
   color: #57523E;
 }
 #menu{
-   position: fixed;
-   top: 0;
+  position: fixed;
+  top: 0;
   z-index: 99; 
   background-color: white;
   height: 50px;
@@ -29,7 +29,7 @@ a {
   align-items: center;
   padding: 0;
   margin: 0;
-  height: 130%;
+  height: 190%;
   width: 1650px
 	}
 .main1>li {
@@ -38,6 +38,7 @@ a {
   line-height: 80px;
   position: relative;
   display: top;
+  font-size: 18px;
 }
 .main1>li:hover .main2 {
   left: 0;
@@ -47,6 +48,7 @@ a {
 }
 .main1>li a:hover {
   font-weight: bold;
+  font-size: 20px;
 }
 .main2 {
   width:110%;

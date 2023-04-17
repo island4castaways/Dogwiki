@@ -1,32 +1,25 @@
 <%@ include file="/resources/include/header.jsp"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-		<title>Join</title>
 
-		<title>training info</title>
+	<title>training info</title>
 	<section style="margin-top: 150px;">
-		<table class="table1">
-    <h2>훈련 정보</h2>
-    <tr>
-        <td>
-                <li>
-                    <a href="/training" >전체 보기</a>
-                </li>
-        </td>
+	<table class="table1">
+		<h2>훈련 정보</h2>
+		<tr>
+			<td>
+				<a href="/training">전체 보기</a>
+			</td>
 
-        <td >
-                <li>
-                    <a href="/training?st=강형욱">강형욱 훈련사</a>
-                </li>
-        </td>                
-        <td >
-                <li>
-                    <a href="/training?st=설채현">설채현 수의사</a>
-                </li>                   
-        </td>                   
-    </tr>
-</table>
-		
-		<c:if test="${msg != null}">
+			<td>
+				<a href="/training?st=강형욱">강형욱 훈련사</a>
+			</td>
+			<td>
+				<a href="/training?st=설채현">설채현 수의사</a>
+			</td>
+		</tr>
+	</table>
+
+	<c:if test="${msg != null}">
 			<p>${msg}</p>
 		</c:if>
 		
@@ -77,38 +70,34 @@
 				</td>
 				</tr>
 			</tbody>
-		
-		<div align="center" class="paging">
-			<ul class="paging-list">
-				<c:if test="${page.hasPrev}">
-					<li class="paging-item">
-						<a href="/training?pn=${page.startPage - 1}
-							&st=${st}&search=${search}" class="paging-link">
-							이전
-						</a>
-					</li>
-				</c:if>
 
-				
-				<c:forEach var="num" begin="${page.startPage}" 
-					end="${page.endPage}" step="1">
-					<li class="paging-item">
-						<a href="/training?pn=${num - 1}&st=${st}&search=${search}">
-							${num}
-						</a>
-					</li>				
-				</c:forEach>
-				
-				<c:if test="${page.hasNext}">
-					<li class="paging-item">
-						<a href="/training?pn=${page.endPage + 1}
-									&st=${st}&search=${search}" class="paging-link">
-									다음
-						</a>
-					</li>
-				</c:if>
-			</ul>
-		</div>
-		
-	</section>
+	<div align="center" class="paging">
+		<ul class="paging-list">
+			<c:if test="${page.hasPrev}">
+				<li class="paging-item"><a
+					href="/training?pn=${page.startPage - 1}
+							&st=${st}&search=${search}"
+					class="paging-link"> 이전 </a></li>
+			</c:if>
+
+
+			<c:forEach var="num" begin="${page.startPage}" end="${page.endPage}"
+				step="1">
+				<li class="${page.pageNum == (num - 1) ? 'selected' : 'paging'}">
+					<a href="/training?pn=${num - 1}&st=${st}&search=${search}">
+						${num} </a>
+				</li>
+			</c:forEach>
+
+			<c:if test="${page.hasNext}">
+				<li class="paging-item"><a
+					href="/training?pn=${page.endPage + 1}
+									&st=${st}&search=${search}"
+					class="paging-link"> 다음 </a></li>
+			</c:if>
+		</ul>
+	</div>
+
+</section>
+<%@ include file="/resources/include/footer.jsp"%>
 </html>

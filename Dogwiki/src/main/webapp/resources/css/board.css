@@ -17,8 +17,6 @@ table.table1 td {
   font-size: 17px;
 }
 
-
-
 table.training {
   border-collapse: separate;
   border-spacing: 1px;
@@ -130,3 +128,300 @@ tbody.training td {
 .paging-link.selected {
   font-weight: bold;
 }
+
+.selected {
+ background-color: #FEEBB6;
+  color: #333;
+}
+.active{
+ background-color: #FEEBB6;
+  color: #333;
+}
+
+
+
+
+/*board_list css 부분*/
+
+/*section1 부분*/
+section1 {
+  display: flex;
+  justify-content: space-between;	
+}
+
+label {
+  margin-right: 10px;
+  font-weight: bold; 
+}
+
+select {
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+/* 게시글 */
+
+table.table-boardered {
+  border-collapse: separate;
+  border-spacing: 1px;
+  text-align: left;
+  line-height: 1.5;
+  margin : 20px 10px;
+}
+table.table-boardered th {
+  width: 150px;
+  padding: 10px;
+  font-weight: bold;
+  vertical-align: top;
+  border-bottom: 1px solid #ccc;
+}
+
+table.table-boardered td {
+  width: 400px;
+  padding: 13px;
+  vertical-align: top;
+}
+
+tbody.table-boardered {
+  border-collapse: separate;
+  border-spacing: 1px;
+  text-align: left;
+  line-height: 1.5;
+  border-top: 1px solid #ccc;
+  margin : 20px 10px;
+}
+tbody.table-boardered th {
+  width: 150px;
+  padding: 10px;
+  font-weight: bold;
+  vertical-align: top;
+  border-bottom: 1px solid #ccc;
+}
+
+tbody.table-boardered td {
+  width: 400px;
+  padding: 13px;
+  vertical-align: top;
+  border-bottom: 1px solid #ccc;
+}
+
+/*board-content css 부분*/
+
+table.table-board-content {
+  border-collapse: separate;
+  border-spacing: 1px;
+  text-align: left;
+  line-height: 1.5;
+  margin : 20px 10px;
+}
+table.table-board-content th {
+  width: 150px;
+  padding: 10px;
+  font-weight: bold;
+  vertical-align: top;
+  border-bottom: 1px solid #ccc;
+}
+
+table.table-board-content td {
+  width: 400px;
+  padding: 13px;
+  vertical-align: top;
+}
+
+tbody.table-board-content {
+  border-collapse: separate;
+  border-spacing: 1px;
+  text-align: left;
+  line-height: 1.5;
+  border-top: 1px solid #ccc;
+  margin : 20px 10px;
+}
+tbody.table-board-content th {
+  width: 150px;
+  padding: 10px;
+  font-weight: bold;
+  vertical-align: top;
+  border-bottom: 1px solid #ccc;
+}
+
+tbody.table-board-content td {
+  width: 400px;
+  padding: 13px;
+  vertical-align: top;
+  border-bottom: 1px solid #ccc;
+}
+
+
+/*board-write*/
+
+
+table.board-wrap {
+  border-collapse: collapse;
+  text-align: left;
+  line-height: 1.5;
+  border-top: 1px solid #ccc;
+  border-left: 3px solid #FEEBB6;
+  margin : 20px 10px;
+}
+table.board-wrap th {
+  width: 147px;
+  padding: 10px;
+  font-weight: bold;
+  vertical-align: top;
+  color: #153d73;
+  border-right: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+
+}
+table.board-wrap td {
+  padding: 10px;
+  border-right: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+
+tbody.board-wrap {
+  border-collapse: separate;
+  border-spacing: 1px;
+  text-align: left;
+  line-height: 1.5;
+  border-top: 1px solid #ccc;
+  margin : 20px 10px;
+}
+tbody.board-wrap th {
+  width: 150px;
+  padding: 10px;
+  font-weight: bold;
+  vertical-align: top;
+  border-bottom: 1px solid #ccc;
+}
+
+tbody.board-wrap td {
+  width: 400px;
+  padding: 13px;
+  vertical-align: top;
+  border-bottom: 1px solid #ccc;
+}
+
+
+
+/*댓글*/
+
+
+table.content-wrap {
+  border-collapse: collapse;
+  text-align: left;
+  line-height: 1.5;
+  border-top: 1px solid #F9F8F3;
+  border-left: 3px solid #F9F8F3;
+  margin : 20px 10px;
+}
+table.content-wrap th {
+  width: 147px;
+  padding: 10px;
+  font-weight: bold;
+  vertical-align: top;
+  color: #153d73;
+  border-right: 1px solid #F9F8F3;
+  border-bottom: 1px solid #F9F8F3;
+
+}
+table.content-wrap td {
+  padding: 10px;
+  border-right: 1px solid #F9F8F3;
+  border-bottom: 1px solid #F9F8F3;
+}
+
+tbody.content-wrap {
+  border-collapse: separate;
+  border-spacing: 1px;
+  text-align: left;
+  line-height: 1.5;
+  border-top: 1px solid #F9F8F3;
+  margin : 20px 10px;
+}
+tbody.content-wrap th {
+  width: 150px;
+  padding: 10px;
+  font-weight: bold;
+  vertical-align: top;
+  border-bottom: 1px solid #F9F8F3;
+}
+
+tbody.content-wrap td {
+  width: 400px;
+  padding: 13px;
+  vertical-align: top;
+  border-bottom: 1px solid #F9F8F3;
+}
+
+/*pic-board-wrap-write*/
+
+
+table.pic-board-wrap {
+  border-collapse: collapse;
+  text-align: left;
+  line-height: 1.5;
+  border-top: 1px solid #ccc;
+  border-left: 3px solid #FEEBB6;
+  margin : 20px 10px;
+}
+table.pic-board-wrap th {
+  width: 147px;
+  padding: 10px;
+  font-weight: bold;
+  vertical-align: top;
+  color: #153d73;
+  border-right: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+
+}
+table.pic-board-wrap td {
+  padding: 10px;
+  border-right: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+
+tbody.pic-board-wrap {
+  border-collapse: separate;
+  border-spacing: 1px;
+  text-align: left;
+  line-height: 1.5;
+  border-top: 1px solid #ccc;
+  margin : 20px 10px;
+}
+tbody.pic-board-wrap th {
+  width: 150px;
+  padding: 10px;
+  font-weight: bold;
+  vertical-align: top;
+  border-bottom: 1px solid #ccc;
+}
+
+tbody.pic-board-wrap td {
+  width: 400px;
+  padding: 13px;
+  vertical-align: top;
+  border-bottom: 1px solid #ccc;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

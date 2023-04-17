@@ -5,7 +5,6 @@ import org.springframework.stereotype.Repository;
 
 import com.dogwiki.commu.entity.UserEntity;
 
-@Repository
 public interface UserRepository extends JpaRepository<UserEntity, String> {
 	
 	UserEntity findByUserid(String userid); //생성
@@ -14,6 +13,6 @@ public interface UserRepository extends JpaRepository<UserEntity, String> {
 	
 	Boolean existsByEmail(String email);	//email 중복 확인
 	 
-	UserEntity findByUseridAndPw(String userid,String pw); //검증
+	UserEntity findByUseridAndPw(String userid, String pw); //검증
 	
 }

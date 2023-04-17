@@ -1,6 +1,5 @@
 package com.dogwiki.commu.service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,7 +29,7 @@ public class TrainingService {
 			TrainingData data = new TrainingData();
 			List<String> kangUrl = data.readData(data.getKANG_URL(), "trUrl");
 			List<String> kangTitle = data.readData(data.getKANG_URL(), "trTitle");
-			for(int i = 0; i < kangUrl.size(); i++) {
+			for(int i = kangUrl.size() - 1; i >= 0; i--) {
 				String tempUrl = kangUrl.get(i);
 				if(!trRepository.existsByTrUrl(tempUrl)) {
 					TrainingEntity en = TrainingEntity.builder()
@@ -43,7 +42,7 @@ public class TrainingService {
 			}
 			List<String> seolUrl = data.readData(data.getSEOL_URL(), "trUrl");
 			List<String> seolTitle = data.readData(data.getSEOL_URL(), "trTitle");
-			for(int i = 0; i < seolUrl.size(); i++) {
+			for(int i = seolUrl.size() - 1; i >= 0; i--) {
 				String tempUrl = seolUrl.get(i);
 				if(!trRepository.existsByTrUrl(tempUrl)) {
 					TrainingEntity en = TrainingEntity.builder()

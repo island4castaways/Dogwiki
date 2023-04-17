@@ -40,9 +40,5 @@ public class HomeCotroller {
 		model.addAttribute("trainingEntity", trainingEntity);
 		return "/home";
 	}
-	
-	
-	
-
 
 }

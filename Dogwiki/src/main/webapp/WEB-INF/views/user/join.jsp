@@ -43,9 +43,6 @@
 					
 				<div class="btn-area">
 					<input type="button" value="회원가입" onclick="check()"  style="border-radius: 13px;margin-right: 20px;">
-				</div>					
-				
-				<div class="btn-area">
 					<input type="button" value="로그인" onclick="location.href='/login'" style="border-radius: 13px">
 				</div>				
 			</form>

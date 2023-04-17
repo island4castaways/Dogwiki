@@ -8,7 +8,7 @@
 			<section>
 			<div align="center">
 				<form action = "/user_delete" method = "post">
-					<h3>비밀번호 변경 페이지</h3>
+					<h3>회원 탈퇴</h3>
 					
 					<div class="int-area">
 						<input type="password" id="pw" name="pw" autocomplete="off" required>
@@ -16,7 +16,7 @@
 					</div>
 					
 					<div class="btn-area">
-						<input type = "submit" value="확인" style="border-radius: 13px; background-color: #FEEBB6; margin-right: 20px;">
+						<input type = "submit" value="확인" style="border-radius: 13px; margin-right: 20px;">
 						<input type = "button" value="취소" onclick="history.go(-1)" style="border-radius: 13px;">
 					</div>
 

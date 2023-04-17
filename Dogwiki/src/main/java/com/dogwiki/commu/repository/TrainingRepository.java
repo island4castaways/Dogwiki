@@ -12,7 +12,6 @@ import org.springframework.stereotype.Repository;
 import com.dogwiki.commu.entity.PictureEntity;
 import com.dogwiki.commu.entity.TrainingEntity;
 
-@Repository
 public interface TrainingRepository extends JpaRepository<TrainingEntity, Integer> {
 	
 	Boolean existsByTrUrl(String url);
