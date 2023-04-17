@@ -1,12 +1,8 @@
 <%@ include file="/resources/include/header.jsp"%>
 		<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-		<title>Join</title>
-		<link rel="stylesheet" type="text/css" href="/resources/css/main.css">
-
-	</head>
-	<body>
-	
+	<section style="margin-top: 150px;">
+		<title>Join</title>	
 		<section class="input-form">				
 				<form name="regForm" id="Form" action="/join" method="post">
 					<h2>회원가입 페이지</h2>
@@ -41,7 +37,7 @@
 						<label for="email">이메일</label>
 					</div>
 					
-				<div class="btn-area">
+				<div class="btn-area" style="margin-bottom: 20px;">
 					<input type="button" value="회원가입" onclick="check()"  style="border-radius: 13px;margin-right: 20px;">
 					<input type="button" value="로그인" onclick="location.href='/login'" style="border-radius: 13px">
 				</div>				
@@ -91,5 +87,6 @@
 				}
 			})
 		</script>
-		</body>
-		</html>
+</section>
+
+<%@ include file="/resources/include/footer.jsp"%>

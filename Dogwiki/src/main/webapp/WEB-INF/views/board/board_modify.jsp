@@ -5,7 +5,7 @@
 <link rel="stylesheet" type="text/css" href="/resources/css/write.css">
 
 
-<h1 class="con" style="margin-bottom: 20px; margin-top: 100px;">게시판 글내용 보기</h1>
+<h1 class="con" style="margin-bottom: 20px; margin-top: 150px;">게시판 글내용 수정하기</h1>
         <form name = "regform" action="board_update" method="post">
     <section class="article-detail table-common con row" style="text-align:center;">
     <!-- 글 등록 메뉴 -->	
@@ -49,8 +49,8 @@
             </tbody>            
         </table>
         </section>
-         <section >
-         <div class="content-btn" style="margin-top: 15px;">
+         <section>
+         <div class="content-btn" style="margin-top: 15px; margin-bottom: 20px;">
                	  <input type="hidden" name="category" value="${param.category}">
                	  
                   <input type="button" value="수정" onclick="modifyCheck()">
@@ -75,4 +75,5 @@
       }
    }
 </script>
+
 <%@ include file="/resources/include/footer.jsp"%>

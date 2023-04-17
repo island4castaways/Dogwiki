@@ -4,8 +4,8 @@
 <%@ taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <link rel="stylesheet" type="text/css" href="/resources/css/write.css">
 
-<body style="margin-top: 150px;">
-    <h1 class="con" style="margin-bottom: 20px;">게시판 글내용 보기</h1>
+<section style="margin-top: 150px;">
+    <h1 class="con" style="margin-bottom: 20px; text-align: center;">게시판 글내용 보기</h1>
 
 <section class="article-detail table-common con row" style="text-align:center;">
     <!-- 글 등록 메뉴 -->	
@@ -84,5 +84,5 @@
 		}
 	}
 </script>
-</body>
+</section>
 <%@ include file="/resources/include/footer.jsp"%>

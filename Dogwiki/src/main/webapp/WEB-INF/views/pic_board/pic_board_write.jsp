@@ -4,9 +4,11 @@
 <%@ taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <link rel="stylesheet" type="text/css" href="/resources/css/write.css">
 
+
+<section style="margin-top: 150px;">
 		<form name="regform" action="../pic_board/write" method="post" enctype="multipart/form-data">
 	<section class="article-detail table-common con row"
-		style="text-align: center; margin-top: 150px;" >
+		style="text-align: center;" >
 		<h2>게시판 글작성 페이지</h2>
 
 
@@ -104,4 +106,5 @@
 		}
 	})
 </script>
+</section>
 <%@ include file="/resources/include/footer.jsp"%>

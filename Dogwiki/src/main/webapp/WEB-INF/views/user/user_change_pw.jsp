@@ -37,4 +37,5 @@
 		}
 	})
 	</script>
-	</html>
+</section>
+<%@ include file="/resources/include/footer.jsp"%>

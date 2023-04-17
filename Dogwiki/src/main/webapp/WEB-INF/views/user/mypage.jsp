@@ -1,13 +1,11 @@
 <%@ include file="/resources/include/header.jsp"%>
 		<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-		<title>Login</title>
-		<link rel="stylesheet" type="text/css" href="/resources/css/main.css">		
+		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css"/>	
+	<section style="margin-top: 150px;">
+		<title>MyPage</title>
+	
 		<!-- Slick.js 스타일시트 파일 추가 -->
-		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css"/>
-
-</head>
-	<body>	
 	<section class="mypage-form">
 
 		  <div class="image-slider">   
@@ -56,4 +54,5 @@
 		})
 	      	
 		</script>
-</html>
+</section>
+<%@ include file="/resources/include/footer.jsp"%>

@@ -3,12 +3,11 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core" %>
 
-<section>
+<section style="margin-top: 150px;">
 <div class = "container" ></div>
-	<h3>Dogwiki 게시판</h3>
+	<h3 style="text-align: center;">Dogwiki 게시판</h3>
 	<section>
 		<section class="section1">
-			<label for="category">분류</label>
 			<select name="category" onchange="selectOnChange(value)" style="height: 35px;">
 				<option value=1 ${category == '1' ? 'selected="selected"' : ''}>내새끼 짱</option>
 				<option value=2 ${category == '2' ? 'selected="selected"' : ''}>사료간식 추천</option>
@@ -55,11 +54,11 @@
 							</div>
 							
 							<div class="write-brn">
-								<input type="submit" value="검색" style="border-radius: 13px">
+								<input type="submit" value="검색" style="border-radius: 10px">
 							</div>
 							
 							<div class="write-brn" style="margin-left: 10px;">
-								<input type="button" value="글 작성" style="border-radius: 13px" onclick="location.href='board_write?category=${category}'">
+								<input type="button" value="글 작성" style="border-radius: 10px" onclick="location.href='board_write?category=${category}'">
 							</div>
 							</div>
 						</div>

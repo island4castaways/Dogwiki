@@ -1,8 +1,9 @@
 <%@ include file="/resources/include/header.jsp"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+<section style="margin-top: 150px;">
 <title>Login</title>
-<link rel="stylesheet" type="text/css" href="/resources/css/main.css">
-</head>
+
 <section class="input-form">
 	<h2>로그인 페이지</h2>
 	<form action="/login" method="post" class="login">
@@ -17,11 +18,11 @@
 			<label for="pw">비밀번호</label>
 		</div>
 
-		<div class="btn-area">
+		<div class="btn-area" style=" margin-bottom:25px;">
 			<input type="submit" value="로그인"
 				style="border-radius: 13px; margin-right: 20px;">
 
-			<input type="button" value="회원가입" onclick="location.href='join'" style="border-radius: 13px">
+			<input type="button" value="회원가입" onclick="location.href='join'" style="border-radius: 13px;">
 		</div>
 	</form>
 </section>
@@ -35,5 +36,5 @@
 				}
 			})
 		</script>
-</body>
-</html>
+</section>
+<%@ include file="/resources/include/footer.jsp"%>
