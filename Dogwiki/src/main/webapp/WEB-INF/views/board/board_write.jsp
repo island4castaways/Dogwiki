@@ -4,7 +4,7 @@
 <%@ taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <link rel="stylesheet" type="text/css" href="/resources/css/write.css">
 
-	<section style="margin-top: 150px;">
+
 	<form name = "regform" action="board_write" method="post" style="margin-top: 150px;">
    	 <section class="article-detail table-common con row" style="text-align:center;">
     <h1 class="con" style="margin-bottom: 20px;">게시글 작성</h1>
@@ -85,5 +85,5 @@
 		var category = value;
 	}
 </script>
-</section>
+
 <%@ include file="/resources/include/footer.jsp"%>

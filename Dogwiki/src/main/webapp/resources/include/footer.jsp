@@ -6,9 +6,8 @@
          <a href='https://github.com/island4castaways' target='_blank'>Github</a>
          </nav>
          <p>            
-            <span>저자 : cocoder </span> <br/>
-            <span>이메일 : cocoderlB@gmai | .com</span> <br/>
-            <span>Copyr 1ght 2020. cocoder. All| Rights Reserved. </span>
+            <span>제작자 : 외딴섬 </span> <br/>            
+            <span>Copyr1ght ⓒ 2023. 외딴섬. All| Rights Reserved. </span>
             </p>
    </footer>
 </body>

@@ -60,7 +60,7 @@
 							</div>
 							
 							<div class="write-brn" style="margin-left: 10px;">
-								<input type="button" value="글 작성" style="border-radius: 10px" onclick="location.href='board_write?category=${category}'">
+								<input type="button" value="글 작성" style="border-radius: 10px" onclick="location.href='write?category=${category}'">
 							</div>
 							</div>
 						</div>
