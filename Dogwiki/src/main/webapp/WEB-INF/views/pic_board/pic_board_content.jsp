@@ -2,49 +2,70 @@
 		<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core" %>
-<section>
-	<div align="center">
-		<h2>게시판 글내용 보기</h2>
+<link rel="stylesheet" type="text/css" href="/resources/css/write.css">
 
-		<table border="1" style="width: 500px;" class="pic-board-wrap">
-			<tr>
-				<td width="20%">분류</td>
-				<td >내새끼 짱</td>
-				<td style="width: 100px;">조회수</td>
-				<td >${picEntity.hit}</td>
-			</tr>
-			<tr>
-				<td>작성자</td>
-				<td>${picEntity.user.userid}</td>
-				<td style="width: 20px;">작성일</td>
-				<td>${picEntity.pic_regdate}</td>
-			</tr>
-			<tr>
-				<td>제목</td>
-				<td colspan="3">${picEntity.title}</td>
-			</tr>
-			<tr>
-				<td>사진</td>
-				<td colspan="3" height="100%" align="center"><img src="/files/${picEntity.filename}" style="width:300px; height:auto;"></td>
-			</tr>
-		</table>
+<body style="margin-top: 150px;">
+    <h1 class="con" style="margin-bottom: 20px;">게시판 글내용 보기</h1>
+
+<section class="article-detail table-common con row" style="text-align:center;">
+    <!-- 글 등록 메뉴 -->	
+        <table class="cell" border="1">
+            <colgroup>
+                <col width="100px">
+            </colgroup>
+            
+            <tbody>
+                <tr class="article-title">
+  <th style="font-size: 17px; width: 100px;">작성자</th>
+  <td>${picEntity.user.userid}</td>
+  <th style="width: 100px; font-size: 17px;">제목</th>
+  <td colspan="3">${picEntity.title}</td>            	
+  <th style="width: 100px; font-size: 17px; text-align: center;">분류</th>       
+  <td width="23%">내새끼 짱</td>
+</tr>
+<tr class="article-info">
+  <th style="font-size: 17px; width: 150px;">작성일</th>
+  <td style="font-size: 17px;">${picEntity.pic_regdate}</td>
+  <th style="font-size: 17px; width: 150px;">조회수</th>
+  <td style="font-size: 17px;">${picEntity.hit}</td>    
+  
+  <tr class="article-body">
+  <th>사진</th>
+  <td colspan="8" style="text-align: center;">
+    <img src="/files/${picEntity.filename}" style="width: 80%; height: auto;">
+  </td>
+</tr>  
+     
+</tr>
+		</tbody>
+		
+		
+        </table>
+
+</section>
+
+		<section class="pic_delete" style="margin-top: 5px;">
 		<form name="heartForm" method="post" action="pic_heart" class="content-btn">
 			<input type="hidden" name="category" value="${param.category}">
 			<input type="hidden" name="search" value="${param.search}">
 			<input type="hidden" name="page" value="${page}">
-			<input type="hidden" name="picnum" value="${picEntity.picnum}">
-			<input class="${heartExists ? 'heartOn' : 'heartOff'}" type="button" name="heart" value="좋아요&nbsp;&#9829;&nbsp;+${picEntity.heart}" 
-				onclick="heartCheck()">
+			<input type="hidden" name="picnum" value="${picEntity.picnum}">						
+				<input class="${heartExists ? 'heartOn' : 'heartOff'}" 
+       type="button" name="heart" 
+       value="좋아요&nbsp;&#9829;&nbsp;+${picEntity.heart}" 
+       onclick="heartCheck()"
+       style="background-color: ${heartExists ? '#f39aa0' : 'rightgrey' };"
+>
 			<input type="button" value="목록" onclick="location.href='pic_list?category=${param.category}&search=${param.search}&page=${page}'">
 		</form>
-		<form name="deleteForm" action="pic_delete" method="get">
+				
+		<form name="deleteForm" action="pic_delete" method="get" class="content-btn" style="margin-left: 10px;">
 			<input type="hidden" name="picnum" value="${picEntity.picnum}">
 			<c:if test="${picEntity.user.userid.equals(sessionScope.userid)}">
 				<input type ="submit" value="삭제" onclick="deleteCheck()">
 			</c:if>
 		</form>
-	</div>
-</section>
+		</section>
 
 <script>
 	function heartCheck() {
@@ -63,3 +84,5 @@
 		}
 	}
 </script>
+</body>
+<%@ include file="/resources/include/footer.jsp"%>

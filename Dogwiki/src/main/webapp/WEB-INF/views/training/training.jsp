@@ -1,8 +1,7 @@
 <%@ include file="/resources/include/header.jsp"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-		<title>Join</title>
 
-		<title>training info</title>
+	<title>training info</title>
 	<section style="margin-top: 150px;">
 	<table class="table1">
 		<h2>훈련 정보</h2>
@@ -100,4 +99,5 @@
 	</div>
 
 </section>
+<%@ include file="/resources/include/footer.jsp"%>
 </html>

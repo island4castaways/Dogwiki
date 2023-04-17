@@ -10,12 +10,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<head>
-	</head>
-	<body>
+<head>	</head>	
+<body>
 	<div id="menu">
 		<ul class="main1">
-			<li style="border: none;"><a href=""> <img href="/home" src="/resources/img/logo2.png" width="214.5px"></li>
+			<li style="border: none;">
+			<a href="/">
+				<img href="/" src="/resources/img/logo2.png" width="214.5px" style="margin-top: 35px;"></a></li>
+			
 			<li style="border: none;"><a href="/board/board_list">Board</a>
 				<ul class="main2">
 					<li><a href="/pic_board/pic_list">내 새끼 짱</a></li>
@@ -36,4 +38,4 @@
 			</c:choose>
 		</ul>
 	</div>
-</body>
+

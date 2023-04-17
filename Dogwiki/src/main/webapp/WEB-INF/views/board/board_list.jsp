@@ -2,7 +2,9 @@
 		<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core" %>
-<div class = "container"></div>
+
+<section>
+<div class = "container" ></div>
 	<h3>Dogwiki 게시판</h3>
 	<section>
 		<section class="section1">
@@ -52,11 +54,11 @@
 								<input type="text" name="search" value="${filter}">
 							</div>
 							
-							<div class="btn-board">
+							<div class="write-brn">
 								<input type="submit" value="검색" style="border-radius: 13px">
 							</div>
 							
-							<div class="write-brn">
+							<div class="write-brn" style="margin-left: 10px;">
 								<input type="button" value="글 작성" style="border-radius: 13px" onclick="location.href='board_write?category=${category}'">
 							</div>
 							</div>
@@ -113,3 +115,6 @@
 		}
 	}
 </script>
+</section>
+
+<%@ include file="/resources/include/footer.jsp"%>

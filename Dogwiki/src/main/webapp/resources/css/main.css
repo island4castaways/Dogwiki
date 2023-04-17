@@ -13,9 +13,7 @@ body {
   align-items: center;
   flex-direction: column;
   font-family: 'Montserrat', sans-serif;
-  height: 1000px;
-
-  margin: 0 0 50px;
+  margin: 0 0 50px; 
   background-size: cover;
 }
 
@@ -298,7 +296,7 @@ form.trining-form {
 }
 
 .form-group{
-	 margin-left: 300px;
+	/*  margin-left: 300px; */
 }
 .form-inline.int-area {
 	flex: 1; /* 남은 공간을 모두 사용 */
@@ -324,8 +322,8 @@ form.form-inline {
   justify-content: space-between;
   align-items: center;
   margin: 10px;
-  width: 25%;
-  margin-left: 1000px;
+/*   width: 25%;
+  margin-left: 1000px; */
 }
 
 .btn-board { 
@@ -377,6 +375,7 @@ form.form-inline {
   border-radius: 13px;
   cursor: pointer;
   color: black; /* 버튼 텍스트 색상 */
+  
 }
 
 .write-brn :hover {
