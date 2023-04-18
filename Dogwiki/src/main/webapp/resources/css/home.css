@@ -1,5 +1,5 @@
 *{
-   margin: 0 auto;
+   /* margin: 0; */
    text-align: center;
 }
 h2,h4,h3{
@@ -45,7 +45,7 @@ h2{
   
 }
 .home-middle{
-   width: 50%;
+   width: 65%;
    height: auto;
    text-align: center;
    border-bottom: 1px solid #ccc;
@@ -53,13 +53,17 @@ h2{
 }
 
 .home-bottom{
-   width: 50%;
+   width: 65%;
    height: auto;
    text-align: center;
    border-bottom: 1px solid #ccc;
+   padding:10px 20px;
+}
+table{
+	width: 100%;
 }
 table td{
-   padding: 5px 90px 5px;
+	height: 70px;
 }
 
 .more a{
@@ -68,5 +72,5 @@ table td{
 
 table th{
    background-color:  #FEEBB6;
-   padding: 10px 5px;
+   padding: 10px 10px;
 }
