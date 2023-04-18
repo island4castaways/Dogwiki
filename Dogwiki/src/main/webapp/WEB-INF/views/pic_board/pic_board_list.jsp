@@ -44,7 +44,7 @@
 					<!-- 작성글 검색 및 글작성하기 메뉴 -->
 			<tr>
 				<td colspan="5" class="board_list">
-					<form method="get" action="board_list" class="form-inline">
+					<form method="get" action="pic_list" class="form-inline">
 						<div class="form-group">
 							<c:if test="${empty category}">
 								<input type="hidden" name="category" value=2>

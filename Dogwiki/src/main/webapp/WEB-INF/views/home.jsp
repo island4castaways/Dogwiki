@@ -8,7 +8,7 @@
 
     <!-- 게시글 -->
     <div class="home home-top">
-    <h2>조회수 TOP3 미모</h2>
+    <h2>좋아요 TOP3</h2>
         <c:forEach var="bo" items="${picEntity}">
                 <div class="content-img">
                     <h3>${bo.title}</h3>
@@ -41,7 +41,7 @@
          <tbody>
             <c:forEach var="bo" items="${board2Entity}">
                <tr>
-                  <td>${bo.user.userid}</td>
+                  <td>${bo.user.username}</td>
                   <td ><a
                      href="/board/board_content?category=2&search=${search}&num=${bo.num}&page=${pageNumber}">${bo.title}</a>
                   </td>
@@ -69,7 +69,7 @@
       <tbody>
          <c:forEach var="bo" items="${board3Entity}">
             <tr>
-               <td>${bo.user.userid}</td>
+               <td>${bo.user.username}</td>
                <td><a
                   href="/board/board_content?category=3&search=${search}&num=${bo.num}&page=${pageNumber}">${bo.title}</a>
                </td>

@@ -60,8 +60,8 @@
 			<c:forEach var="cmt" items="${cmtList}">
 				<tr class="article-title">
 					<c:choose>
-						<c:when test="${cmt.user.userid.equals(sessionScope.userid)}">
-							<td>${cmt.user.username}</td>
+						<c:when test="${param.modify.equals('ok')}">
+						<td>${cmt.user.username}</td>
 							<td>
 								<form method="post" action="board_comment" class="content">
 									<input type="hidden" name="category" value="${param.category}">
@@ -93,6 +93,17 @@
 									</div>
 								</form>
 							</td>
+						</c:when>
+						
+						<c:when test="${cmt.user.userid.equals(sessionScope.userid)}">
+							<td>${cmt.user.username}</td>
+							
+							<td><div class="write-brn">${cmt.cmtContent}
+							 <input style="width: 60px" type="button" name="modify_comment" value="수정" onclick="location.href='board_content?modify=ok&num=${boardContent.num}'">
+								</div>
+							</td>
+							<td>${cmt.cmtDate}</td>
+							
 						</c:when>
 						<c:otherwise>
 							<td>${cmt.user.username}</td>
