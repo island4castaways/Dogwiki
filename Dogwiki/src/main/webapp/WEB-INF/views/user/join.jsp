@@ -57,8 +57,8 @@
 	        }else if(document.regForm.userid.value == '') {
 	               alert("아이디는 필수 사항입니다.")
 	               return;
-	        }else if((document.regForm.userid.value.length < 4) || (document.regForm.userid.value.length > 8)){
-				alert("아이디는 4글자 이상 8글자 이하로 입력하세요")
+	        }else if((document.regForm.userid.value.length < 4) || (document.regForm.userid.value.length > 12)){
+				alert("아이디는 4글자 이상 12글자 이하로 입력하세요")
 				return;
 			}else if(document.regForm.pw.value == '') {
 				alert("비밀번호는 필수 사항입니다.")
