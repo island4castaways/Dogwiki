@@ -25,6 +25,7 @@
         </div>
     </div>
 
+
    <div class="home home-middle">
       <table>
          <!-- 게시글 -->
@@ -86,8 +87,6 @@
             <iframe src="${trainingEntity.trUrl}" width="800" height="450" ></iframe>
          </div>
    </div>
-   
-   
 <%@ include file="/resources/include/footer.jsp"%>
 
 

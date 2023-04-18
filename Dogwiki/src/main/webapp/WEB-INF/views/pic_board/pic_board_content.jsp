@@ -50,12 +50,12 @@
 			<input type="hidden" name="search" value="${param.search}">
 			<input type="hidden" name="page" value="${page}">
 			<input type="hidden" name="picnum" value="${picEntity.picnum}">						
+				
 				<input class="${heartExists ? 'heartOn' : 'heartOff'}" 
        type="button" name="heart" 
        value="좋아요&nbsp;&#9829;&nbsp;+${picEntity.heart}" 
        onclick="heartCheck()"
-       style="background-color: ${heartExists ? '#f39aa0' : 'rightgrey' };"
->
+       style="background-color: ${heartExists ? '#f39aa0' : 'rightgrey' };">
 			<input type="button" value="목록" onclick="location.href='pic_list?category=${param.category}&search=${param.search}&page=${page}'">
 		</form>
 				
