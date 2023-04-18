@@ -21,8 +21,8 @@
 			<tr>
 				<th>작성자</th>
 				<th>제목</th>
-				<th>날짜</th>
-				<th>조회수</th>
+				<th style="text-align: center;">날짜</th>
+				<th style="text-align: center;">조회수</th>
 			</tr>
 		</thead>
 		<tbody class="table-boardered">
@@ -32,8 +32,8 @@
 					<td style="width: 380px;">
 						<a href="board_content?category=${category}&search=${search}&num=${bo.num}&page=${pageNumber}">${bo.title}</a>
 					</td>
-					<td style="width: 200px;">${bo.regdate}</td>
-					<td style="width: 90px;">${bo.hit}</td>
+					<td style="width: 230px;">${bo.regdate}</td>
+					<td style="width: 60px; text-align: center;">${bo.hit}</td>
 				</tr>
 			</c:forEach>
 		</tbody>

@@ -22,8 +22,8 @@
 				<th>작성자</th>
 				<th>제목</th>
 				<th>날짜</th>
-				<th>좋아요</th>
-				<th>조회수</th>
+				<th style="text-align: center;">좋아요</th>
+				<th style="text-align: center;">조회수</th>
 			</tr>
 		</thead>
 		<tbody class="table-boardered">
@@ -33,9 +33,9 @@
 				<td style="width: 380px;">
 					<a href="pic_content?category=${category}&search=${search}&num=${bo.picnum}&page=${pageNumber}">${bo.title}</a>
 				</td>
-				<td style="width: 200px;">${bo.pic_regdate}</td>
-				<td style="width: 80px;">${bo.heart}</td>
-				<td style="width: 80px;">${bo.hit}</td>
+				<td style="width: 230px;">${bo.pic_regdate}</td>
+				<td style="width: 60px; text-align: center;">${bo.heart}</td>
+				<td style="width: 60px; text-align: center;">${bo.hit}</td>
 			</tr>
 			</c:forEach>
 		</tbody>
@@ -79,7 +79,7 @@
 				</li>
 			</c:if>
 			<c:forEach var="page" begin="${startPage}" end="${endPage}">
-    			<li class="${pageNumber-1 == page ? 'active' : ''}">
+    			<li class="${pageNumber == (page-1) ? 'active' : 'paging'}">
        				<a href="pic_list?category=${category}&search=${search}&page=${page-1}">${page}</a>
        			</li>
 			</c:forEach>

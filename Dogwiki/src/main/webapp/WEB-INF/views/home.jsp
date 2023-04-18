@@ -6,8 +6,8 @@
 
 
     <!-- 게시글 -->
-    
-    <div class="home home-top">
+
+    <div class="home home-top" >
     <h2>조회수 TOP3 미모</h2>
         <c:forEach var="bo" items="${picEntity}">
                 <div class="content-img">
@@ -24,6 +24,7 @@
             <a href="/pic_board/pic_list">view more &nbsp;<i class="fa-solid fa-arrow-right"></i></a>
         </div>
     </div>
+
 
    <div class="home home-middle">
       <table>
@@ -59,10 +60,10 @@
       <h2>아이가 아파요 TOP 5</h2>
       <thead>
          <tr>
-            <th>작성자</th>
-            <th>제목</th>
-            <th>날짜</th>
-            <th>조회수</th>
+            <th style="margin: 20px;">작성자</th>
+            <th style="margin: 60px;">제목</th>
+            <th style="margin: 20px;">날짜</th>
+            <th style="margin: 20px;">조회수</th>
          </tr>
       </thead>
       <tbody>
@@ -86,7 +87,7 @@
             <iframe src="${trainingEntity.trUrl}" width="800" height="450" ></iframe>
          </div>
    </div>
-   
+
 <%@ include file="/resources/include/footer.jsp"%>
 
 
