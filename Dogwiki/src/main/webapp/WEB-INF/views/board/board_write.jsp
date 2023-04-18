@@ -20,8 +20,8 @@
                 <th style="font-size: 18px;">작성자</th>
 	                <td class="board_write2">
 			                 <div class="int-area">
-				                 <input type="text" name="user" size="10" value="${sessionScope.userid}"
-								${sessionScope.userid != null ? "readonly" : "" }>
+				                 <input type="hidden" name="user" size="10" value="${sessionScope.userid}">
+								 ${sessionScope.username}
 							</div>
 						</td>
 						

@@ -28,7 +28,7 @@
 		<tbody class="table-boardered">
 			<c:forEach var="bo" items="${page}">
 				<tr>
-					<td style="width: 90px;">${bo.user.userid}</td>
+					<td style="width: 90px;">${bo.user.username}</td>
 					<td style="width: 380px;">
 						<a href="board_content?category=${category}&search=${search}&num=${bo.num}&page=${pageNumber}">${bo.title}</a>
 					</td>

@@ -17,23 +17,22 @@
             <tbody>
                 <tr class="article-title">
                 <th style="font-size: 17px;">작성자</th>
-               	<td>${boardContent.user.userid}</td>
-                    <th style="width: 60px; font-size: 17px;">제목</th>
-                    	<td colspan="3">${boardContent.title}</td>
-                    	
-                    <th style="width: 60px; font-size: 17px; text-align: center;">분류</th>       
-					<td width="30%">${boardContent.category == 2 ? '사료간식 추천':'아이가 아파요'}</td>
+               	<td>${boardContent.user.username}</td>
+                    <th style="width:60px ; font-size: 17px;">제목</th>
+                    	<td colspan="3">${boardContent.title}</td>     
+					
                 </tr>
                 <tr class="article-info">
                     <th style="font-size: 17px;">작성일</th>
                     <td style="font-size: 17px; ">${boardContent.regdate}</td>
                     <th style="font-size: 17px ; width: 90px;">조회수</th>
                     <td style="font-size: 17px;">${boardContent.hit}</td>
+                    <td width="30%" style="font-size: 17px;">${boardContent.category == 2 ? '사료간식 추천':'아이가 아파요'}</td>
                 </tr>
                 
                 <tr class="article-body">
 				<th>글내용</th>
-				<td colspan="1"><pre style="font-size: 17px;">${boardContent.content}</pre></td>
+				<td colspan="5"><pre style="font-size: 17px;">${boardContent.content}</pre></td>
 			</tr>
             </tbody>
         </table>
@@ -62,7 +61,7 @@
 				<tr class="article-title">
 					<c:choose>
 						<c:when test="${cmt.user.userid.equals(sessionScope.userid)}">
-							<td>${cmt.user.userid}</td>
+							<td>${cmt.user.username}</td>
 							<td>
 								<form method="post" action="board_comment" class="content">
 									<input type="hidden" name="category" value="${param.category}">
@@ -73,7 +72,7 @@
 									<input type="hidden" name="user" value="${cmt.user.userid}">
 									
 									<div class="input-container">
-										<input type="text" name="cmtContent" value="${cmt.cmtContent}">
+										<input style="width: 300px" type="text" name="cmtContent" value="${cmt.cmtContent}">
 									
 									<div class="write-brn">	
 										<input type="submit" name="modify_comment" value="수정">
@@ -96,7 +95,7 @@
 							</td>
 						</c:when>
 						<c:otherwise>
-							<td>${cmt.user.userid}</td>
+							<td>${cmt.user.username}</td>
 							<td>${cmt.cmtContent}</td>
 							<td>${cmt.cmtDate}</td>
 						</c:otherwise>

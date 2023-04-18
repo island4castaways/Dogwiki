@@ -17,17 +17,16 @@
             <tbody>
                 <tr class="article-title">
   <th style="font-size: 17px; width: 100px;">작성자</th>
-  <td>${picEntity.user.userid}</td>
+  <td>${picEntity.user.username}</td>
   <th style="width: 100px; font-size: 17px;">제목</th>
   <td colspan="3">${picEntity.title}</td>            	
-  <th style="width: 100px; font-size: 17px; text-align: center;">분류</th>       
-  <td width="23%">내새끼 짱</td>
 </tr>
 <tr class="article-info">
   <th style="font-size: 17px; width: 150px;">작성일</th>
   <td style="font-size: 17px;">${picEntity.pic_regdate}</td>
   <th style="font-size: 17px; width: 150px;">조회수</th>
-  <td style="font-size: 17px;">${picEntity.hit}</td>    
+  <td style="font-size: 17px;">${picEntity.hit}</td>   
+  <td width="23%" style="font-size: 17px;">내새끼 짱</td> 
   
   <tr class="article-body">
   <th>사진</th>
