@@ -17,13 +17,15 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Builder
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
 @Table(name = "comment")
 @Entity(name = "comment")
 public class CommentEntity {
@@ -33,11 +35,12 @@ public class CommentEntity {
 	private Integer cmtNum;
 	
 	@ManyToOne
-    @JoinColumn(name="board_num", referencedColumnName="num")
+    @JoinColumn(name = "board_num", referencedColumnName = "num")
 	private BoardEntity board_basic;
 	
-	@Column(length = 40, nullable = false)
-	private String cmtWriter;
+	@ManyToOne
+	@JoinColumn(name = "cmt_writer_id", referencedColumnName = "userid")
+	private UserEntity user;
 	
 	@Column(length = 255, nullable = false)
 	private String cmtContent;

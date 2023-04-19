@@ -24,6 +24,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dogwiki.commu.entity.BoardEntity;
 import com.dogwiki.commu.entity.CommentEntity;
+import com.dogwiki.commu.entity.UserEntity;
 import com.dogwiki.commu.service.BoardService;
 import com.dogwiki.commu.service.CommentService;
 
@@ -41,16 +42,10 @@ public class BoardContoller {
 	public String board_list(Model model, 
 			@PageableDefault(size=10, sort="num", direction = Sort.Direction.DESC) Pageable pageable,
 			@RequestParam(value="category", required = false, defaultValue = "2") int category,
-			@RequestParam(value="search", required= false) String search, 
-			@RequestParam(value="user", required=false) String userid) {
-		System.out.println(category);
-		
-		
+			@RequestParam(value="search", required= false) String search) {
 		Page<BoardEntity> boardpage;
 		
-		if(userid != null) {
-			boardpage=brdService.mypage_board(userid, pageable);
-		} else if(search != null) {
+		if(search != null) {
 			boardpage = brdService.search_board(search, category, pageable);
 		} else {
 			boardpage = brdService.board_select_category(category, pageable);
@@ -73,18 +68,16 @@ public class BoardContoller {
         model.addAttribute("tempEndPage", tempEndPage);
         model.addAttribute("endPage", endPage);
         
-        model.addAttribute("cate", category);
-        model.addAttribute("filter", search);
+        model.addAttribute("category", category);
+        model.addAttribute("search", search);
         
 		return "/board/board_list";
 	}
 	
 	@RequestMapping(value = "/board_content", method = RequestMethod.GET)
 	public String board_content(@RequestParam("num") Integer num, 
-			@RequestParam("page") int page, Model model, 
+			@RequestParam(value="page",  required = false, defaultValue = "0") int page, Model model, 
 			HttpServletRequest request, HttpServletResponse response) {
-		System.out.println(num);
-		
 		Optional<BoardEntity> op = brdService.selectOne(num);
 		BoardEntity entity = null;
 		Cookie hitCoo = null;
@@ -117,44 +110,33 @@ public class BoardContoller {
 	
 	@PostMapping("/board_comment")
 	public String board_comment(@RequestParam("category") String category, 
-			@RequestParam("search") String search,
+			@RequestParam(value = "search", required = false) String search,
 			@RequestParam("page") String page, 
-			@RequestParam("board_num") Integer board_num, 
-			@RequestParam(value = "cmtNum", defaultValue = "0", required = false) Integer cmtNum, 
-			@RequestParam("cmtWriter") String cmtWriter, 
-			@RequestParam("cmtContent") String cmtContent, 
+			CommentEntity entity, 
 			HttpSession session, RedirectAttributes rttr) {
 		if(session.getAttribute("userid") == null) {
 			rttr.addFlashAttribute("msg", "댓글 쓰기 권한이 없습니다. 로그인 해주세요.");
 			return "redirect:/login";
 		}
-		if(cmtNum != 0) {
-			CommentEntity entity = cmtService.selectOne(cmtNum).get();
-			entity.setCmtContent(cmtContent);
-			cmtService.updateOne(entity);
-			return "redirect:/board/board_content?category=" + category 
-					+ "&search=" + search + "&num=" + board_num + "&page=" + page;
+		
+		if(entity.getCmtContent() != null && !entity.getCmtContent().isEmpty()) {
+			if(entity.getCmtNum() != null) {
+				CommentEntity original = cmtService.selectOne(entity.getCmtNum()).get();
+				original.setCmtContent(entity.getCmtContent());
+				cmtService.saveOne(original);
+			} else {
+				cmtService.saveOne(entity);
+			}
 		}
-		if(cmtContent != null && !cmtContent.isEmpty()) {
-			CommentEntity entity = CommentEntity.builder()
-					.board_basic(BoardEntity.builder()
-							.num(board_num)
-							.build())
-					.cmtWriter(cmtWriter)
-					.cmtContent(cmtContent)
-					.build();
-			cmtService.insert(entity);
-		}
-		if(category.isEmpty() || category == null) category = "";
-		if(search.isEmpty() || search == null) search = "";
+		
 		return "redirect:/board/board_content?category=" + category 
-				+ "&search=" + search + "&num=" + board_num + "&page=" + page;
+				+ "&search=" + search + "&num=" + entity.getBoard_basic().getNum() + "&page=" + page;
 	}
 	
 	@PostMapping("/board_comment_delete")
 	public String board_comment_delete(
 			@RequestParam("category") String category, 
-			@RequestParam("search") String search, 
+			@RequestParam(value = "search", required = false) String search, 
 			@RequestParam("page") String page, 
 			@RequestParam("board_num") String board_num, 
 			@RequestParam("cmtNum") Integer cmtNum) {
@@ -176,6 +158,12 @@ public class BoardContoller {
 			return "/pic_board/pic_board_write";
 		}
 		return "/board/board_write";
+	}
+	
+	@PostMapping("/board_write")
+	public String board_write(BoardEntity boardEntity) {
+		brdService.board_create(boardEntity);
+		return "redirect:/board/board_list?category=" + boardEntity.getCategory();
 	}
 	
 	@RequestMapping(value = "/board_modify")
