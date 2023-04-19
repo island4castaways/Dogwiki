@@ -60,7 +60,7 @@
 			<c:forEach var="cmt" items="${cmtList}">
 				<tr class="article-title">
 					<c:choose>
-						<c:when test="${param.modify.equals('ok')}">
+						<c:when test="${param.modify.equals('ok') && cmt.user.userid.equals(sessionScope.userid)}">
 						<td>${cmt.user.username}</td>
 							<td>
 								<form method="post" action="board_comment" class="content">
